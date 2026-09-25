@@ -240,9 +240,46 @@ input,select{font-family:inherit;}
 @media (min-width:480px){
   .cat-grid{grid-template-columns:1fr 1fr 1fr;}
 }
+
+/* Firebase Login Oynasi (Modal) uchun dizayn */
+.auth-controls { position: absolute; top: 15px; right: 20px; z-index: 1000; }
+.auth-controls button { padding: 8px 15px; cursor: pointer; border: none; border-radius: 5px; font-weight: bold; }
+#show-auth-btn { background-color: #007bff; color: white; }
+#logout-btn { background-color: #dc3545; color: white; display: none; margin-left: 10px; }
+#user-info { font-weight: bold; color: #28a745; display: none; background: white; padding: 5px 10px; border-radius: 5px;}
+
+.modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); align-items: center; justify-content: center; z-index: 2000; }
+.modal-content { background: white; padding: 30px; border-radius: 10px; width: 320px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); position: relative; }
+.modal-content input { width: 90%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px; }
+.modal-content button { padding: 10px; margin: 5px 0; width: 100%; cursor: pointer; border: none; border-radius: 5px; font-weight: bold; color: white; }
+#login-btn { background-color: #28a745; }
+#signup-btn { background-color: #007bff; }
+.close-btn { position: absolute; top: 10px; right: 15px; cursor: pointer; font-size: 20px; font-weight: bold; color: #aaa; }
+.close-btn:hover { color: red; }
+#auth-error { color: red; font-size: 14px; text-align: center; }
 </style>
 </head>
 <body>
+<!-- YUQORI QISM (Kirish tugmasi) -->
+<div class="auth-controls">
+    <button id="show-auth-btn">Kirish / Ro'yxatdan o'tish</button>
+    <span id="user-info"></span>
+    <button id="logout-btn">Chiqish</button>
+</div>
+
+<!-- QALQIB CHIQUVCHI OYNA (Login Modal) -->
+<div class="modal" id="auth-modal">
+    <div class="modal-content">
+        <span class="close-btn" id="close-modal-btn">&times;</span>
+        <h3 style="margin-top: 0; color: black;">Tizimga kirish</h3>
+        <input type="email" id="email" placeholder="Email manzilingiz" required>
+        <input type="password" id="password" placeholder="Parol (kamida 6 ta belgi)" required>
+        <p id="auth-error"></p>
+        <button id="login-btn">Kirish</button>
+        <button id="signup-btn">Ro'yxatdan o'tish</button>
+    </div>
+</div>
+
 <div class="app" id="app">
 
   <div class="topbar">
@@ -1205,6 +1242,82 @@ function renderQuizResult(pctArg){
 // =====================================================================
 go("home");
 
+</script>
+
+<!-- FIREBASE ULANISHI VA MANTIQ -->
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+    import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyDNjDE8VKvaM8fahdTd_TuECKmp13Ksr8I",
+        authDomain: "english-148c0.firebaseapp.com",
+        projectId: "english-148c0",
+        storageBucket: "english-148c0.firebasestorage.app",
+        messagingSenderId: "843459344567",
+        appId: "1:843459344567:web:1085bc442ff09bc1f4b532"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    // Oyna va tugmalarni topish
+    const showAuthBtn = document.getElementById('show-auth-btn');
+    const logoutBtn = document.getElementById('logout-btn');
+    const userInfo = document.getElementById('user-info');
+    const authModal = document.getElementById('auth-modal');
+    const closeModalBtn = document.getElementById('close-modal-btn');
+    
+    const emailInput = document.getElementById('email');
+    const passwordInput = document.getElementById('password');
+    const authError = document.getElementById('auth-error');
+
+    // Modalni ochish va yopish
+    if(showAuthBtn) showAuthBtn.addEventListener('click', () => { authModal.style.display = 'flex'; });
+    if(closeModalBtn) closeModalBtn.addEventListener('click', () => { authModal.style.display = 'none'; });
+    window.addEventListener('click', (e) => { if (e.target === authModal) authModal.style.display = 'none'; });
+
+    // Ro'yxatdan o'tish
+    if(document.getElementById('signup-btn')) {
+        document.getElementById('signup-btn').addEventListener('click', () => {
+            createUserWithEmailAndPassword(auth, emailInput.value, passwordInput.value)
+                .then(() => { authModal.style.display = 'none'; })
+                .catch((error) => { authError.textContent = "Xatolik: " + error.message; });
+        });
+    }
+
+    // Kirish
+    if(document.getElementById('login-btn')) {
+        document.getElementById('login-btn').addEventListener('click', () => {
+            signInWithEmailAndPassword(auth, emailInput.value, passwordInput.value)
+                .then(() => { authModal.style.display = 'none'; })
+                .catch((error) => { authError.textContent = "Email yoki parol noto'g'ri!"; });
+        });
+    }
+
+    // Chiqish
+    if(logoutBtn) logoutBtn.addEventListener('click', () => { signOut(auth); });
+
+    // Foydalanuvchi holatini kuzatish
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            if(showAuthBtn) showAuthBtn.style.display = 'none';
+            if(userInfo) { userInfo.style.display = 'inline'; userInfo.textContent = user.email; }
+            if(logoutBtn) logoutBtn.style.display = 'inline';
+            window.currentUser = user; // Boshqa joydan ishlatish uchun
+            window.db = db; // Boshqa joydan ishlatish uchun
+        } else {
+            if(showAuthBtn) showAuthBtn.style.display = 'inline';
+            if(userInfo) { userInfo.style.display = 'none'; userInfo.textContent = ''; }
+            if(logoutBtn) logoutBtn.style.display = 'none';
+            emailInput.value = '';
+            passwordInput.value = '';
+            authError.textContent = '';
+            window.currentUser = null;
+        }
+    });
 </script>
 </body>
 </html>

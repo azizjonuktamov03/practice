@@ -1328,7 +1328,15 @@ go("home");
         googleBtn.addEventListener('click', () => {
             signInWithPopup(auth, googleProvider)
                 .then(() => { authModal.style.display = 'none'; })
-                .catch((error) => { authError.textContent = "Xatolik: " + error.message; });
+                .catch((error) => {
+                    // Agar foydalanuvchi oynani o'zi yopib yuborgan bo'lsa, xatoni ko'rsatmaymiz
+                    if (error.code === 'auth/popup-closed-by-user' || error.code === 'auth/cancelled-popup-request') {
+                        authError.textContent = ""; 
+                    } else {
+                        // Boshqa haqiqiy xatolik bo'lsa ko'rsatamiz
+                        authError.textContent = "Xatolik yuz berdi: " + error.message;
+                    }
+                });
         });
     }
 

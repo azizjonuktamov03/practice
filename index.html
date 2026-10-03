@@ -5,160 +5,197 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Ingliz tili lug'ati — English File Units</title>
 <style>
-:root{--bg:#F6F5FB;--surface:#FFFFFF;--surface-2:#EFEDFB;--ink:#20203A;--ink-soft:#5B5B78;--border:rgba(32,32,58,0.10);--primary:#5B4CFF;--primary-2:#8B5CF6;--accent:#FF6F91;--accent-2:#00C6AE;--gold:#FFB020;--danger:#FF4D5E;--success:#1FBF75;--shadow: 0 8px 24px rgba(60,50,140,0.10);--shadow-lg: 0 16px 40px rgba(60,50,140,0.18);--radius: 18px;--radius-sm: 12px;--grad-1: linear-gradient(135deg,#5B4CFF 0%,#8B5CF6 50%,#FF6F91 100%);--grad-2: linear-gradient(135deg,#00C6AE 0%,#5B4CFF 100%);--font-display: 'Golos Text','Segoe UI',system-ui,sans-serif;--font-body: 'Golos Text','Segoe UI',system-ui,sans-serif;}
-html.dark{--bg:#1D1D26;--surface:#262633;--surface-2:#323244;--ink:#F1F0FA;--ink-soft:#A8A6C6;--border:rgba(255,255,255,0.08);--shadow: 0 8px 24px rgba(0,0,0,0.35);--shadow-lg: 0 16px 40px rgba(0,0,0,0.5);}
-*{box-sizing:border-box; -webkit-tap-highlight-color: transparent;}
-body{margin:0;font-family:var(--font-body);background:var(--bg);color:var(--ink);transition:background .3s,color .3s;}
-h1,h2,h3{font-family:var(--font-display); margin:0;}
-button{font-family:inherit; cursor:pointer;}
-input,select{font-family:inherit;}
-::-webkit-scrollbar{width:6px;height:6px;}
-::-webkit-scrollbar-thumb{background:var(--border);border-radius:10px;}
-.app{max-width:720px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column;position:relative;padding-bottom:76px;}
-.topbar{position:sticky; top:0; z-index:40;background:var(--grad-1);padding:16px 18px 22px;border-radius:0 0 26px 26px;box-shadow:var(--shadow-lg);color:#fff;}
-.topbar-row{display:flex; align-items:center; justify-content:space-between; gap:10px;}
-.brand{display:flex; align-items:center; gap:10px;}
-.brand-mark{width:40px;height:40px;border-radius:12px;background:rgba(255,255,255,0.18);display:flex;align-items:center;justify-content:center;font-size:20px;backdrop-filter: blur(6px);}
-.brand-text h1{font-size:16px; font-weight:800; letter-spacing:.2px;}
-.brand-text p{margin:2px 0 0; font-size:11.5px; opacity:.85;}
-.topbar-actions{display:flex; gap:8px;}
-.icon-btn{width:38px;height:38px;border-radius:12px;border:none;background:rgba(255,255,255,0.16);color:#fff;font-size:17px;display:flex;align-items:center;justify-content:center;transition: transform .15s, background .2s;}
-.icon-btn:active{transform:scale(0.9);}
-.icon-btn.on{background:rgba(255,255,255,0.35);}
-.streak-pill{display:flex;align-items:center;gap:5px;background:rgba(255,255,255,0.18);padding:6px 10px;border-radius:100px;font-size:12.5px;font-weight:700;}
-.search-wrap{margin-top:14px;position:relative;}
-.search-input{width:100%; padding:13px 44px 13px 16px; border-radius:14px; border:none;background:rgba(255,255,255,0.92); font-size:14.5px; color:#20203A; outline:none;}
-.search-input::placeholder{color:#8E8DA8;}
-.search-clear{position:absolute; right:8px; top:50%; transform:translateY(-50%); background:none;border:none;color:#8E8DA8;font-size:18px;padding:6px;display:none;}
-.view{padding:16px 16px 8px; animation: fadeIn .25s ease;}
-@keyframes fadeIn{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);}}
-.section-title{font-size:15px;font-weight:800; margin:6px 2px 12px; display:flex; align-items:center; gap:8px;}
-.section-title .cnt{font-weight:600;font-size:11.5px;color:var(--ink-soft); background:var(--surface-2); padding:3px 9px;border-radius:100px;}
-.cat-grid{display:grid; grid-template-columns:1fr 1fr; gap:11px;}
-.cat-card{background:var(--surface); border-radius:var(--radius-sm); padding:14px; box-shadow:var(--shadow);border:1px solid var(--border); text-align:left; display:flex; flex-direction:column; gap:8px; color:var(--ink);transition: transform .15s;}
-.cat-card:active{transform:scale(0.96);}
-.cat-emoji{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:19px; background:var(--surface-2);}
-.cat-name{font-size:13px;font-weight:700; line-height:1.25;}
-.cat-count{font-size:11px;color:var(--ink-soft); font-weight:600;}
-.dash-cards{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:18px;}
-.stat-card{background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-sm); padding:14px; box-shadow:var(--shadow);}
-.stat-card b{font-size:22px; display:block;}
-.stat-card span{font-size:11.5px; color:var(--ink-soft); font-weight:600;}
-.progress-bar{height:8px;border-radius:10px; background:var(--surface-2); overflow:hidden; margin-top:8px;}
-.progress-fill{height:100%; background:var(--grad-2); border-radius:10px; transition:width .4s;}
-.quick-row{display:flex; gap:10px; overflow-x:auto; padding-bottom:4px; margin-bottom:18px;}
-.quick-btn{flex:0 0 auto; background:var(--surface); border:1px solid var(--border); border-radius:14px;padding:12px 16px; display:flex; flex-direction:column; align-items:center; gap:6px; min-width:92px;box-shadow:var(--shadow); font-size:11.5px; font-weight:700; color:var(--ink);}
-.quick-btn .em{font-size:20px;}
-.quick-btn:active{transform:scale(0.95);}
-.phrase-card{background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-sm);padding:14px 14px; margin-bottom:10px; box-shadow:var(--shadow); position:relative;}
-.phrase-uz{font-size:11.5px; color:var(--primary); font-weight:800; text-transform:uppercase; letter-spacing:.3px; margin-bottom:4px;}
-.phrase-ru{font-size:16px; font-weight:700; line-height:1.35; margin-bottom:3px;}
-.phrase-tr{font-size:12.5px; color:var(--ink-soft); font-style:italic; margin-bottom:4px;}
-.phrase-note{font-size:11.5px; color:var(--accent-2); font-weight:600;}
-.phrase-actions{position:absolute; top:10px; right:10px; display:flex; gap:6px;}
-.mini-btn{width:32px;height:32px;border-radius:10px;border:none;background:var(--surface-2);display:flex;align-items:center;justify-content:center; font-size:15px; color:var(--ink-soft);}
-.mini-btn.fav-on{color:var(--gold); background:rgba(255,176,32,0.15);}
-.mini-btn:active{transform:scale(0.88);}
-.empty-state{text-align:center; padding:50px 20px; color:var(--ink-soft);}
-.empty-state .em{font-size:40px; display:block; margin-bottom:10px;}
-.bottom-nav{position:fixed; bottom:0; left:0; right:0; z-index:50;background:var(--surface); border-top:1px solid var(--border);display:flex; justify-content:space-around; padding:8px 4px calc(8px + env(safe-area-inset-bottom));max-width:720px; margin:0 auto; box-shadow:0 -6px 20px rgba(0,0,0,0.06);}
-.nav-btn{background:none;border:none; display:flex; flex-direction:column; align-items:center; gap:3px; color:var(--ink-soft); font-size:9.5px; font-weight:700; padding:4px 6px; border-radius:10px; flex:1;}
-.nav-btn .em{font-size:19px;}
-.nav-btn.active{color:var(--primary);}
-.btn{padding:13px 20px; border-radius:14px; border:none; font-weight:800; font-size:14px;background:var(--grad-1); color:#fff; box-shadow:var(--shadow); display:flex; align-items:center; justify-content:center; gap:8px;}
-.btn:active{transform:scale(0.97);}
-.btn.secondary{background:var(--surface-2); color:var(--ink); box-shadow:none; border:1px solid var(--border);}
-.btn.block{width:100%;}
-.btn.danger{background:linear-gradient(135deg,#FF4D5E,#FF6F91);}
-.btn.success{background:linear-gradient(135deg,#1FBF75,#00C6AE);}
-.btn:disabled{opacity:.5;}
-.flash-wrap{display:flex; flex-direction:column; align-items:center; padding:10px 4px 20px;}
-.flash-progress{width:100%; display:flex; align-items:center; gap:10px; margin-bottom:16px; font-size:12px; color:var(--ink-soft); font-weight:700;}
-.flash-progress .bar{flex:1; height:6px; background:var(--surface-2); border-radius:10px; overflow:hidden;}
-.flash-progress .bar i{display:block; height:100%; background:var(--grad-1);}
-.flashcard{width:100%; min-height:260px; border-radius:22px; background:var(--surface); box-shadow:var(--shadow-lg);border:1px solid var(--border); display:flex; flex-direction:column; align-items:center; justify-content:center;text-align:center; padding:30px 22px; position:relative; perspective:1200px;}
-.flash-cat{position:absolute; top:14px; left:16px; font-size:10.5px; font-weight:800; color:var(--ink-soft); background:var(--surface-2); padding:4px 10px; border-radius:100px;}
-.flash-star{position:absolute; top:12px; right:12px; background:none;border:none;font-size:20px;color:var(--ink-soft);}
-.flash-main{font-size:23px; font-weight:800; line-height:1.4;}
-.flash-sub{margin-top:14px; font-size:15px; color:var(--ink-soft); font-style:italic;}
-.flash-note{margin-top:10px; font-size:12.5px; color:var(--accent-2); font-weight:700;}
-.flash-hint{margin-top:18px; font-size:11.5px; color:var(--ink-soft); opacity:.7;}
-.flash-audio{margin-top:16px;}
-.flash-controls{display:flex; gap:10px; width:100%; margin-top:18px;}
-.flash-bottom{display:flex; gap:10px; width:100%; margin-top:14px;}
-.quiz-setup{display:flex; flex-direction:column; gap:14px;}
-.mode-grid{display:grid; grid-template-columns:1fr 1fr; gap:10px;}
-.mode-card{background:var(--surface); border:2px solid var(--border); border-radius:16px; padding:14px; text-align:left;display:flex; flex-direction:column; gap:6px; box-shadow:var(--shadow); color:var(--ink);}
-.mode-card.sel{border-color:var(--primary); background:var(--surface-2);}
-.mode-card .em{font-size:20px;}
-.mode-card b{font-size:12.5px;}
-.mode-card small{font-size:10.5px; color:var(--ink-soft);}
-.len-row{display:flex; gap:8px; flex-wrap:wrap;}
-.len-chip{padding:9px 14px; border-radius:100px; border:2px solid var(--border); background:var(--surface); font-size:12.5px; font-weight:700; color:var(--ink);}
-.len-chip.sel{border-color:var(--primary); background:var(--primary); color:#fff;}
-.q-progress{display:flex; align-items:center; gap:10px; margin-bottom:16px;}
-.q-progress .bar{flex:1; height:8px; background:var(--surface-2); border-radius:10px; overflow:hidden;}
-.q-progress .bar i{display:block; height:100%; background:var(--grad-1);}
-.q-score{font-size:12px; font-weight:800; color:var(--ink-soft);}
-.q-card{background:var(--surface); border-radius:20px; box-shadow:var(--shadow-lg); border:1px solid var(--border); padding:24px 20px; text-align:center;}
-.q-label{font-size:11px; font-weight:800; color:var(--primary); text-transform:uppercase; letter-spacing:.4px; margin-bottom:10px;}
-.q-question{font-size:20px; font-weight:800; line-height:1.4; margin-bottom:6px;}
-.q-question .em-audio{margin-left:8px;}
-.q-options{display:flex; flex-direction:column; gap:10px; margin-top:18px;}
-.opt-btn{padding:14px 16px; border-radius:14px; border:2px solid var(--border); background:var(--surface);text-align:left; font-size:14px; font-weight:700; color:var(--ink); display:flex; align-items:center; gap:10px;}
-.opt-btn .letter{width:26px;height:26px;border-radius:8px;background:var(--surface-2); display:flex;align-items:center;justify-content:center; font-size:12px; font-weight:800; flex:0 0 auto;}
-.opt-btn.correct{border-color:var(--success); background:rgba(31,191,117,0.12);}
-.opt-btn.wrong{border-color:var(--danger); background:rgba(255,77,94,0.12);}
-.opt-btn:disabled{opacity:.85;}
-.type-input{width:100%; padding:14px 16px; border-radius:14px; border:2px solid var(--border); background:var(--surface); font-size:15px; margin-top:16px; color:var(--ink); outline:none;}
-.type-input:focus{border-color:var(--primary);}
-.q-feedback{margin-top:14px; padding:12px 14px; border-radius:14px; font-size:13px; font-weight:700; text-align:left;}
-.q-feedback.ok{background:rgba(31,191,117,0.12); color:var(--success);}
-.q-feedback.no{background:rgba(255,77,94,0.12); color:var(--danger);}
-.q-feedback .fb-note{display:block; margin-top:4px; font-weight:600; color:var(--ink-soft);}
-.result-hero{text-align:center; padding:30px 10px 20px;}
-.result-ring{width:140px;height:140px; border-radius:50%; margin:0 auto 16px; display:flex; align-items:center; justify-content:center; background:var(--grad-1); box-shadow:var(--shadow-lg);}
-.result-ring b{font-size:32px; color:#fff;}
-.result-ring span{font-size:11px; color:rgba(255,255,255,0.85); display:block;}
-.tag-row{display:flex; gap:8px; flex-wrap:wrap; padding:2px 4px 10px 0; max-height:220px; overflow-y:auto; align-content:flex-start;}
-.tag-chip{padding:8px 14px; border-radius:100px; background:var(--surface); border:1px solid var(--border); font-size:12px; font-weight:700; color:var(--ink-soft); margin-bottom:4px;}
-.tag-chip.sel{background:var(--primary); color:#fff; border-color:var(--primary);}
-.back-row{display:flex; align-items:center; gap:10px; margin-bottom:14px;}
-.back-btn{width:36px;height:36px;border-radius:11px; border:1px solid var(--border); background:var(--surface); display:flex; align-items:center; justify-content:center; font-size:16px; color:var(--ink);}
-.source-note{font-size:11px; color:var(--ink-soft); background:var(--surface-2); border-radius:12px; padding:10px 12px; margin-bottom:14px; line-height:1.5;}
-@media (min-width:480px){.cat-grid{grid-template-columns:1fr 1fr 1fr;}}
+/* ===================== DESIGN TOKENS ===================== */
+:root {
+  --bg: #F6F5FB; --surface: #FFFFFF; --surface-2: #EFEDFB;
+  --ink: #20203A; --ink-soft: #5B5B78; --border: rgba(32,32,58,0.10);
+  --primary: #5B4CFF; --primary-2: #8B5CF6; --accent: #FF6F91;
+  --accent-2: #00C6AE; --gold: #FFB020; --danger: #FF4D5E; --success: #1FBF75;
+  --shadow: 0 8px 24px rgba(60,50,140,0.10); --shadow-lg: 0 16px 40px rgba(60,50,140,0.18);
+  --radius: 18px; --radius-sm: 12px;
+  --grad-1: linear-gradient(135deg,#5B4CFF 0%,#8B5CF6 50%,#FF6F91 100%);
+  --grad-2: linear-gradient(135deg,#00C6AE 0%,#5B4CFF 100%);
+  --font-display: 'Golos Text','Segoe UI',system-ui,sans-serif;
+  --font-body: 'Golos Text','Segoe UI',system-ui,sans-serif;
+}
+html.dark {
+  --bg: #1D1D26; --surface: #262633; --surface-2: #323244;
+  --ink: #F1F0FA; --ink-soft: #A8A6C6; --border: rgba(255,255,255,0.08);
+  --shadow: 0 8px 24px rgba(0,0,0,0.35); --shadow-lg: 0 16px 40px rgba(0,0,0,0.5);
+}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
-/* Firebase Login Modal */
-.auth-controls { position: absolute; top: 15px; right: 20px; z-index: 1000; }
-.auth-controls button { padding: 8px 15px; cursor: pointer; border: none; border-radius: 5px; font-weight: bold; }
-#show-auth-btn { background-color: #007bff; color: white; }
-#logout-btn { background-color: #dc3545; color: white; display: none; margin-left: 10px; }
-#user-info { font-weight: bold; color: #28a745; display: none; background: white; padding: 5px 10px; border-radius: 5px;}
-.modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); align-items: center; justify-content: center; z-index: 2000; }
-.modal-content { background: white; padding: 30px; border-radius: 10px; width: 320px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); position: relative; }
-.modal-content input { width: 90%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px; }
-.modal-content button { padding: 10px; margin: 5px 0; width: 100%; cursor: pointer; border: none; border-radius: 5px; font-weight: bold; color: white; }
-#login-btn { background-color: #28a745; }
-#signup-btn { background-color: #007bff; }
-.close-btn { position: absolute; top: 10px; right: 15px; cursor: pointer; font-size: 20px; font-weight: bold; color: #aaa; }
-.close-btn:hover { color: red; }
-#auth-error { color: red; font-size: 14px; text-align: center; }
+/* GLOBAL SILLIQ O'TISHLAR (Animatsiyalar) */
+body, .app, .cat-card, .phrase-card, .topbar, .bottom-nav, .modal-content, .btn, .stat-card, input, .mobile-menu {
+  transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease, transform 0.3s ease;
+}
+body { margin: 0; font-family: var(--font-body); background: var(--bg); color: var(--ink); }
+h1, h2, h3 { font-family: var(--font-display); margin: 0; }
+button { font-family: inherit; cursor: pointer; }
+input, select { font-family: inherit; }
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
+
+/* LAYOUT (Kompyuterda 1200px gacha kengayadi) */
+.app { max-width: 1200px; margin: 0 auto; min-height: 100vh; display: flex; flex-direction: column; position: relative; padding-bottom: 76px; }
+@media (min-width: 992px) { .app { padding-bottom: 20px; } }
+
+/* YUQORI QISM (Qisqa va ixcham Header) */
+.topbar { position: sticky; top: 0; z-index: 60; background: var(--grad-1); box-shadow: var(--shadow-lg); color: #fff; padding: 12px 20px; border-radius: 0 0 20px 20px; }
+.topbar-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.brand { display: flex; align-items: center; gap: 8px; cursor: pointer; }
+.brand-mark { width: 34px; height: 34px; border-radius: 10px; background: rgba(255,255,255,0.18); display: flex; align-items: center; justify-content: center; font-size: 18px; backdrop-filter: blur(6px); }
+.brand-text h1 { font-size: 16px; font-weight: 800; letter-spacing: .2px; }
+.brand-text p { display: none; } /* Joy tejash uchun yashirildi */
+
+/* DESKTOP NAVBAR (Kompyuterda ko'rinadi, telefonda yashirinadi) */
+.desktop-nav { display: none; align-items: center; gap: 5px; flex: 1; justify-content: center; }
+.desktop-nav .nav-btn { flex-direction: row; color: rgba(255,255,255,0.7); font-size: 14px; padding: 8px 14px; }
+.desktop-nav .nav-btn.active { color: #fff; background: rgba(255,255,255,0.2); border-radius: 10px; }
+.desktop-nav .nav-btn .em { margin-right: 6px; font-size: 16px; }
+
+/* O'NG TOMON TUFMAYALAR VA QIDIRUV (Lupa animatsiyasi) */
+.topbar-actions { display: flex; align-items: center; gap: 8px; }
+.search-container { display: flex; align-items: center; background: rgba(255,255,255,0.15); border-radius: 20px; padding: 2px; transition: 0.3s; }
+.search-container.active { background: rgba(255,255,255,0.95); }
+.search-input { width: 0; padding: 0; border: none; background: transparent; font-size: 14px; transition: 0.3s; opacity: 0; color: #20203A; }
+.search-container.active .search-input { width: 140px; padding: 5px 10px; opacity: 1; outline: none; }
+.icon-btn { width: 34px; height: 34px; border-radius: 10px; background: transparent; color: #fff; border: none; font-size: 16px; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
+.search-container.active .icon-btn { color: #5B4CFF; }
+.icon-btn:active { transform: scale(0.9); }
+
+/* GAMBURGER MENYU VA MOBILE AUTH (Telefonda ochiladi) */
+.hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 5px; z-index: 100; width: 34px; height: 34px; align-items: center; justify-content: center; }
+.hamburger span { display: block; width: 22px; height: 3px; background: #fff; transition: 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55); border-radius: 3px; }
+.hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 6px); }
+.hamburger.active span:nth-child(2) { opacity: 0; }
+.hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -6px); }
+
+.mobile-menu { position: absolute; top: 60px; right: 20px; background: var(--surface); padding: 15px; border-radius: 12px; box-shadow: var(--shadow-lg); display: none; flex-direction: column; gap: 10px; z-index: 100; border: 1px solid var(--border); transform-origin: top right; animation: scaleIn 0.2s ease forwards; }
+.mobile-menu.active { display: flex; }
+@keyframes scaleIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+.auth-controls { display: flex; align-items: center; gap: 10px; }
+#user-info { font-weight: bold; color: var(--success); display: none; font-size: 14px; }
+
+/* Asosiy ko'rinish responsivligi */
+@media (max-width: 991px) {
+  .hamburger { display: flex; }
+  .desktop-auth-wrapper { display: none; }
+}
+@media (min-width: 992px) {
+  .desktop-nav { display: flex; }
+  .bottom-nav { display: none !important; }
+  .mobile-menu { display: flex !important; position: static; background: transparent; box-shadow: none; border: none; padding: 0; flex-direction: row; animation: none; }
+  .search-container.active .search-input { width: 200px; }
+}
+
+/* MAIN VIEW SLIDE-UP ANIMATSIYASI */
+.view { padding: 20px; animation: slideFadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+@keyframes slideFadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+/* GRID VA RESPONSIV KARTALAR (Kompyuterda qatorlashadi) */
+.section-title { font-size: 16px; font-weight: 800; margin: 10px 2px 14px; display: flex; align-items: center; gap: 8px; }
+.section-title .cnt { font-weight: 600; font-size: 11.5px; color: var(--ink-soft); background: var(--surface-2); padding: 3px 9px; border-radius: 100px; }
+
+.cat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media (min-width: 768px) { .cat-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 992px) { .cat-grid { grid-template-columns: repeat(4, 1fr); gap: 16px; } }
+
+.cat-card { background: var(--surface); border-radius: var(--radius-sm); padding: 16px; box-shadow: var(--shadow); border: 1px solid var(--border); text-align: left; display: flex; flex-direction: column; gap: 10px; color: var(--ink); }
+.cat-emoji { width: 42px; height: 42px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; background: var(--surface-2); }
+.cat-name { font-size: 14px; font-weight: 700; line-height: 1.3; }
+
+.dash-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+@media (min-width: 768px) { .dash-cards { grid-template-columns: repeat(4, 1fr); } }
+
+.stat-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 16px; box-shadow: var(--shadow); }
+.stat-card b { font-size: 24px; display: block; }
+.progress-bar { height: 8px; border-radius: 10px; background: var(--surface-2); overflow: hidden; margin-top: 10px; }
+.progress-fill { height: 100%; background: var(--grad-2); border-radius: 10px; transition: width 0.6s ease; }
+
+.quick-row { display: flex; gap: 12px; overflow-x: auto; padding-bottom: 8px; margin-bottom: 20px; }
+.quick-btn { flex: 0 0 auto; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 14px 18px; display: flex; flex-direction: column; align-items: center; gap: 8px; min-width: 100px; box-shadow: var(--shadow); font-size: 12px; font-weight: 700; color: var(--ink); }
+.quick-btn .em { font-size: 22px; }
+
+/* LUG'AT KARTOCHKALARI (Kompyuterda Yonma-yon Grid) */
+.phrases-list { display: grid; grid-template-columns: 1fr; gap: 12px; }
+@media (min-width: 768px) { .phrases-list { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 992px) { .phrases-list { grid-template-columns: repeat(3, 1fr); gap: 16px; } }
+
+.phrase-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 16px; box-shadow: var(--shadow); position: relative; display: flex; flex-direction: column; justify-content: center; }
+.phrase-uz { font-size: 11.5px; color: var(--primary); font-weight: 800; text-transform: uppercase; letter-spacing: .3px; margin-bottom: 6px; }
+.phrase-ru { font-size: 17px; font-weight: 800; line-height: 1.35; margin-bottom: 4px; }
+.phrase-tr { font-size: 13.5px; color: var(--ink-soft); font-weight: 600; margin-bottom: 4px; }
+.phrase-note { font-size: 12px; color: var(--accent-2); font-weight: 600; margin-top: 6px; }
+.phrase-actions { position: absolute; top: 12px; right: 12px; display: flex; gap: 6px; }
+.mini-btn { width: 34px; height: 34px; border-radius: 10px; border: none; background: var(--surface-2); display: flex; align-items: center; justify-content: center; font-size: 16px; color: var(--ink-soft); }
+.mini-btn.fav-on { color: var(--gold); background: rgba(255,176,32,0.15); }
+
+/* HOVER EFFEKTLARI (Sichqoncha oborilganda kattalashish) */
+@media (min-width: 992px) {
+  .cat-card:hover, .stat-card:hover, .quick-btn:hover { transform: translateY(-5px) scale(1.02); box-shadow: var(--shadow-lg); border-color: var(--primary-2); }
+  .phrase-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+  .btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); filter: brightness(1.1); }
+  .opt-btn:hover:not(:disabled) { border-color: var(--primary); background: var(--surface-2); transform: translateX(5px); }
+}
+
+/* PASTKI MENYU (Faqat mobil uchun) */
+.bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; z-index: 50; background: var(--surface); border-top: 1px solid var(--border); display: flex; justify-content: space-around; padding: 8px 4px calc(8px + env(safe-area-inset-bottom)); box-shadow: 0 -6px 20px rgba(0,0,0,0.06); }
+.nav-btn { background: none; border: none; display: flex; flex-direction: column; align-items: center; gap: 4px; color: var(--ink-soft); font-size: 10px; font-weight: 700; padding: 6px; border-radius: 12px; flex: 1; transition: 0.3s; }
+.nav-btn .em { font-size: 20px; }
+.nav-btn.active { color: var(--primary); background: var(--surface-2); }
+
+/* UMUMIY ELEMENTLAR */
+.btn { padding: 14px 22px; border-radius: 14px; border: none; font-weight: 800; font-size: 15px; background: var(--grad-1); color: #fff; box-shadow: var(--shadow); display: flex; align-items: center; justify-content: center; gap: 8px; transition: 0.3s; }
+.btn:active { transform: scale(0.97); }
+.btn.secondary { background: var(--surface-2); color: var(--ink); box-shadow: none; border: 1px solid var(--border); }
+.btn.danger { background: linear-gradient(135deg,#FF4D5E,#FF6F91); }
+.btn.success { background: linear-gradient(135deg,#1FBF75,#00C6AE); }
+.btn.block { width: 100%; }
+
+/* MODAL OYNA (Login) */
+.modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); align-items: center; justify-content: center; z-index: 2000; backdrop-filter: blur(4px); }
+.modal-content { background: var(--surface); padding: 30px; border-radius: 20px; width: 90%; max-width: 380px; box-shadow: var(--shadow-lg); position: relative; animation: slideFadeUp 0.3s ease; border: 1px solid var(--border); }
+.modal-content input { width: 100%; padding: 14px; margin: 10px 0; border: 1px solid var(--border); border-radius: 12px; background: var(--bg); color: var(--ink); font-size: 15px; outline: none; transition: 0.3s; }
+.modal-content input:focus { border-color: var(--primary); }
+.modal-content button { padding: 14px; margin: 8px 0; width: 100%; cursor: pointer; border: none; border-radius: 12px; font-weight: 800; color: white; font-size: 15px; transition: 0.3s; }
+#login-btn { background: var(--success); }
+#signup-btn { background: var(--primary); }
+.close-btn { position: absolute; top: 12px; right: 18px; cursor: pointer; font-size: 24px; font-weight: bold; color: var(--ink-soft); transition: 0.3s; }
+.close-btn:hover { color: var(--danger); transform: rotate(90deg); }
+#auth-error { color: var(--danger); font-size: 14px; text-align: center; margin-bottom: 10px; font-weight: 600; }
+
+/* BOSHQA (Quiz, Flashcard qismlari avvalgidek toza) */
+.flash-wrap, .quiz-setup, .q-card { width: 100%; max-width: 600px; margin: 0 auto; }
+.flashcard { width: 100%; min-height: 280px; border-radius: 22px; background: var(--surface); box-shadow: var(--shadow-lg); border: 1px solid var(--border); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 30px 22px; position: relative; }
+.flash-main { font-size: 26px; font-weight: 800; line-height: 1.4; }
+.mode-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.len-row { display: flex; gap: 8px; flex-wrap: wrap; }
+.len-chip { padding: 10px 16px; border-radius: 100px; border: 2px solid var(--border); background: var(--surface); font-size: 13px; font-weight: 700; color: var(--ink); transition: 0.3s; }
+.len-chip.sel { border-color: var(--primary); background: var(--primary); color: #fff; }
+.q-card { background: var(--surface); border-radius: 20px; box-shadow: var(--shadow-lg); border: 1px solid var(--border); padding: 30px 24px; text-align: center; }
+.opt-btn { padding: 16px; border-radius: 14px; border: 2px solid var(--border); background: var(--surface); text-align: left; font-size: 15px; font-weight: 700; color: var(--ink); display: flex; align-items: center; gap: 12px; transition: 0.3s; margin-bottom: 10px;}
+.opt-btn .letter { width: 28px; height: 28px; border-radius: 8px; background: var(--surface-2); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 800; flex: 0 0 auto; }
+.opt-btn.correct { border-color: var(--success); background: rgba(31,191,117,0.12); }
+.opt-btn.wrong { border-color: var(--danger); background: rgba(255,77,94,0.12); }
+.tag-row { display: flex; gap: 8px; flex-wrap: wrap; max-height: 220px; overflow-y: auto; align-content: flex-start; }
+.tag-chip { padding: 8px 14px; border-radius: 100px; background: var(--surface); border: 1px solid var(--border); font-size: 12px; font-weight: 700; color: var(--ink-soft); margin-bottom: 6px; transition: 0.3s; }
+.tag-chip.sel { background: var(--primary); color: #fff; border-color: var(--primary); box-shadow: var(--shadow); }
+.back-row { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
+.back-btn { width: 40px; height: 40px; border-radius: 12px; border: 1px solid var(--border); background: var(--surface); display: flex; align-items: center; justify-content: center; font-size: 18px; color: var(--ink); transition: 0.3s; }
+.back-btn:hover { background: var(--surface-2); transform: translateX(-3px); }
 </style>
 </head>
 <body>
-<!-- AUTH -->
-<div class="auth-controls">
-    <button id="show-auth-btn">Kirish / Ro'yxatdan o'tish</button>
-    <span id="user-info"></span>
-    <button id="logout-btn">Chiqish</button>
-</div>
+
+<!-- MODAL OYNA (Login/Ro'yxatdan o'tish) -->
 <div class="modal" id="auth-modal">
     <div class="modal-content">
         <span class="close-btn" id="close-modal-btn">&times;</span>
-        <h3 style="margin-top: 0; color: black;">Tizimga kirish</h3>
+        <h3 style="margin-top: 0; margin-bottom: 15px; color: var(--ink);">Tizimga kirish</h3>
         <input type="email" id="email" placeholder="Email manzilingiz" required>
         <input type="password" id="password" placeholder="Parol (kamida 6 ta belgi)" required>
-        <p id="forgot-password" style="font-size:12px; color:#007bff; cursor:pointer; text-align:right; margin-top:-5px; margin-bottom:10px;">Parolni unutdingizmi?</p>
+        <p id="forgot-password" style="font-size:12px; color:var(--primary); cursor:pointer; text-align:right; margin-top:-2px; margin-bottom:12px; font-weight:600;">Parolni unutdingizmi?</p>
         <p id="auth-error"></p>
         <button id="login-btn">Kirish</button>
         <button id="signup-btn">Ro'yxatdan o'tish</button>
@@ -166,30 +203,63 @@ input,select{font-family:inherit;}
 </div>
 
 <div class="app" id="app">
+  
+  <!-- YUQORI NAVBAR -->
   <div class="topbar">
     <div class="topbar-row">
-      <div class="brand">
+      <!-- Logo -->
+      <div class="brand" onclick="go('home')">
         <div class="brand-mark">🇬🇧</div>
-        <div class="brand-text">
-          <h1>Ingliz tili lug'ati</h1>
-          <p>English File — Unit lug'atlari</p>
-        </div>
+        <div class="brand-text"><h1>Ingliz tili</h1></div>
       </div>
+      
+      <!-- Desktop Menyular -->
+      <div class="desktop-nav">
+        <button class="nav-btn active" data-view="home"><span class="em">🏠</span>Bosh sahifa</button>
+        <button class="nav-btn" data-view="categories"><span class="em">📘</span>Lug'atlar</button>
+        <button class="nav-btn" data-view="rclist"><span class="em">📖</span>Reading</button>
+        <button class="nav-btn" data-view="flash"><span class="em">🃏</span>Mashq</button>
+        <button class="nav-btn" data-view="quiz"><span class="em">📝</span>Test</button>
+        <button class="nav-btn" data-view="favorites"><span class="em">⭐</span>Sevimli</button>
+        <button class="nav-btn" data-view="stats"><span class="em">📊</span>Statistika</button>
+      </div>
+
+      <!-- O'ng tomon amallari -->
       <div class="topbar-actions">
-        <div class="streak-pill" id="streakPill">🔥 <span id="streakVal">0</span></div>
+        <!-- Qidiruv (Lupa) -->
+        <div class="search-container" id="searchContainer">
+          <button class="icon-btn" id="searchToggleBtn">🔍</button>
+          <input type="text" class="search-input" id="globalSearch" placeholder="So'z qidiring...">
+        </div>
+        
+        <!-- Mavzu o'zgartirish -->
         <button class="icon-btn" id="themeBtn" title="Rejim">🌙</button>
+        
+        <!-- Mobile/Auth menyusi -->
+        <div class="mobile-menu" id="mobileMenu">
+           <div class="auth-controls">
+             <button id="show-auth-btn" class="btn secondary" style="padding: 8px 16px; font-size: 13px;">Tizimga kirish</button>
+             <span id="user-info"></span>
+             <button id="logout-btn" class="btn danger" style="padding: 8px 16px; font-size: 13px; display: none;">Chiqish</button>
+           </div>
+        </div>
+
+        <!-- Gamburger (Faqat telefonda) -->
+        <button class="hamburger" id="hamburgerBtn">
+          <span></span><span></span><span></span>
+        </button>
       </div>
-    </div>
-    <div class="search-wrap">
-      <input type="text" class="search-input" id="globalSearch" placeholder="Qidirish: inglizcha, o'zbekcha yoki ruscha...">
-      <button class="search-clear" id="searchClear">✕</button>
     </div>
   </div>
+
+  <!-- ASOSIY OYNA -->
   <div id="mainView"></div>
+
+  <!-- PASTKI NAVBAR (Faqat mobil ekranlar uchun) -->
   <div class="bottom-nav">
     <button class="nav-btn active" data-view="home"><span class="em">🏠</span>Bosh</button>
     <button class="nav-btn" data-view="categories"><span class="em">📘</span>Lug'atlar</button>
-    <button class="nav-btn" data-view="rclist"><span class="em">📖</span>Reading C.</button>
+    <button class="nav-btn" data-view="rclist"><span class="em">📖</span>Reading</button>
     <button class="nav-btn" data-view="flash"><span class="em">🃏</span>Mashq</button>
     <button class="nav-btn" data-view="quiz"><span class="em">📝</span>Test</button>
     <button class="nav-btn" data-view="favorites"><span class="em">⭐</span>Sevimli</button>
@@ -197,7 +267,7 @@ input,select{font-family:inherit;}
   </div>
 </div>
 
-<!-- LUG'ATLAR BAZASI ULANDI -->
+<!-- LUG'ATLAR BAZASI -->
 <script src="words.js"></script>
 
 <script>
@@ -233,14 +303,12 @@ function applyThemeIcon(){ document.getElementById("themeBtn").textContent = STA
 const SRS_INTERVALS_MIN = [10, 60, 60*8, 60*24, 60*24*3, 60*24*7, 60*24*16, 60*24*30];
 function getSrs(id){ return STATE.srs[id] || {box:0, next:0}; }
 function markKnown(id){
-  const s = getSrs(id);
-  s.box = Math.min(s.box+1, SRS_INTERVALS_MIN.length-1);
+  const s = getSrs(id); s.box = Math.min(s.box+1, SRS_INTERVALS_MIN.length-1);
   s.next = Date.now() + SRS_INTERVALS_MIN[s.box]*60000;
   STATE.srs[id] = s; saveState();
 }
 function markUnknown(id){
-  const s = getSrs(id);
-  s.box = 0; s.next = Date.now() + SRS_INTERVALS_MIN[0]*60000;
+  const s = getSrs(id); s.box = 0; s.next = Date.now() + SRS_INTERVALS_MIN[0]*60000;
   STATE.srs[id] = s; saveState();
 }
 function isLearned(id){ return getSrs(id).box >= 3; }
@@ -257,11 +325,25 @@ function speak(text){
   if(!('speechSynthesis' in window)) return;
   speechSynthesis.cancel();
   const u = new SpeechSynthesisUtterance(text);
-  u.lang = "en-GB";
-  if(EN_VOICE) u.voice = EN_VOICE;
-  u.rate = 0.92;
+  u.lang = "en-GB"; if(EN_VOICE) u.voice = EN_VOICE; u.rate = 0.92;
   speechSynthesis.speak(u);
 }
+
+// UI LOGIC FOR NEW NAVBAR
+const hamburgerBtn = document.getElementById('hamburgerBtn');
+const mobileMenu = document.getElementById('mobileMenu');
+hamburgerBtn.addEventListener('click', () => {
+    hamburgerBtn.classList.toggle('active');
+    mobileMenu.classList.toggle('active');
+});
+
+const searchContainer = document.getElementById('searchContainer');
+const searchToggleBtn = document.getElementById('searchToggleBtn');
+const searchInput = document.getElementById('globalSearch');
+searchToggleBtn.addEventListener('click', () => {
+    searchContainer.classList.toggle('active');
+    if(searchContainer.classList.contains('active')) searchInput.focus();
+});
 
 let VIEW = "home";
 let VIEW_PARAMS = {};
@@ -272,8 +354,14 @@ function go(view, params={}){
   document.querySelectorAll(".nav-btn").forEach(b=>{
     b.classList.toggle("active", b.dataset.view === (["home","categories","rclist","flash","quiz","favorites","stats"].includes(view)?view:""));
   });
+  // Mobil menyu va qidiruvni yopish
+  hamburgerBtn.classList.remove('active');
+  mobileMenu.classList.remove('active');
+  searchContainer.classList.remove('active');
+  searchInput.value = '';
+  
   render();
-  window.scrollTo({top:0, behavior:"instant"});
+  window.scrollTo({top:0, behavior:"smooth"});
 }
 
 document.querySelectorAll(".nav-btn").forEach(btn=>{ btn.addEventListener("click", ()=> go(btn.dataset.view)); });
@@ -284,20 +372,15 @@ document.getElementById("themeBtn").addEventListener("click", ()=>{
 });
 applyThemeIcon();
 
-const searchInput = document.getElementById("globalSearch");
-const searchClear = document.getElementById("searchClear");
 searchInput.addEventListener("input", ()=>{
-  searchClear.style.display = searchInput.value ? "block" : "none";
   if(searchInput.value.trim().length>0) go("search", {q:searchInput.value.trim()});
   else if(VIEW==="search") go("home");
 });
-searchClear.addEventListener("click", ()=>{ searchInput.value=""; searchClear.style.display="none"; go("home"); });
 
 function esc(s){ return (s||"").replace(/[&<>"']/g, m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m])); }
 function norm(s){ return (s||"").toLowerCase().replace(/[ʼ'`’]/g,"'").trim(); }
 function searchPhrases(q){
-  const nq = norm(q);
-  if(!nq) return [];
+  const nq = norm(q); if(!nq) return [];
   return PHRASES.filter(p=> norm(p.en).includes(nq) || norm(p.uz).includes(nq) || norm(p.ru).includes(nq) ).slice(0,200);
 }
 
@@ -321,12 +404,9 @@ function attachPhraseCardEvents(container){
   container.querySelectorAll(".speak-btn").forEach(b=>{ b.addEventListener("click",(e)=>{ e.stopPropagation(); speak(PHRASES[+b.dataset.id].en); }); });
   container.querySelectorAll(".fav-btn").forEach(b=>{
     b.addEventListener("click",(e)=>{
-      e.stopPropagation();
-      const id = +b.dataset.id;
+      e.stopPropagation(); const id = +b.dataset.id;
       if(STATE.favorites[id]) delete STATE.favorites[id]; else STATE.favorites[id] = true;
-      saveState();
-      b.classList.toggle("fav-on");
-      b.textContent = STATE.favorites[id] ? "★" : "☆";
+      saveState(); b.classList.toggle("fav-on"); b.textContent = STATE.favorites[id] ? "★" : "☆";
     });
   });
 }
@@ -346,7 +426,7 @@ function render(){
   if(VIEW==="stats") return renderStats();
 }
 
-function backRow(title){ return `<div class="back-row"><button class="back-btn" id="backBtn">←</button><h2 style="font-size:16px;font-weight:800;">${esc(title)}</h2></div>`; }
+function backRow(title){ return `<div class="back-row"><button class="back-btn" id="backBtn">←</button><h2 style="font-size:18px;font-weight:800;">${esc(title)}</h2></div>`; }
 
 function renderHome(){
   const total = PHRASES.length;
@@ -361,7 +441,10 @@ function renderHome(){
 
   mainView.innerHTML = `
   <div class="view">
-    <div class="source-note">📎 Lug'at English File va qo'shimcha so'zlar asosida tuzildi. Jami: <b>${total} ta</b> so'z/ibora.</div>
+    <div style="background: var(--surface); padding: 20px; border-radius: 20px; box-shadow: var(--shadow); margin-bottom: 20px; text-align: center;">
+       <h2 style="font-size: 24px; margin-bottom: 5px; color: var(--primary);">Xush kelibsiz!</h2>
+       <p style="color: var(--ink-soft); font-size: 14px;">Lug'at English File va Reading Challenge asosida tuzilgan. Jami: <b>${total} ta</b> so'z.</p>
+    </div>
     <div class="dash-cards">
       <div class="stat-card"><b>${total}</b><span>Jami so'z/iboralar</span></div>
       <div class="stat-card"><b>${learned}</b><span>O'rganilgan</span><div class="progress-bar"><div class="progress-fill" style="width:${pct}%"></div></div></div>
@@ -376,12 +459,12 @@ function renderHome(){
       <button class="quick-btn" id="qbExam50"><span class="em">🎓</span>50 savollik</button>
       <button class="quick-btn" id="qbExamAll"><span class="em">🏆</span>Katta imtihon</button>
     </div>
-    <div class="section-title" style="margin-top:14px;">📘 Lug'atlar</div>
+    <div class="section-title" style="margin-top:14px;">📘 Lug'atlar bo'limi</div>
     <div class="cat-grid">${CATEGORIES.filter(c=>c.type==='ef').map(catCardHtml).join("")}</div>
-    <div class="section-title" style="margin-top:22px;">📖 Reading Challenge</div>
+    <div class="section-title" style="margin-top:24px;">📖 Reading Challenge</div>
     <div class="cat-grid">${CATEGORIES.filter(c=>c.type==='rc').map(catCardHtml).join("")}</div>
-    <div class="section-title" style="margin-top:22px;">🎲 Bugungi so'z</div>
-    ${phraseCardHtml(dailyPhrase())}
+    <div class="section-title" style="margin-top:24px;">🎲 Bugungi so'z</div>
+    <div class="phrases-list" style="grid-template-columns: 1fr;">${phraseCardHtml(dailyPhrase())}</div>
   </div>`;
 
   attachPhraseCardEvents(mainView);
@@ -399,8 +482,7 @@ function renderHome(){
 }
 
 function dailyPhrase(){
-  const seedStr = todayStr();
-  let seed=0; for(const ch of seedStr) seed += ch.charCodeAt(0)*7;
+  const seedStr = todayStr(); let seed=0; for(const ch of seedStr) seed += ch.charCodeAt(0)*7;
   return PHRASES[seed % PHRASES.length];
 }
 
@@ -431,15 +513,16 @@ function renderRCList(){
 }
 
 function renderCatDetail(key){
-  const cat = CAT_MAP[key];
-  const list = PHRASES.filter(p=>p.unit===key);
+  const cat = CAT_MAP[key]; const list = PHRASES.filter(p=>p.unit===key);
   mainView.innerHTML = `
   <div class="view">
     ${backRow(cat.em+" "+cat.name)}
     <div class="section-title">${list.length} ta so'z/ibora <span class="cnt">${list.filter(p=>isLearned(p.id)).length} o'rganilgan</span></div>
-    <button class="btn block" style="margin-bottom:14px;" id="startFlashCat">🃏 Ushbu Unitni kartochka bilan o'rganish</button>
-    <button class="btn secondary block" style="margin-bottom:14px;" id="startQuizCat">📝 Ushbu Unit bo'yicha test</button>
-    ${list.map(phraseCardHtml).join("")}
+    <div style="display:flex; gap:10px; margin-bottom:20px;">
+       <button class="btn block" id="startFlashCat">🃏 Kartochkalar</button>
+       <button class="btn secondary block" id="startQuizCat">📝 Test ishlash</button>
+    </div>
+    <div class="phrases-list">${list.map(phraseCardHtml).join("")}</div>
   </div>`;
   attachPhraseCardEvents(mainView);
   document.getElementById("backBtn").addEventListener("click", ()=>go("categories"));
@@ -452,7 +535,7 @@ function renderSearch(q){
   mainView.innerHTML = `
   <div class="view">
     <div class="section-title">🔎 "${esc(q)}" bo'yicha natijalar <span class="cnt">${results.length}</span></div>
-    ${results.length? results.map(phraseCardHtml).join("") : `<div class="empty-state"><span class="em">🔍</span>Hech narsa topilmadi.<br>Boshqa so'z bilan urinib ko'ring.</div>`}
+    ${results.length ? `<div class="phrases-list">${results.map(phraseCardHtml).join("")}</div>` : `<div class="empty-state"><span class="em">🔍</span>Hech narsa topilmadi.<br>Boshqa so'z bilan urinib ko'ring.</div>`}
   </div>`;
   attachPhraseCardEvents(mainView);
 }
@@ -463,22 +546,19 @@ function renderFavorites(){
   mainView.innerHTML = `
   <div class="view">
     <div class="section-title">⭐ Sevimli so'zlar <span class="cnt">${list.length}</span></div>
-    ${list.length? `<button class="btn block" style="margin-bottom:14px;" id="flashFav">🃏 Sevimlilarni kartochka bilan o'rganish</button>` : ``}
-    ${list.length? list.map(phraseCardHtml).join("") : `<div class="empty-state"><span class="em">⭐</span>Hali sevimli so'zlar yo'q.<br>So'zlar yonidagi ☆ tugmasini bosing.</div>`}
+    ${list.length? `<button class="btn block" style="margin-bottom:20px;" id="flashFav">🃏 Sevimlilarni kartochka bilan o'rganish</button>` : ``}
+    ${list.length? `<div class="phrases-list">${list.map(phraseCardHtml).join("")}</div>` : `<div class="empty-state"><span class="em">⭐</span>Hali sevimli so'zlar yo'q.<br>So'zlar yonidagi ☆ tugmasini bosing.</div>`}
   </div>`;
   attachPhraseCardEvents(mainView);
   if(list.length) document.getElementById("flashFav").addEventListener("click", ()=> go("flashRun",{ids:list.map(p=>p.id)}));
 }
 
 function renderStats(){
-  const total = PHRASES.length;
-  const learned = PHRASES.filter(p=>isLearned(p.id)).length;
-  const memorized = PHRASES.filter(p=>isMemorized(p.id)).length;
-  const pct = total? Math.round((learned/total)*100):0;
+  const total = PHRASES.length; const learned = PHRASES.filter(p=>isLearned(p.id)).length;
+  const memorized = PHRASES.filter(p=>isMemorized(p.id)).length; const pct = total? Math.round((learned/total)*100):0;
   const avgScore = STATE.quizScoresCount? Math.round(STATE.quizScoresSum/STATE.quizScoresCount):0;
   const byCat = CATEGORIES.map(c=>{
-    const list = PHRASES.filter(p=>p.unit===c.key);
-    const l = list.filter(p=>isLearned(p.id)).length;
+    const list = PHRASES.filter(p=>p.unit===c.key); const l = list.filter(p=>isLearned(p.id)).length;
     return {c, total:list.length, learned:l, pct: list.length? Math.round(l/list.length*100):0};
   }).sort((a,b)=>b.pct-a.pct);
 
@@ -491,22 +571,23 @@ function renderStats(){
       <div class="stat-card"><b>${avgScore}%</b><span>O'rtacha natija</span></div>
       <div class="stat-card"><b>${memorized}</b><span>Mustahkam yodda</span></div>
     </div>
-    <div class="stat-card" style="margin-bottom:18px;">
+    <div class="stat-card" style="margin-bottom:24px;">
       <b>${pct}%</b><span>Umumiy progress (${learned}/${total} o'rganilgan)</span>
       <div class="progress-bar"><div class="progress-fill" style="width:${pct}%"></div></div>
     </div>
     <div class="section-title">Unitlar bo'yicha progress</div>
+    <div class="phrases-list">
     ${byCat.map(x=>`
-      <div class="phrase-card" style="padding:12px 14px;">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
-          <b style="font-size:12.5px;">${x.c.em}${esc(x.c.name)}</b>
-          <span style="font-size:11.5px; color:var(--ink-soft); font-weight:700;">${x.learned}/${x.total}</span>
+      <div class="phrase-card" style="padding:14px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+          <b style="font-size:13.5px;">${x.c.em}${esc(x.c.name)}</b>
+          <span style="font-size:12.5px; color:var(--ink-soft); font-weight:700;">${x.learned}/${x.total}</span>
         </div>
         <div class="progress-bar"><div class="progress-fill" style="width:${x.pct}%"></div></div>
       </div>
     `).join("")}
-    <div style="height:10px;"></div>
-    <button class="btn danger block" id="resetBtn">🗑️ Statistikani tozalash</button>
+    </div>
+    <button class="btn danger block" id="resetBtn" style="margin-top: 30px;">🗑️ Statistikani tozalash</button>
   </div>`;
   document.getElementById("resetBtn").addEventListener("click", ()=>{
     if(confirm("Barcha progress, favoritlar va statistikalarni tozalashni xohlaysizmi?")){
@@ -521,13 +602,15 @@ function renderFlashSetup(){
   mainView.innerHTML = `
   <div class="view">
     <div class="section-title">🃏 Kartochkalar (Flashcards)</div>
-    <p style="font-size:13px; color:var(--ink-soft); margin:0 0 16px;">Unit tanlang yoki barcha so'zlar bilan mashq qiling. Old tomonda inglizcha so'z, orqasida o'zbekcha (va mavjud bo'lsa ruscha) tarjima chiqadi.</p>
-    <button class="btn block" style="margin-bottom:10px;" id="flAll">🌐 Barcha so'zlar bilan (${PHRASES.length})</button>
-    <button class="btn secondary block" style="margin-bottom:10px;" id="flDue">🔁 Takrorlash kerak bo'lganlar (${PHRASES.filter(p=>dueForReview(p.id)).length})</button>
-    <button class="btn secondary block" style="margin-bottom:18px;" id="flUnknown">📌 Hali o'rganilmaganlar (${PHRASES.filter(p=>getSrs(p.id).box===0).length})</button>
+    <p style="font-size:14px; color:var(--ink-soft); margin:0 0 20px;">Unit tanlang yoki barcha so'zlar bilan mashq qiling. Old tomonda inglizcha so'z, orqasida o'zbekcha (va ruscha) tarjima chiqadi.</p>
+    <div class="phrases-list" style="margin-bottom: 24px;">
+        <button class="btn block" id="flAll" style="height:100%;">🌐 Barcha so'zlar bilan (${PHRASES.length})</button>
+        <button class="btn secondary block" id="flDue" style="height:100%;">🔁 Takrorlash kerak bo'lganlar (${PHRASES.filter(p=>dueForReview(p.id)).length})</button>
+        <button class="btn secondary block" id="flUnknown" style="height:100%;">📌 Hali o'rganilmaganlar (${PHRASES.filter(p=>getSrs(p.id).box===0).length})</button>
+    </div>
     <div class="section-title">📘 Lug'atlardan tanlang</div>
     <div class="cat-grid">${CATEGORIES.filter(c=>c.type==='ef').map(catCardHtml).join("")}</div>
-    <div class="section-title" style="margin-top:14px;">📖 Reading Challenge'dan tanlang</div>
+    <div class="section-title" style="margin-top:24px;">📖 Reading Challenge'dan tanlang</div>
     <div class="cat-grid">${CATEGORIES.filter(c=>c.type==='rc').map(catCardHtml).join("")}</div>
   </div>`;
   document.getElementById("flAll").addEventListener("click", ()=> go("flashRun",{ids: shuffleSeeded(PHRASES.map(p=>p.id), Date.now())}));
@@ -537,14 +620,9 @@ function renderFlashSetup(){
     go("flashRun",{ids:due});
   });
   document.getElementById("flUnknown").addEventListener("click", ()=>{
-    const ids = PHRASES.filter(p=>getSrs(p.id).box===0).map(p=>p.id);
-    go("flashRun",{ids: shuffleSeeded(ids, Date.now())});
+    const ids = PHRASES.filter(p=>getSrs(p.id).box===0).map(p=>p.id); go("flashRun",{ids: shuffleSeeded(ids, Date.now())});
   });
-  mainView.querySelectorAll(".cat-card").forEach(c=>{
-    c.addEventListener("click", ()=>{
-      const ids = PHRASES.filter(p=>p.unit===c.dataset.key).map(p=>p.id); go("flashRun",{ids});
-    });
-  });
+  mainView.querySelectorAll(".cat-card").forEach(c=>{ c.addEventListener("click", ()=>{ const ids = PHRASES.filter(p=>p.unit===c.dataset.key).map(p=>p.id); go("flashRun",{ids}); }); });
 }
 
 function renderFlashRun(){ FLASH.ids = VIEW_PARAMS.ids || []; FLASH.idx = 0; FLASH.flipped = 0; FLASH.single = !!VIEW_PARAMS.single; drawFlash(); }
@@ -555,11 +633,11 @@ function drawFlash(){
     <div class="view">
       <div class="result-hero">
         <div class="result-ring"><div><b>🎉</b><span>Tayyor!</span></div></div>
-        <h2 style="font-size:18px; margin-bottom:8px;">Barcha kartochkalar ko'rib chiqildi</h2>
-        <p style="color:var(--ink-soft); font-size:13px;">${FLASH.ids.length} ta so'z bilan mashq qildingiz.</p>
-        <div style="display:flex; gap:10px; margin-top:20px;">
-          <button class="btn secondary block" id="backHome2">🏠 Bosh sahifa</button>
-          <button class="btn block" id="again2">🔁 Yana mashq qilish</button>
+        <h2 style="font-size:22px; margin-bottom:10px;">Barcha kartochkalar ko'rib chiqildi</h2>
+        <p style="color:var(--ink-soft); font-size:15px;">${FLASH.ids.length} ta so'z bilan mashq qildingiz.</p>
+        <div style="display:flex; gap:15px; margin-top:25px; justify-content:center;">
+          <button class="btn secondary" id="backHome2">🏠 Bosh sahifa</button>
+          <button class="btn" id="again2">🔁 Yana mashq qilish</button>
         </div>
       </div>
     </div>`;
@@ -567,26 +645,23 @@ function drawFlash(){
     document.getElementById("again2").addEventListener("click", ()=>{ FLASH.idx=0; FLASH.flipped=0; drawFlash(); });
     return;
   }
-  const p = PHRASES[FLASH.ids[FLASH.idx]];
-  const cat = CAT_MAP[p.unit];
-  const fav = !!STATE.favorites[p.id];
-  const pct = Math.round((FLASH.idx/FLASH.ids.length)*100);
+  const p = PHRASES[FLASH.ids[FLASH.idx]]; const cat = CAT_MAP[p.unit]; const fav = !!STATE.favorites[p.id]; const pct = Math.round((FLASH.idx/FLASH.ids.length)*100);
 
   let bodyHtml = FLASH.flipped===0 ? `<div class="flash-main">${esc(p.en)}</div><div class="flash-hint">Tarjimani ko'rish uchun bosing 👆</div>` 
-    : `<div class="flash-main">${esc(p.uz)}</div>${p.ru?`<div class="flash-sub">🇷🇺 ${esc(p.ru)}</div>`:``}${p.note?`<div class="flash-note">💡 ${esc(p.note)}</div>`:``}<button class="mini-btn flash-audio" id="flashSpeak" style="width:44px;height:44px;border-radius:50%;">🔊</button>`;
+    : `<div class="flash-main">${esc(p.uz)}</div>${p.ru?`<div class="flash-sub">🇷🇺 ${esc(p.ru)}</div>`:``}${p.note?`<div class="flash-note">💡 ${esc(p.note)}</div>`:``}<button class="mini-btn flash-audio" id="flashSpeak" style="width:48px;height:48px;border-radius:50%;font-size:20px;">🔊</button>`;
 
   mainView.innerHTML = `
   <div class="view">
-    ${backRow("Kartochkalar")}
+    ${backRow("Kartochkalar bilan mashq")}
     <div class="flash-progress"><span>${FLASH.idx+1}/${FLASH.ids.length}</span><div class="bar"><i style="width:${pct}%"></i></div></div>
     <div class="flash-wrap">
-      <div class="flashcard" id="flashCard">
+      <div class="flashcard" id="flashCard" style="cursor:pointer;">
         <div class="flash-cat">${cat?cat.em+' '+cat.name:''}</div>
         <button class="flash-star" id="flashStar">${fav?'★':'☆'}</button>
         ${bodyHtml}
       </div>
       ${FLASH.flipped ? `<div class="flash-bottom"><button class="btn danger" id="btnUnknown" style="flex:1;">😕 Bilmayman</button><button class="btn success" id="btnKnown" style="flex:1;">😊 Bilaman</button></div>` 
-      : `<div class="flash-bottom"><button class="btn block" id="flipBtn">🔄 Aylantirish</button></div>`}
+      : `<div class="flash-bottom"><button class="btn block" id="flipBtn">🔄 Aylantirish (Yoki bosing)</button></div>`}
     </div>
   </div>`;
 
@@ -599,8 +674,7 @@ function drawFlash(){
   const flipBtn = document.getElementById("flipBtn");
   if(flipBtn) flipBtn.addEventListener("click", ()=>{ FLASH.flipped=1; drawFlash(); });
   document.getElementById("flashStar").addEventListener("click", ()=>{
-    if(STATE.favorites[p.id]) delete STATE.favorites[p.id]; else STATE.favorites[p.id]=true;
-    saveState(); drawFlash();
+    if(STATE.favorites[p.id]) delete STATE.favorites[p.id]; else STATE.favorites[p.id]=true; saveState(); drawFlash();
   });
   const speakBtn = document.getElementById("flashSpeak");
   if(speakBtn) speakBtn.addEventListener("click", ()=> speak(p.en));
@@ -613,10 +687,10 @@ function nextFlash(){ if(FLASH.single){ FLASH.idx = FLASH.ids.length; drawFlash(
 const QUIZ_MODES = [
   {key:"mcq_en2uz", em:"🔤", title:"O'zbekchasini toping", desc:"Inglizcha → o'zbekcha variant"},
   {key:"mcq_uz2en", em:"🔡", title:"Inglizchasini toping", desc:"O'zbekcha → inglizcha variant"},
-  {key:"type_en", em:"⌨", title:"Yozib javob berish", desc:"Inglizchasini yozing"},
+  {key:"type_en", em:"⌨️", title:"Yozib javob berish", desc:"Inglizchasini yozing"},
   {key:"listen", em:"🎧", title:"Tinglab topish", desc:"Ovozni tinglab, javobni tanlang"},
   {key:"mixed", em:"🔀", title:"Aralash test", desc:"Barcha turlar aralash"},
-  {key:"practice", em:"⚡", title:"Klassik mashq", desc:"Oldingi qulay yozish rejimi"}
+  {key:"practice", em:"⚡", title:"Klassik mashq", desc:"Qulay yozish rejimi"}
 ];
 let QUIZ_SETUP = {mode:"mixed", count:20, catKeys:[], activeTab:"ef"};
 
@@ -624,15 +698,15 @@ function renderQuizSetup(){
   mainView.innerHTML = `
   <div class="view">
     <div class="section-title">📝 Test rejimi</div>
-    <div class="section-title" style="margin-top:0;">Test turi</div>
+    <div class="section-title" style="margin-top:10px;">1. Test turi</div>
     <div class="mode-grid">${QUIZ_MODES.map(m=>`<button class="mode-card ${QUIZ_SETUP.mode===m.key?'sel':''}" data-mode="${m.key}"><span class="em">${m.em}</span><b>${m.title}</b><small>${m.desc}</small></button>`).join("")}</div>
-    <div class="section-title">Savollar soni</div>
+    <div class="section-title" style="margin-top:20px;">2. Savollar soni</div>
     <div class="len-row">${[10,20,50,PHRASES.length].map(n=>`<button class="len-chip ${QUIZ_SETUP.count===n?'sel':''}" data-len="${n}">${n===PHRASES.length?'Barchasi ('+n+')':n+' ta'}</button>`).join("")}</div>
-    <div class="section-title">Mavzu turini tanlang</div>
-    <div class="len-row" style="margin-bottom: 14px;"><button class="len-chip ${QUIZ_SETUP.activeTab==='ef'?'sel':''}" data-tab="ef">📘 Lug'atlar</button><button class="len-chip ${QUIZ_SETUP.activeTab==='rc'?'sel':''}" data-tab="rc">📖 Reading Challenge</button></div>
-    <div class="section-title" style="margin-top:4px;">${QUIZ_SETUP.activeTab==='ef' ? "Lug'atlar (ixtiyoriy)" : "Reading Challenge (ixtiyoriy)"}</div>
-    <div class="tag-row"><button class="tag-chip ${QUIZ_SETUP.catKeys.length===0?'sel':''}" data-cat="all">🌐 Barchasi</button>${CATEGORIES.filter(c=>c.type===QUIZ_SETUP.activeTab).map(c=>`<button class="tag-chip ${QUIZ_SETUP.catKeys.includes(c.key)?'sel':''}" data-cat="${c.key}">${c.em}${esc(c.name)}</button>`).join("")}</div>
-    <button class="btn block" id="startQuizBtn" style="margin-top:10px;">▶️ Testni boshlash</button>
+    <div class="section-title" style="margin-top:20px;">3. Qaysi bo'limdan?</div>
+    <div class="len-row" style="margin-bottom: 16px;"><button class="len-chip ${QUIZ_SETUP.activeTab==='ef'?'sel':''}" data-tab="ef">📘 Lug'atlar</button><button class="len-chip ${QUIZ_SETUP.activeTab==='rc'?'sel':''}" data-tab="rc">📖 Reading Challenge</button></div>
+    <div class="section-title" style="margin-top:10px;">${QUIZ_SETUP.activeTab==='ef' ? "Lug'atlarni tanlang" : "Reading Challenge tanlang"}</div>
+    <div class="tag-row"><button class="tag-chip ${QUIZ_SETUP.catKeys.length===0?'sel':''}" data-cat="all">🌐 Barchasi aralash</button>${CATEGORIES.filter(c=>c.type===QUIZ_SETUP.activeTab).map(c=>`<button class="tag-chip ${QUIZ_SETUP.catKeys.includes(c.key)?'sel':''}" data-cat="${c.key}">${c.em}${esc(c.name)}</button>`).join("")}</div>
+    <button class="btn block" id="startQuizBtn" style="margin-top:24px; padding: 16px; font-size: 16px;">▶️ Testni boshlash</button>
   </div>`;
   mainView.querySelectorAll(".mode-card").forEach(b=> b.addEventListener("click", ()=>{ QUIZ_SETUP.mode=b.dataset.mode; renderQuizSetup(); }));
   mainView.querySelectorAll(".len-chip[data-len]").forEach(b=> b.addEventListener("click", ()=>{ QUIZ_SETUP.count=+b.dataset.len; renderQuizSetup(); }));
@@ -649,12 +723,10 @@ function renderQuizSetup(){
 let QUIZ = null;
 function startQuiz(cfg){
   let chosen = [];
-  if(cfg.customItems && cfg.customItems.length > 0) {
-      chosen = shuffleSeeded(cfg.customItems, Date.now()).slice(0, cfg.count || cfg.customItems.length);
-  } else {
+  if(cfg.customItems && cfg.customItems.length > 0) { chosen = shuffleSeeded(cfg.customItems, Date.now()).slice(0, cfg.count || cfg.customItems.length); } 
+  else {
       let pool = cfg.catKeys && cfg.catKeys.length > 0 ? PHRASES.filter(p=>cfg.catKeys.includes(p.unit)) : PHRASES;
-      if(pool.length < 4) pool = PHRASES;
-      const count = Math.min(cfg.count, pool.length);
+      if(pool.length < 4) pool = PHRASES; const count = Math.min(cfg.count, pool.length);
       chosen = shuffleSeeded(pool, Date.now()+Math.random()*1000).slice(0,count);
   }
   QUIZ = { mode: cfg.mode || 'practice', items: chosen, idx:0, correct:0, answered:false, log:[] };
@@ -669,54 +741,50 @@ function buildOptions(correctPhrase, field, n=4){
 
 function effectiveMode(){
   if(QUIZ.mode!=="mixed") return QUIZ.mode;
-  const opts = ["mcq_en2uz","mcq_uz2en","type_en","listen"];
-  return opts[QUIZ.idx % opts.length];
+  const opts = ["mcq_en2uz","mcq_uz2en","type_en","listen"]; return opts[QUIZ.idx % opts.length];
 }
 
 let PRAC = { reversed: false, streak: 0, autoFocus: false };
 function renderPracticeRun(){
-  if(QUIZ.idx >= QUIZ.items.length){ return finishQuiz(); }
-  if(QUIZ.idx < 0) QUIZ.idx = 0;
-  const p = QUIZ.items[QUIZ.idx];
-  const primaryText = PRAC.reversed ? p.en : p.uz;
-  const targetText = PRAC.reversed ? p.uz : p.en;
+  if(QUIZ.idx >= QUIZ.items.length){ return finishQuiz(); } if(QUIZ.idx < 0) QUIZ.idx = 0;
+  const p = QUIZ.items[QUIZ.idx]; const primaryText = PRAC.reversed ? p.en : p.uz; const targetText = PRAC.reversed ? p.uz : p.en;
   
   mainView.innerHTML = `
   <div class="view">
     ${backRow("Klassik mashq")}
-    <div style="background:var(--surface); border:1px solid var(--border); border-radius:18px; padding:20px; box-shadow:var(--shadow-lg); color:var(--ink);">
-      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; flex-wrap:wrap; gap:8px;">
-        <span style="font-size:11px; font-weight:700; background:var(--surface-2); color:var(--ink-soft); padding:4px 10px; border-radius:100px; border:1px solid var(--border);">${CAT_MAP[p.unit]?CAT_MAP[p.unit].name.substring(0,25)+'...':'Aralash'}</span>
-        <div style="display:flex; gap:6px; align-items:center;">
-          <button class="btn secondary" id="pracAutoToggle" style="padding:6px 10px; font-size:11.5px; border-radius:8px; font-weight:700;">⌨️ ${PRAC.autoFocus?'Aktiv':'Passiv'}</button>
-          <button class="btn secondary" id="pracToggle" style="padding:6px 10px; font-size:11.5px; border-radius:8px; font-weight:700;">🔁 ${PRAC.reversed?'EN → UZ':'UZ → EN'}</button>
-          <span style="font-size:12px; color:var(--ink-soft); font-weight:600;">${QUIZ.idx+1} / ${QUIZ.items.length}</span>
+    <div style="background:var(--surface); border:1px solid var(--border); border-radius:20px; padding:24px; box-shadow:var(--shadow-lg); color:var(--ink); max-width: 700px; margin: 0 auto;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; flex-wrap:wrap; gap:10px;">
+        <span style="font-size:12px; font-weight:700; background:var(--surface-2); color:var(--ink-soft); padding:6px 12px; border-radius:100px; border:1px solid var(--border);">${CAT_MAP[p.unit]?CAT_MAP[p.unit].name.substring(0,25)+'...':'Aralash'}</span>
+        <div style="display:flex; gap:8px; align-items:center;">
+          <button class="btn secondary" id="pracAutoToggle" style="padding:8px 12px; font-size:12.5px; border-radius:10px;">⌨️ ${PRAC.autoFocus?'Aktiv':'Passiv'}</button>
+          <button class="btn secondary" id="pracToggle" style="padding:8px 12px; font-size:12.5px; border-radius:10px;">🔁 ${PRAC.reversed?'EN → UZ':'UZ → EN'}</button>
+          <span style="font-size:14px; color:var(--ink-soft); font-weight:700; margin-left:10px;">${QUIZ.idx+1} / ${QUIZ.items.length}</span>
         </div>
       </div>
-      <div style="background:var(--surface-2); border:1px solid var(--border); border-radius:14px; padding:20px 14px; text-align:center; margin-bottom:16px;">
-        <div style="font-size:12px; color:var(--ink-soft); margin-bottom:8px;">Bu so'zning ${PRAC.reversed?'o\'zbekchasi':'inglizchasi'} nima?</div>
-        <div style="display:flex; align-items:center; justify-content:center; gap:10px;">
-          <div style="font-family:'Golos Text',sans-serif; font-weight:800; font-size:18px; line-height:1.3;">${esc(primaryText)}</div>
-          <button type="button" class="mini-btn" id="pracSpeak" style="background:#B8863B; color:#fff; width:36px; height:36px; border-radius:50%; flex:none;">🔊</button>
+      <div style="background:var(--surface-2); border:1px solid var(--border); border-radius:16px; padding:24px 16px; text-align:center; margin-bottom:20px;">
+        <div style="font-size:13px; color:var(--ink-soft); margin-bottom:10px;">Bu so'zning ${PRAC.reversed?'o\'zbekchasi':'inglizchasi'} nima?</div>
+        <div style="display:flex; align-items:center; justify-content:center; gap:12px;">
+          <div style="font-family:'Golos Text',sans-serif; font-weight:800; font-size:22px; line-height:1.3;">${esc(primaryText)}</div>
+          <button type="button" class="icon-btn" id="pracSpeak" style="background:#B8863B; color:#fff; flex:none;">🔊</button>
         </div>
       </div>
-      <div style="display:flex; gap:8px; margin-bottom:12px;">
-        <input type="text" id="pracInput" placeholder="${PRAC.reversed?'o\'zbekcha':'inglizcha'} yozing..." autocomplete="off" style="flex:1; padding:12px 14px; border-radius:10px; border:1px solid var(--border); background:var(--bg); font-size:15px; outline:none; color:var(--ink); width:100%; min-width:0;">
-        <button id="pracSubmit" style="background:var(--grad-1); color:#fff; border:none; border-radius:10px; padding:0 16px; font-size:14px; font-family:var(--font-body); font-weight:700; cursor:pointer;">Tekshirish</button>
+      <div style="display:flex; gap:10px; margin-bottom:16px;">
+        <input type="text" id="pracInput" placeholder="${PRAC.reversed?'o\'zbekcha':'inglizcha'} yozing..." autocomplete="off" style="flex:1; padding:16px 18px; border-radius:14px; border:1px solid var(--border); background:var(--bg); font-size:16px; outline:none; color:var(--ink); width:100%;">
+        <button class="btn" id="pracSubmit" style="border-radius:14px; padding:0 24px;">Tekshirish</button>
       </div>
-      <div id="pracFeedback" style="min-height:24px; font-size:14px; font-weight:600; margin-bottom:12px; line-height:1.3;"></div>
-      <div style="display:flex; gap:8px; margin-bottom:12px;">
-        <button id="pracShow" style="flex:1; background:transparent; color:var(--ink); border:1px solid var(--border); border-radius:10px; padding:12px; font-size:14px; font-family:var(--font-body); font-weight:700; cursor:pointer;">Javobni ko\'rsat</button>
+      <div id="pracFeedback" style="min-height:28px; font-size:15px; font-weight:700; margin-bottom:16px; line-height:1.4;"></div>
+      <div style="display:grid; grid-template-columns: 1fr; gap:10px; margin-bottom:16px;">
+        <button id="pracShow" class="btn secondary" style="background:transparent; padding:14px;">Ko'rsatish (Javobni taslim qilish)</button>
       </div>
-      <div style="display:flex; gap:8px;">
-        <button id="pracPrev" style="flex:1; background:var(--surface-2); color:var(--ink); border:1px solid var(--border); border-radius:10px; padding:12px; font-size:14px; font-family:var(--font-body); font-weight:700; cursor:pointer;">← Oldingisi</button>
-        <button id="pracNext" style="flex:1; background:var(--surface-2); color:var(--ink); border:1px solid var(--border); border-radius:10px; padding:12px; font-size:14px; font-family:var(--font-body); font-weight:700; cursor:pointer;">Keyingisi →</button>
+      <div style="display:flex; gap:10px;">
+        <button id="pracPrev" class="btn secondary" style="flex:1; padding:14px;">← Oldingisi</button>
+        <button id="pracNext" class="btn secondary" style="flex:1; padding:14px;">Keyingisi →</button>
       </div>
-      <div style="display:flex; justify-content:space-between; margin-top:16px; padding-top:12px; border-top:1px solid var(--border); font-size:13px; color:rgba(40,50,74,0.7); font-weight:600;">
-        <span>To'g'ri: <b style="color:var(--ink);">${QUIZ.correct}</b> / ${QUIZ.items.length}</span>
-        <span id="pracStreak">${PRAC.streak>=3?'🔥 '+PRAC.streak+' ketma-ket':''}</span>
+      <div style="display:flex; justify-content:space-between; margin-top:20px; padding-top:16px; border-top:1px solid var(--border); font-size:14px; color:rgba(40,50,74,0.7); font-weight:600;">
+        <span>To'g'ri: <b style="color:var(--ink); font-size:16px;">${QUIZ.correct}</b> / ${QUIZ.items.length}</span>
+        <span id="pracStreak" style="color: var(--danger);">${PRAC.streak>=3?'🔥 '+PRAC.streak+' ketma-ket':''}</span>
       </div>
-      <button class="btn danger block" id="pracFinish" style="margin-top:16px; padding:10px;">🛑 Testni yakunlash</button>
+      <button class="btn danger block" id="pracFinish" style="margin-top:20px; padding:12px;">🛑 Testni yakunlash</button>
     </div>
   </div>`;
 
@@ -757,33 +825,32 @@ function renderQuizRun(){
 
   let bodyHtml = "";
   if(mode==="mcq_en2uz" || mode==="listen"){
-    const opts = buildOptions(p,"uz");
-    const questionText = mode==="listen" ? `🎧 Tinglang va to'g'ri tarjimani tanlang` : esc(p.en);
+    const opts = buildOptions(p,"uz"); const questionText = mode==="listen" ? `🎧 Tinglang va to'g'ri tarjimani tanlang` : esc(p.en);
     bodyHtml = `
       <div class="q-label">${mode==="listen"?"Tinglab topish":"Inglizchasini → o'zbekchasini toping"}</div>
-      <div class="q-question">${questionText} ${mode==="listen"?`<button class="mini-btn" id="playAudio" style="display:inline-flex;">🔊</button>`:``}</div>
-      ${mode==="listen"?`<div style="font-size:12px;color:var(--ink-soft);">(${esc(p.en)})</div>`:``}
+      <div class="q-question" style="font-size:24px;">${questionText} ${mode==="listen"?`<button class="mini-btn" id="playAudio" style="display:inline-flex;">🔊</button>`:``}</div>
+      ${mode==="listen"?`<div style="font-size:13px;color:var(--ink-soft);">(${esc(p.en)})</div>`:``}
       <div class="q-options">${opts.map((o,i)=>`<button class="opt-btn" data-val="${esc(o)}"><span class="letter">${"ABCD"[i]}</span>${esc(o)}</button>`).join("")}</div>`;
   } else if(mode==="mcq_uz2en"){
     const opts = buildOptions(p,"en");
     bodyHtml = `
       <div class="q-label">O'zbekchasini → inglizchasini toping</div>
-      <div class="q-question">${esc(p.uz)}</div>
-      ${p.ru?`<div style="font-size:12.5px;color:var(--ink-soft);font-style:italic;">🇷🇺 ${esc(p.ru)}</div>`:``}
+      <div class="q-question" style="font-size:24px;">${esc(p.uz)}</div>
+      ${p.ru?`<div style="font-size:14px;color:var(--ink-soft);font-style:italic;">🇷🇺 ${esc(p.ru)}</div>`:``}
       <div class="q-options">${opts.map((o,i)=>`<button class="opt-btn" data-val="${esc(o)}"><span class="letter">${"ABCD"[i]}</span>${esc(o)}</button>`).join("")}</div>`;
   } else if(mode==="type_en"){
     bodyHtml = `
       <div class="q-label">Inglizcha so'z/iborani yozing</div>
-      <div class="q-question">${esc(p.uz)}</div>
-      <input type="text" class="type-input" id="typeInput" placeholder="Bu yerga inglizcha yozing..." autocomplete="off">
-      <button class="btn block" id="submitType" style="margin-top:12px;">✔️ Javobni tekshirish</button>`;
+      <div class="q-question" style="font-size:24px;">${esc(p.uz)}</div>
+      <input type="text" class="type-input" id="typeInput" placeholder="Bu yerga inglizcha yozing..." autocomplete="off" style="padding:18px; font-size:18px;">
+      <button class="btn block" id="submitType" style="margin-top:16px; padding:16px;">✔️ Javobni tekshirish</button>`;
   }
 
   mainView.innerHTML = `
   <div class="view">
     ${backRow("Test")}
-    <div class="q-progress"><span class="q-score">✅ ${QUIZ.correct}/${QUIZ.idx}</span><div class="bar"><i style="width:${pct}%"></i></div><span class="q-score">${QUIZ.idx+1}/${QUIZ.items.length}</span></div>
-    <div class="q-card">${bodyHtml}<div id="fbSlot"></div></div>
+    <div class="q-progress" style="max-width: 600px; margin: 0 auto 16px;"><span class="q-score">✅ ${QUIZ.correct}/${QUIZ.idx}</span><div class="bar"><i style="width:${pct}%"></i></div><span class="q-score">${QUIZ.idx+1}/${QUIZ.items.length}</span></div>
+    <div class="q-card" style="padding: 40px 30px;">${bodyHtml}<div id="fbSlot"></div></div>
   </div>`;
 
   document.getElementById("backBtn").addEventListener("click", ()=>{ if(confirm("Testni tark etasizmi? Natija saqlanmaydi.")) go("quiz"); });
@@ -793,8 +860,7 @@ function renderQuizRun(){
 
   mainView.querySelectorAll(".opt-btn").forEach(b=>{
     b.addEventListener("click", ()=>{
-      if(QUIZ.answered) return;
-      QUIZ.answered = true;
+      if(QUIZ.answered) return; QUIZ.answered = true;
       const correctVal = mode==="mcq_uz2en" ? p.en : p.uz; const isCorrect = b.dataset.val === correctVal;
       answerFeedback(p, isCorrect, mode);
       mainView.querySelectorAll(".opt-btn").forEach(o=>{
@@ -814,8 +880,7 @@ function renderQuizRun(){
       const isCorrect = val.length>0 && (val===correctNorm || (correctNorm.includes(val) && val.length>=correctNorm.length*0.7));
       answerFeedback(p, isCorrect, mode); inp.disabled = true; submitBtn.disabled = true;
     };
-    submitBtn.addEventListener("click", submit);
-    inp.addEventListener("keydown",(e)=>{ if(e.key==="Enter") submit(); });
+    submitBtn.addEventListener("click", submit); inp.addEventListener("keydown",(e)=>{ if(e.key==="Enter") submit(); });
   }
 }
 
@@ -823,8 +888,10 @@ function answerFeedback(p, isCorrect, mode){
   if(isCorrect){ QUIZ.correct++; markKnown(p.id); } else { markUnknown(p.id); }
   QUIZ.log.push({id:p.id, ok:isCorrect});
   document.getElementById("fbSlot").innerHTML = `
-    <div class="q-feedback ${isCorrect?'ok':'no'}">${isCorrect? '✅ To\'g\'ri!' : '❌ Noto\'g\'ri.'}<span class="fb-note">${esc(p.en)} — ${esc(p.uz)}${p.ru?' · 🇷🇺 '+esc(p.ru):''}${p.note?' · '+esc(p.note):''}</span></div>
-    <button class="btn block" id="nextQ" style="margin-top:14px;">${QUIZ.idx+1>=QUIZ.items.length?'Natijani ko\'rish →':'Keyingi savol →'}</button>
+    <div class="q-feedback ${isCorrect?'ok':'no'}" style="padding:16px; font-size:15px; margin-top:20px;">
+       ${isCorrect? '✅ To\'g\'ri!' : '❌ Noto\'g\'ri.'}<span class="fb-note" style="margin-top:6px; font-size:14px;">${esc(p.en)} — ${esc(p.uz)}${p.ru?' · 🇷🇺 '+esc(p.ru):''}${p.note?' · '+esc(p.note):''}</span>
+    </div>
+    <button class="btn block" id="nextQ" style="margin-top:20px; padding:16px;">${QUIZ.idx+1>=QUIZ.items.length?'Natijani ko\'rish →':'Keyingi savol →'}</button>
   `;
   document.getElementById("nextQ").addEventListener("click", ()=>{ QUIZ.idx++; render(); });
 }
@@ -842,15 +909,18 @@ function renderQuizResult(pctArg){
 
   mainView.innerHTML = `
   <div class="view">
-    <div class="result-hero"><div class="result-ring"><div><b>${pct}%</b><span>${QUIZ.correct}/${total}</span></div></div><h2 style="font-size:18px;">${msg}</h2></div>
+    <div class="result-hero" style="max-width: 600px; margin: 0 auto;">
+      <div class="result-ring" style="width:160px; height:160px; margin: 0 auto 20px;"><div><b style="font-size:40px;">${pct}%</b><span style="font-size:14px;">${QUIZ.correct}/${total}</span></div></div>
+      <h2 style="font-size:24px; margin-bottom:20px;">${msg}</h2>
+    </div>
     ${wrongItems.length? `
-      <div class="section-title">❌ Xato javoblar (${wrongItems.length})</div>
-      <button class="btn danger block" id="rRetryWrong" style="margin-bottom:14px; background:linear-gradient(135deg,#FFB020,#FF4D5E);">🔁 Faqat xatolarni qayta ishlash</button>
-      ${wrongItems.map(phraseCardHtml).join("")}
+      <div class="section-title">❌ Xato qilingan so'zlar (${wrongItems.length})</div>
+      <button class="btn danger block" id="rRetryWrong" style="margin-bottom:20px; padding:16px; background:linear-gradient(135deg,#FFB020,#FF4D5E);">🔁 Faqat xatolarni qayta ishlash</button>
+      <div class="phrases-list">${wrongItems.map(phraseCardHtml).join("")}</div>
     `:``}
-    <div style="display:flex; gap:10px; margin-top:16px;">
-      <button class="btn secondary block" id="rHome">🏠 Bosh sahifa</button>
-      <button class="btn block" id="rAgain">🔁 Yana test</button>
+    <div style="display:flex; gap:15px; margin-top:24px; justify-content:center; max-width: 600px; margin: 24px auto 0;">
+      <button class="btn secondary" id="rHome" style="flex:1;">🏠 Bosh sahifa</button>
+      <button class="btn" id="rAgain" style="flex:1;">🔁 Yana test</button>
     </div>
   </div>`;
   
@@ -862,8 +932,11 @@ function renderQuizResult(pctArg){
   if(retryBtn) { retryBtn.addEventListener("click", () => { startQuiz({ mode: QUIZ.mode, customItems: wrongItems, count: wrongItems.length }); }); }
 }
 
+// Boshlang'ich yuklanish
 go("home");
 </script>
+
+<!-- FIREBASE ULANISHI VA MANTIQ -->
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
     import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";

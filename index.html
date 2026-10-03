@@ -199,6 +199,18 @@ input, select { font-family: inherit; }
         <p id="auth-error"></p>
         <button id="login-btn">Kirish</button>
         <button id="signup-btn">Ro'yxatdan o'tish</button>
+        
+        <div style="display: flex; align-items: center; text-align: center; margin: 15px 0;">
+            <hr style="flex: 1; border: none; border-top: 1px solid var(--border);">
+            <span style="padding: 0 10px; font-size: 12px; color: var(--ink-soft); font-weight: 600;">YOKI</span>
+            <hr style="flex: 1; border: none; border-top: 1px solid var(--border);">
+        </div>
+        
+        <button id="google-btn" style="background: #fff; color: var(--ink); border: 1px solid var(--border);">
+            <span style="display:flex; align-items:center; justify-content:center; gap:8px;">
+                <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" style="width: 20px;"> Google orqali kirish
+            </span>
+        </button>
     </div>
 </div>
 
@@ -268,7 +280,8 @@ input, select { font-family: inherit; }
 </div>
 
 <!-- LUG'ATLAR BAZASI -->
-<script src="words.js"></script>
+<!-- Versiyalangan script fayli keshlanishni oldini olish uchun -->
+<script src="words.js?v=2.0.0"></script>
 
 <script>
 PHRASES.forEach((p,i)=>{ p.id = i; });
@@ -280,7 +293,25 @@ function loadState(){
   return { favorites:{}, srs:{}, quizzesTaken:0, quizScoresSum:0, quizScoresCount:0, theme:"light", lastActiveDate:null, streak:0 };
 }
 let STATE = loadState();
-function saveState(){ localStorage.setItem(LS_KEY, JSON.stringify(STATE)); }
+
+// Tizim funksiyalari orqali STATE'ni osongina yangilash imkoni
+window.getState = () => STATE;
+window.setState = (newState) => {
+    STATE = newState;
+    localStorage.setItem(LS_KEY, JSON.stringify(STATE));
+    if (STATE.theme === "dark") document.documentElement.classList.add("dark");
+    else document.documentElement.classList.remove("dark");
+    applyThemeIcon();
+    if(typeof render === 'function') render();
+};
+
+function saveState(){ 
+  localStorage.setItem(LS_KEY, JSON.stringify(STATE)); 
+  // Agar tarmoqqa ulangan bo'lsa va firebase yozish funksiyasi bo'lsa darhol sinxronizatsiya qilamiz
+  if (window.syncToFirestore) {
+      window.syncToFirestore(STATE);
+  }
+}
 
 function todayStr(){ return new Date().toISOString().slice(0,10); }
 function bumpStreak(){
@@ -363,6 +394,9 @@ function go(view, params={}){
   render();
   window.scrollTo({top:0, behavior:"smooth"});
 }
+
+// Kerakli joydan UI chaqiruvlari uchun
+window.goView = go;
 
 document.querySelectorAll(".nav-btn").forEach(btn=>{ btn.addEventListener("click", ()=> go(btn.dataset.view)); });
 document.getElementById("themeBtn").addEventListener("click", ()=>{
@@ -774,7 +808,7 @@ function renderPracticeRun(){
       </div>
       <div id="pracFeedback" style="min-height:28px; font-size:15px; font-weight:700; margin-bottom:16px; line-height:1.4;"></div>
       <div style="display:grid; grid-template-columns: 1fr; gap:10px; margin-bottom:16px;">
-        <button id="pracShow" class="btn secondary" style="background:transparent; padding:14px;">Ko'rsatish (Javobni taslim qilish)</button>
+        <button id="pracShow" class="btn secondary" style="background:transparent; padding:14px;">Javobni ko'rsatish</button>
       </div>
       <div style="display:flex; gap:10px;">
         <button id="pracPrev" class="btn secondary" style="flex:1; padding:14px;">← Oldingisi</button>
@@ -939,8 +973,9 @@ go("home");
 <!-- FIREBASE ULANISHI VA MANTIQ -->
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
-    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
-    import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, sendPasswordResetEmail, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+    import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+    
     const firebaseConfig = {
         apiKey: "AIzaSyDNjDE8VKvaM8fahdTd_TuECKmp13Ksr8I",
         authDomain: "english-148c0.firebaseapp.com",
@@ -949,9 +984,18 @@ go("home");
         messagingSenderId: "843459344567",
         appId: "1:843459344567:web:1085bc442ff09bc1f4b532"
     };
+    
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
     const db = getFirestore(app);
+    const googleProvider = new GoogleAuthProvider();
+
+    // Global UI interfeyslarini Cloud Sync uchun ulash
+    window.syncToFirestore = (stateData) => {
+        if (window.currentUser && db) {
+            setDoc(doc(db, "users", window.currentUser.uid), stateData).catch(e => console.error("Firestore Error:", e));
+        }
+    };
 
     const showAuthBtn = document.getElementById('show-auth-btn');
     const logoutBtn = document.getElementById('logout-btn');
@@ -962,6 +1006,7 @@ go("home");
     const passwordInput = document.getElementById('password');
     const authError = document.getElementById('auth-error');
     const forgotPasswordBtn = document.getElementById('forgot-password');
+    const googleBtn = document.getElementById('google-btn');
 
     if(showAuthBtn) showAuthBtn.addEventListener('click', () => { authModal.style.display = 'flex'; });
     if(closeModalBtn) closeModalBtn.addEventListener('click', () => { authModal.style.display = 'none'; });
@@ -982,6 +1027,20 @@ go("home");
                 .catch((error) => { authError.style.color = "red"; authError.textContent = "Email yoki parol noto'g'ri!"; });
         });
     }
+    
+    if(googleBtn) {
+        googleBtn.addEventListener('click', () => {
+            signInWithPopup(auth, googleProvider)
+                .then(() => { authModal.style.display = 'none'; })
+                .catch((error) => {
+                    // Foydalanuvchi oynani o'zi yopib yuborsa xatolik ko'rsatilmaydi
+                    if(error.code !== 'auth/popup-closed-by-user') {
+                        authError.style.color = "red"; 
+                        authError.textContent = "Xatolik: " + error.message; 
+                    }
+                });
+        });
+    }
 
     if(forgotPasswordBtn) {
         forgotPasswordBtn.addEventListener('click', () => {
@@ -992,14 +1051,38 @@ go("home");
         });
     }
 
-    if(logoutBtn) logoutBtn.addEventListener('click', () => { signOut(auth); });
+    if(logoutBtn) {
+        logoutBtn.addEventListener('click', () => {
+            // LocalStorage tozalanishi va toza holatga qaytarish
+            localStorage.removeItem("eng_vocab_state_v1");
+            if(window.setState) {
+                window.setState({ favorites:{}, srs:{}, quizzesTaken:0, quizScoresSum:0, quizScoresCount:0, theme:"light", lastActiveDate:null, streak:0 });
+            }
+            if(window.goView) window.goView("home");
+            
+            signOut(auth); 
+        });
+    }
 
     onAuthStateChanged(auth, (user) => {
         if (user) {
             if(showAuthBtn) showAuthBtn.style.display = 'none';
-            if(userInfo) { userInfo.style.display = 'inline'; userInfo.textContent = user.email; }
+            if(userInfo) { userInfo.style.display = 'inline'; userInfo.textContent = user.email || 'Foydalanuvchi'; }
             if(logoutBtn) logoutBtn.style.display = 'inline';
-            window.currentUser = user; window.db = db; 
+            window.currentUser = user; 
+            
+            // Tizimga kirilganda Firestore'dan mavjud bazani tortib olish
+            const docRef = doc(db, "users", user.uid);
+            getDoc(docRef).then(docSnap => {
+                if(docSnap.exists()) {
+                    // Bulutdagi bazani mahalliyga o'rnatish
+                    if (window.setState) window.setState(docSnap.data());
+                } else {
+                    // Foydalanuvchi bazada yangi bo'lsa mahalliy bazani yozib qo'yamiz
+                    if (window.getState && window.syncToFirestore) window.syncToFirestore(window.getState());
+                }
+            }).catch(e => console.error("Cloud Fetch Error:", e));
+            
         } else {
             if(showAuthBtn) showAuthBtn.style.display = 'inline';
             if(userInfo) { userInfo.style.display = 'none'; userInfo.textContent = ''; }

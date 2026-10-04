@@ -33,7 +33,7 @@ html.dark {
 }
 * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
-/* GLOBAL SILLIQ O'TISHLAR (Animatsiyalar) */
+/* GLOBAL SILLIQ O'TISHLAR */
 body, .app, .cat-card, .phrase-card, .topbar, .bottom-nav, .modal-content, .btn, .stat-card, input, .mobile-menu {
   transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease, transform 0.3s ease;
 }
@@ -51,13 +51,14 @@ input, select { font-family: inherit; }
 /* YUQORI QISM (Header) */
 .topbar { position: sticky; top: 0; z-index: 60; background: var(--grad-1); box-shadow: var(--shadow-lg); color: #fff; padding: 12px 20px; border-radius: 0 0 20px 20px; transition: background 0.4s ease; }
 .topbar-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
-.brand { display: flex; align-items: center; gap: 8px; cursor: pointer; }
+
+.brand { display: flex; align-items: center; gap: 8px; cursor: pointer; transition: transform 0.3s ease; }
 .brand-text h1 { font-size: 16px; font-weight: 800; letter-spacing: .2px; }
 .brand-text p { display: none; }
 
 /* DESKTOP NAVBAR */
 .desktop-nav { display: none; align-items: center; gap: 5px; flex: 1; justify-content: center; }
-.desktop-nav .nav-btn { flex-direction: row; color: rgba(255,255,255,0.7); font-size: 14px; padding: 8px 14px; }
+.desktop-nav .nav-btn { flex-direction: row; color: rgba(255,255,255,0.8); font-size: 14px; padding: 8px 14px; transition: transform 0.3s ease, background 0.3s, color 0.3s; }
 .desktop-nav .nav-btn.active { color: #fff; background: rgba(255,255,255,0.2); border-radius: 10px; }
 .desktop-nav .nav-btn .em { margin-right: 6px; font-size: 16px; }
 
@@ -67,9 +68,9 @@ input, select { font-family: inherit; }
 .search-container.active { background: rgba(255,255,255,0.95); }
 .search-input { width: 0; padding: 0; border: none; background: transparent; font-size: 14px; transition: 0.3s; opacity: 0; color: #20203A; }
 .search-container.active .search-input { width: 140px; padding: 5px 10px; opacity: 1; outline: none; }
-.icon-btn { width: 34px; height: 34px; border-radius: 10px; background: transparent; color: #fff; border: none; font-size: 16px; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
+.icon-btn { width: 34px; height: 34px; border-radius: 10px; background: transparent; color: #fff; border: none; font-size: 16px; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; }
 .search-container.active .icon-btn { color: var(--primary); }
-.icon-btn:active { transform: scale(0.9); }
+.icon-btn:active { transform: scale(0.9) !important; }
 
 /* GAMBURGER MENYU VA MOBILE AUTH */
 .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 5px; z-index: 100; width: 34px; height: 34px; align-items: center; justify-content: center; }
@@ -83,6 +84,15 @@ input, select { font-family: inherit; }
 @keyframes scaleIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
 .auth-controls { display: flex; align-items: center; gap: 10px; }
 #user-info { font-weight: bold; color: var(--success); display: none; font-size: 14px; }
+
+/* NAVBAR HOVER EFFEKTLARI (MOTION) */
+@media (min-width: 992px) {
+  .brand:hover { transform: translateY(-2px); }
+  .desktop-nav .nav-btn:hover { transform: translateY(-3px); background: rgba(255,255,255,0.25); color: #fff; border-radius: 10px; }
+  .icon-btn:hover { transform: translateY(-3px); background: rgba(255,255,255,0.2); }
+  #show-auth-btn { transition: transform 0.3s ease, background 0.3s; }
+  #show-auth-btn:hover { transform: translateY(-3px); box-shadow: 0 6px 15px rgba(0,0,0,0.2); }
+}
 
 @media (max-width: 991px) {
   .hamburger { display: flex; }
@@ -142,7 +152,7 @@ input, select { font-family: inherit; }
 .mini-btn { width: 34px; height: 34px; border-radius: 10px; border: none; background: var(--surface-2); display: flex; align-items: center; justify-content: center; font-size: 16px; color: var(--ink-soft); }
 .mini-btn.fav-on { color: var(--gold); background: rgba(255,176,32,0.15); }
 
-/* HOVER EFFEKTLARI */
+/* KARTALAR UCHUN HOVER EFFEKTLARI */
 @media (min-width: 992px) {
   .cat-card:hover, .stat-card:hover, .quick-btn:hover { transform: translateY(-5px) scale(1.02); box-shadow: var(--shadow-lg); border-color: var(--primary-2); }
   .phrase-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
@@ -249,7 +259,7 @@ input, select { font-family: inherit; }
   <!-- YUQORI NAVBAR -->
   <div class="topbar">
     <div class="topbar-row">
-      <!-- Logo: SVG qilingan logotip (Ranglari mavzuga moslashadi) -->
+      <!-- Logo: SVG qilingan logotip -->
       <div class="brand" onclick="go('home')">
         <div class="brand-mark" style="background: transparent; padding: 0;">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="34" height="34" style="filter: drop-shadow(0 4px 6px rgba(0,0,0,0.15));">
@@ -339,7 +349,7 @@ const COLOR_PALETTES = [
   { p: '#FF9500', p2: '#FF2D55', a: '#FFCC00', a2: '#FF3B30', g1: 'linear-gradient(135deg,#FF9500 0%,#FF2D55 100%)', g2: 'linear-gradient(135deg,#FFCC00 0%,#FF9500 100%)' }
 ];
 
-const LS_KEY = "eng_vocab_state_v1";
+const LS_KEY = "eng_vocab_state_v2"; // LocalStorage nomini yangiladik, toza boshlash uchun
 function loadState(){
   try{ const raw = localStorage.getItem(LS_KEY); if(raw) return JSON.parse(raw); }catch(e){}
   return { favorites:{}, srs:{}, quizzesTaken:0, quizScoresSum:0, quizScoresCount:0, theme:"light", colorIdx: 0, lastActiveDate:null, streak:0 };
@@ -364,38 +374,18 @@ function applyColorPalette(idx) {
   });
   
   STATE.colorIdx = idx;
-  saveState();
+  localStorage.setItem(LS_KEY, JSON.stringify(STATE));
 }
 
-// Tugmalarga bosilganda ranglarni o'zgartirish
+// Rang tugmalari ishlashi uchun
 document.querySelectorAll('.c-dot').forEach(btn => {
   btn.addEventListener('click', () => applyColorPalette(parseInt(btn.dataset.c)));
 });
 
-window.getState = () => STATE;
-window.setState = (newState) => {
-    if (!newState.favorites) newState.favorites = {};
-    if (!newState.srs) newState.srs = {};
-    if (typeof newState.quizzesTaken === 'undefined') newState.quizzesTaken = 0;
-    if (typeof newState.quizScoresSum === 'undefined') newState.quizScoresSum = 0;
-    if (typeof newState.quizScoresCount === 'undefined') newState.quizScoresCount = 0;
-    
-    STATE = newState;
-    if(typeof STATE.colorIdx === 'undefined') STATE.colorIdx = 0;
-    
-    localStorage.setItem(LS_KEY, JSON.stringify(STATE));
-    
-    if (STATE.theme === "dark") document.documentElement.classList.add("dark");
-    else document.documentElement.classList.remove("dark");
-    
-    applyThemeIcon();
-    applyColorPalette(STATE.colorIdx);
-    if(typeof render === 'function') render();
-};
-
+// Ma'lumotlarni saqlash va bulutga yozish
 function saveState(){ 
   localStorage.setItem(LS_KEY, JSON.stringify(STATE)); 
-  if (window.syncToFirestore) { window.syncToFirestore(STATE); }
+  if (window.syncToFirestore) { window.syncToFirestore(); }
 }
 
 function todayStr(){ return new Date().toISOString().slice(0,10); }
@@ -413,7 +403,7 @@ function bumpStreak(){
 }
 bumpStreak();
 
-// Ishga tushishida saqlangan rang va mavzuni qo'llash
+// Ishga tushishida saqlangan rang va mavzuni qo'llash (Bulut ma'lumotlari buni buzmasligi kerak)
 if(STATE.theme === "dark"){ document.documentElement.classList.add("dark"); }
 applyColorPalette(STATE.colorIdx);
 
@@ -712,8 +702,9 @@ function renderStats(){
     <button class="btn danger block" id="resetBtn" style="margin-top: 30px;">🗑️ Statistikani tozalash</button>
   </div>`;
   document.getElementById("resetBtn").addEventListener("click", ()=>{
-    if(confirm("Barcha progress, favoritlar va statistikalarni tozalashni xohlaysizmi?")){
-      STATE = loadState(); STATE.favorites={}; STATE.srs={}; saveState(); render();
+    if(confirm("Barcha progress, favoritlar va statistikalarni tozalashni xohlaysizmi? (Eslatma: bu faqatgina joriy qurilmadagi va tizimdagi progressni o'chiradi)")){
+      STATE.favorites = {}; STATE.srs = {}; STATE.quizzesTaken = 0; STATE.quizScoresSum = 0; STATE.quizScoresCount = 0; STATE.streak = 0; STATE.lastActiveDate = null;
+      saveState(); render();
     }
   });
 }
@@ -1058,11 +1049,11 @@ function renderQuizResult(pctArg){
 go("home");
 </script>
 
-<!-- FIREBASE CLOUD SYNC -->
+<!-- FIREBASE CLOUD SYNC & REALTIME DATABASE -->
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
     import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, sendPasswordResetEmail, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
-    import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+    import { getFirestore, doc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
     
     const firebaseConfig = {
         apiKey: "AIzaSyDNjDE8VKvaM8fahdTd_TuECKmp13Ksr8I",
@@ -1078,14 +1069,22 @@ go("home");
     const db = getFirestore(app);
     const googleProvider = new GoogleAuthProvider();
 
-    // Maxsus himoya bayrog'i (Dastlab false)
+    // Firebase'ga uzatiluvchi funksiya - bu faqat shaxsiy ma'lumotlarni yozadi
     window.isCloudLoaded = false;
+    let unsubSnapshot = null;
 
-    window.syncToFirestore = (stateData) => {
-        // Faqat ma'lumotlar avval bulutdan o'qib olingan bo'lsa yoza oladi. 
-        // Bu tasodifan 0 qiymatli xotira bulutni o'chirib tashlashini oldini oladi.
+    window.syncToFirestore = () => {
         if (window.currentUser && db && window.isCloudLoaded) {
-            setDoc(doc(db, "users", window.currentUser.uid), stateData, { merge: true }).catch(e => console.error("Firestore Error:", e));
+            const userData = {
+                favorites: STATE.favorites,
+                srs: STATE.srs,
+                quizzesTaken: STATE.quizzesTaken,
+                quizScoresSum: STATE.quizScoresSum,
+                quizScoresCount: STATE.quizScoresCount,
+                lastActiveDate: STATE.lastActiveDate,
+                streak: STATE.streak
+            };
+            setDoc(doc(db, "users", window.currentUser.uid), userData, { merge: true }).catch(e => console.error("Firestore Yozishdagi Xatolik:", e));
         }
     };
 
@@ -1144,11 +1143,20 @@ go("home");
 
     if(logoutBtn) {
         logoutBtn.addEventListener('click', () => {
-            window.isCloudLoaded = false; // Chiqib ketayotganda yozishni taqiqlash
-            localStorage.removeItem("eng_vocab_state_v1");
-            if(window.setState) {
-                window.setState({ favorites:{}, srs:{}, quizzesTaken:0, quizScoresSum:0, quizScoresCount:0, theme:"light", colorIdx:0, lastActiveDate:null, streak:0 });
-            }
+            window.isCloudLoaded = false;
+            if (unsubSnapshot) { unsubSnapshot(); unsubSnapshot = null; }
+            
+            // Faqat progressni tozalaymiz. Rang (colorIdx) va Mavzu (theme) saqlanib qoladi.
+            STATE.favorites = {};
+            STATE.srs = {};
+            STATE.quizzesTaken = 0;
+            STATE.quizScoresSum = 0;
+            STATE.quizScoresCount = 0;
+            STATE.lastActiveDate = null;
+            STATE.streak = 0;
+            
+            localStorage.setItem(LS_KEY, JSON.stringify(STATE));
+            
             if(window.goView) window.goView("home");
             signOut(auth); 
         });
@@ -1161,28 +1169,40 @@ go("home");
             if(logoutBtn) logoutBtn.style.display = 'inline';
             
             window.currentUser = user; 
-            window.isCloudLoaded = false; // O'qib bulgunicha False holatida saqlaymiz
+            window.isCloudLoaded = false; 
             
             const docRef = doc(db, "users", user.uid);
-            getDoc(docRef).then(docSnap => {
+            
+            // onSnapshot orqali ma'lumotlarni real vaqtda kuzatish (telefon <-> kompyuter sinxronizatsiyasi)
+            unsubSnapshot = onSnapshot(docRef, (docSnap) => {
                 if(docSnap.exists()) {
-                    let cloudData = docSnap.data();
-                    if (window.setState) window.setState(cloudData);
+                    const data = docSnap.data();
+                    
+                    // Faqat foydalanuvchi progressini yangilaymiz. (theme va colorIdx ni TEGMAYMIZ)
+                    STATE.favorites = data.favorites || {};
+                    STATE.srs = data.srs || {};
+                    STATE.quizzesTaken = data.quizzesTaken || 0;
+                    STATE.quizScoresSum = data.quizScoresSum || 0;
+                    STATE.quizScoresCount = data.quizScoresCount || 0;
+                    if(data.lastActiveDate) STATE.lastActiveDate = data.lastActiveDate;
+                    if(data.streak) STATE.streak = data.streak;
+
+                    localStorage.setItem(LS_KEY, JSON.stringify(STATE));
+                    window.isCloudLoaded = true; 
+                    if(typeof render === 'function') render();
                 } else {
-                    // Yangi foydalanuvchi: faqat birinchi marta mahalliy ma'lumotni bulutga saqlashga ruhsat
-                    setDoc(doc(db, "users", user.uid), window.getState(), { merge: true });
+                    // Agar akkaunt yangi bo'lsa
+                    window.isCloudLoaded = true;
+                    window.syncToFirestore();
                 }
-                
-                // Ma'lumot to'liq yuklab olingachgina kelajakda yo'qolishni oldini olish uchun ruxsat beramiz.
+            }, (error) => {
+                console.error("Real-time Sync Xatosi:", error);
                 window.isCloudLoaded = true;
-                
-            }).catch(e => {
-                console.error("Cloud Fetch Error:", e);
-                window.isCloudLoaded = true; // Xatolik bo'lsa ham butunlay bloklanib qolmasligi uchun ruxsat qaytariladi
             });
             
         } else {
             window.isCloudLoaded = false;
+            if (unsubSnapshot) { unsubSnapshot(); unsubSnapshot = null; }
             if(showAuthBtn) showAuthBtn.style.display = 'inline';
             if(userInfo) { userInfo.style.display = 'none'; userInfo.textContent = ''; }
             if(logoutBtn) logoutBtn.style.display = 'none';

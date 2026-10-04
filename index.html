@@ -111,16 +111,6 @@ input, select { font-family: inherit; }
 .view { padding: 20px; animation: slideFadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
 @keyframes slideFadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 
-/* YAGONA TOOLTIP DIZAYNI */
-.u-tooltip { display: none; position: absolute; z-index: 9999; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 14px; box-shadow: var(--shadow-lg); width: 260px; color: var(--ink); font-size: 13px; line-height: 1.4; animation: scaleIn 0.2s ease; text-align: left; }
-.u-title { font-weight: 800; margin-bottom: 6px; color: var(--primary); border-bottom: 1px solid var(--surface-2); padding-bottom: 6px; font-size: 14px; }
-i.help-btn { display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; border-radius: 50%; background: rgba(255,255,255,0.25); color: inherit; font-size: 11px; font-weight: 800; border: none; font-style: normal; margin-left: 8px; cursor: pointer; transition: 0.2s; }
-i.help-btn:hover { transform: scale(1.15); background: var(--primary); color: #fff; border-color: var(--primary); }
-
-/* Bo'lim Sarlavhalari yoni uchun Tooltip tugma */
-.h-help-btn { display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; border-radius: 50%; background: var(--surface-2); color: var(--ink-soft); font-size: 12px; font-weight: 800; border: 1px solid var(--border); font-style: normal; margin-left: auto; cursor: pointer; transition: 0.2s; }
-.h-help-btn:hover { transform: scale(1.15); background: var(--primary); color: #fff; border-color: var(--primary); }
-
 /* GRID VA RESPONSIV KARTALAR */
 .section-title { font-size: 18px; font-weight: 800; margin: 10px 2px 14px; display: flex; align-items: center; gap: 8px; }
 .section-title .cnt { font-weight: 600; font-size: 11.5px; color: var(--ink-soft); background: var(--surface-2); padding: 3px 9px; border-radius: 100px; }
@@ -297,16 +287,29 @@ i.help-btn:hover { transform: scale(1.15); background: var(--primary); color: #f
       
       <!-- Desktop Menyular -->
       <div class="desktop-nav">
-        <button class="nav-btn active" data-view="home"><span class="em">🏠</span>Bosh sahifa</button>
-        <button class="nav-btn" data-view="categories"><span class="em">📘</span>Lug'atlar</button>
-        <button class="nav-btn" data-view="rclist"><span class="em">📖</span>Reading</button>
-        <button class="nav-btn" data-view="flash"><span class="em">🃏</span>Mashq</button>
-        <button class="nav-btn" data-view="quiz"><span class="em">📝</span>Test</button>
-        <button class="nav-btn" data-view="favorites"><span class="em">⭐</span>Sevimli</button>
-        <button class="nav-btn" data-view="stats"><span class="em">📊</span>Statistika</button>
+        <button class="nav-btn active" data-view="home">
+            <span class="em">🏠</span>Bosh sahifa
+        </button>
+        <button class="nav-btn" data-view="categories">
+            <span class="em">📘</span>Lug'atlar
+        </button>
+        <button class="nav-btn" data-view="rclist">
+            <span class="em">📖</span>Reading
+        </button>
+        <button class="nav-btn" data-view="flash">
+            <span class="em">🃏</span>Mashq
+        </button>
+        <button class="nav-btn" data-view="quiz">
+            <span class="em">📝</span>Test
+        </button>
+        <button class="nav-btn" data-view="favorites">
+            <span class="em">⭐</span>Sevimli
+        </button>
+        <button class="nav-btn" data-view="stats">
+            <span class="em">📊</span>Statistika
+        </button>
       </div>
 
-      <!-- O'ng tomon amallari -->
       <div class="topbar-actions">
         <div class="search-container" id="searchContainer">
           <button class="icon-btn" id="searchToggleBtn">🔍</button>
@@ -340,12 +343,6 @@ i.help-btn:hover { transform: scale(1.15); background: var(--primary); color: #f
     <button class="nav-btn" data-view="favorites"><span class="em">⭐</span>Sevimli</button>
     <button class="nav-btn" data-view="stats"><span class="em">📊</span>Stat.</button>
   </div>
-  
-  <!-- UNIVERSAL TOOLTIP (Info paneli) -->
-  <div id="uTooltip" class="u-tooltip">
-    <div class="u-title" id="uTTitle"></div>
-    <div class="u-desc" id="uTDesc"></div>
-  </div>
 </div>
 
 <script src="words.js?v=2.0.0"></script>
@@ -354,6 +351,7 @@ i.help-btn:hover { transform: scale(1.15); background: var(--primary); color: #f
 PHRASES.forEach((p,i)=>{ p.id = i; });
 const CAT_MAP = Object.fromEntries(CATEGORIES.map(c=>[c.key,c]));
 
+// ================= RANG PALITRALARI =================
 const COLOR_PALETTES = [
   { p: '#5B4CFF', p2: '#8B5CF6', a: '#FF6F91', a2: '#00C6AE', g1: 'linear-gradient(135deg,#5B4CFF 0%,#8B5CF6 50%,#FF6F91 100%)', g2: 'linear-gradient(135deg,#00C6AE 0%,#5B4CFF 100%)' },
   { p: '#007AFF', p2: '#3399FF', a: '#00C6AE', a2: '#34C759', g1: 'linear-gradient(135deg,#007AFF 0%,#5856D6 100%)', g2: 'linear-gradient(135deg,#34C759 0%,#007AFF 100%)' },
@@ -481,10 +479,7 @@ function go(view, params={}, fromSearch=false){
 window.goView = go;
 
 document.querySelectorAll(".nav-btn").forEach(btn=>{ 
-    btn.addEventListener("click", (e)=>{ 
-        if(e.target.classList.contains('help-btn')) return;
-        go(btn.dataset.view); 
-    }); 
+    btn.addEventListener("click", ()=> go(btn.dataset.view)); 
 });
 
 document.getElementById("themeBtn").addEventListener("click", ()=>{
@@ -499,32 +494,6 @@ searchInput.addEventListener("input", ()=>{
   else if(VIEW==="search") go("home", {}, true);
 });
 
-// UMUMIY TOOLTIP (So'roq belgilari uchun) MANTIQ
-document.body.addEventListener('click', (e) => {
-    const uTooltip = document.getElementById('uTooltip');
-    if (e.target.classList.contains('help-btn') || e.target.classList.contains('h-help-btn')) {
-        e.stopPropagation();
-        e.preventDefault();
-        const btn = e.target;
-        document.getElementById('uTTitle').textContent = btn.dataset.t;
-        document.getElementById('uTDesc').innerHTML = btn.dataset.d;
-        uTooltip.style.display = 'block';
-
-        const rect = btn.getBoundingClientRect();
-        let top = rect.bottom + window.scrollY + 8;
-        let left = rect.left + window.scrollX - 120 + rect.width / 2;
-        if (left < 10) left = 10;
-        if (left + 260 > window.innerWidth) left = window.innerWidth - 260;
-
-        uTooltip.style.top = top + 'px';
-        uTooltip.style.left = left + 'px';
-    } else {
-        if(uTooltip && !uTooltip.contains(e.target)) {
-            uTooltip.style.display = 'none';
-        }
-    }
-});
-
 function esc(s){ return (s||"").replace(/[&<>"']/g, m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m])); }
 function norm(s){ return (s||"").toLowerCase().replace(/[ʼ'`’]/g,"'").trim(); }
 function searchPhrases(q){
@@ -532,6 +501,7 @@ function searchPhrases(q){
   return PHRASES.filter(p=> norm(p.en).includes(nq) || norm(p.uz).includes(nq) || norm(p.ru).includes(nq) ).slice(0,200);
 }
 
+// BAYROQCHALAR
 function phraseCardHtml(p){
   const fav = !!STATE.favorites[p.id];
   return `
@@ -614,16 +584,10 @@ function renderHome(){
       <button class="quick-btn" id="qbExamAll"><span class="em">🏆</span>Katta imtihon</button>
     </div>
     
-    <div class="section-title" style="margin-top:14px;">
-       📘 Lug'atlar bo'limi 
-       <i class="h-help-btn" data-t="Lug'atlar bo'limi" data-d="Lug'atlar — bu Oxford English File kitobi dasturi doirasidagi asosiy lug'atlar.">?</i>
-    </div>
+    <div class="section-title" style="margin-top:14px;">📘 Lug'atlar bo'limi</div>
     <div class="cat-grid">${CATEGORIES.filter(c=>c.type==='ef').map(catCardHtml).join("")}</div>
     
-    <div class="section-title" style="margin-top:24px;">
-       📖 Reading Challenge 
-       <i class="h-help-btn" data-t="Reading Challenge" data-d="Reading Challenge — bu Reading Challenge kitobi matnlaridan olingan lug'atlar va iboralar.">?</i>
-    </div>
+    <div class="section-title" style="margin-top:24px;">📖 Reading Challenge</div>
     <div class="cat-grid">${CATEGORIES.filter(c=>c.type==='rc').map(catCardHtml).join("")}</div>
     
     <div class="section-title" style="margin-top:24px;">🎲 Bugungi so'z</div>
@@ -668,10 +632,7 @@ function renderCategories(){
   const count = PHRASES.filter(p=>cats.some(c=>c.key===p.unit)).length;
   mainView.innerHTML = `
   <div class="view">
-     <div class="section-title">
-        📘 Lug'atlar <span class="cnt">${count} ta so'z</span>
-        <i class="h-help-btn" data-t="Lug'atlar" data-d="Lug'atlar — bu Oxford English File kitobi lug'atlari. Bu yerdagi har bir bo'lim alohida mavzularga bag'ishlangan.">?</i>
-     </div>
+     <div class="section-title">📘 Lug'atlar <span class="cnt">${count} ta so'z</span></div>
      <div class="cat-grid">${cats.map(catCardHtml).join("")}</div>
   </div>`;
   mainView.querySelectorAll(".cat-card").forEach(c=>{ c.addEventListener("click", ()=> go("catDetail",{key:c.dataset.key})); });
@@ -682,10 +643,7 @@ function renderRCList(){
   const count = PHRASES.filter(p=>cats.some(c=>c.key===p.unit)).length;
   mainView.innerHTML = `
   <div class="view">
-     <div class="section-title">
-        📖 Reading Challenge <span class="cnt">${count} ta so'z/ibora</span>
-        <i class="h-help-btn" data-t="Reading Challenge" data-d="Reading Challenge — bu Reading Challenge kitobi matnlaridan olingan lug'atlar va iboralar bo'limi.">?</i>
-     </div>
+     <div class="section-title">📖 Reading Challenge <span class="cnt">${count} ta so'z/ibora</span></div>
      <div class="cat-grid">${cats.map(catCardHtml).join("")}</div>
   </div>`;
   mainView.querySelectorAll(".cat-card").forEach(c=>{ c.addEventListener("click", ()=> go("catDetail",{key:c.dataset.key})); });
@@ -724,10 +682,7 @@ function renderFavorites(){
   const list = PHRASES.filter(p=>ids.includes(p.id));
   mainView.innerHTML = `
   <div class="view">
-    <div class="section-title">
-        ⭐ Sevimli so'zlar <span class="cnt">${list.length}</span>
-        <i class="h-help-btn" data-t="Sevimli so'zlar" data-d="Siz yulduzcha (⭐) orqali o'zingiz uchun saqlab qo'ygan muhim so'zlar. Tizim ularni shu yerda yig'ib boradi.">?</i>
-    </div>
+    <div class="section-title">⭐ Sevimli so'zlar <span class="cnt">${list.length}</span></div>
     ${list.length? `<button class="btn block" style="margin-bottom:20px;" id="flashFav">🃏 Sevimlilarni kartochka bilan o'rganish</button>` : ``}
     ${list.length? `<div class="phrases-list">${list.map(phraseCardHtml).join("")}</div>` : `<div class="empty-state"><span class="em">⭐</span>Hali sevimli so'zlar yo'q.<br>So'zlar yonidagi ☆ tugmasini bosing.</div>`}
   </div>`;
@@ -746,29 +701,22 @@ function renderStats(){
 
   mainView.innerHTML = `
   <div class="view">
-    <div class="section-title">
-       📊 Tizim va o'zlashtirish statistikasi
-    </div>
+    <div class="section-title">📊 Tizim va o'zlashtirish statistikasi</div>
     <div class="dash-cards">
       <div class="stat-card">
-         <i class="help-btn" data-t="Kunlik streak" data-d="Saytga har kuni ketma-ket kirib mashq qilish ko'rsatkichi. Agar bir kun kirmasangiz bu nolga tushadi.">?</i>
          <b>🔥 ${STATE.streak}</b><span>Kunlik streak</span>
       </div>
       <div class="stat-card">
-         <i class="help-btn" data-t="Ishlangan testlar" data-d="Tizimga kirganingizdan beri siz yakunlagan jami testlar soni.">?</i>
          <b>${STATE.quizzesTaken}</b><span>Ishlangan testlar</span>
       </div>
       <div class="stat-card">
-         <i class="help-btn" data-t="O'rtacha natija" data-d="Siz ishlagan barcha testlardagi to'g'ri topilgan savollarning o'rtacha foizi.">?</i>
          <b>${avgScore}%</b><span>O'rtacha natija</span>
       </div>
       <div class="stat-card">
-         <i class="help-btn" data-t="Mustahkam yodda" data-d="Intervalli takrorlash doirasida 5 va undan ortiq marta to'g'ri topilgan so'zlar.">?</i>
          <b>${memorized}</b><span>Mustahkam yodda</span>
       </div>
     </div>
     <div class="stat-card" style="margin-bottom:24px;">
-      <i class="help-btn" data-t="Umumiy progress" data-d="Siz butun bazadagi barcha so'zlarning necha foizini to'liq o'rganib chiqqaningizni (kamida 3 marta to'g'ri javob) bildiradi.">?</i>
       <b>${pct}%</b><span>Umumiy progress (${learned}/${total} o'rganilgan)</span>
       <div class="progress-bar"><div class="progress-fill" style="width:${pct}%"></div></div>
     </div>
@@ -800,10 +748,7 @@ let FLASH = {ids:[], idx:0, flipped:0, single:false};
 function renderFlashSetup(){
   mainView.innerHTML = `
   <div class="view">
-    <div class="section-title">
-        🃏 Kartochkalar (Flashcards)
-        <i class="h-help-btn" data-t="Kartochkalar (Flashcards)" data-d="Bu bo'lim miyani qiynamasdan tezkor yodlash usuli hisoblanadi. Sizga avval so'z ko'rsatiladi, topa olmasangiz javobi ochiladi.">?</i>
-    </div>
+    <div class="section-title">🃏 Kartochkalar (Flashcards)</div>
     <p style="font-size:14px; color:var(--ink-soft); margin:0 0 20px;">Unit tanlang yoki barcha so'zlar bilan mashq qiling. Old tomonda inglizcha so'z, orqasida o'zbekcha (va ruscha) tarjima chiqadi.</p>
     <div class="phrases-list" style="margin-bottom: 24px;">
         <button class="btn block" id="flAll" style="height:100%;">🌐 Barcha so'zlar bilan (${PHRASES.length})</button>
@@ -904,10 +849,7 @@ function renderQuizSetup(){
   
   mainView.innerHTML = `
   <div class="view">
-    <div class="section-title">
-        📝 Test rejimi
-        <i class="h-help-btn" data-t="Test rejimi" data-d="Bu bo'limda turli xil savol-javob usullari orqali so'zlarni qanchalik yod olganingizni aniq tekshirib olishingiz mumkin.">?</i>
-    </div>
+    <div class="section-title">📝 Test rejimi</div>
     <div class="section-title" style="margin-top:10px;">1. Test turi</div>
     <div class="mode-grid">${QUIZ_MODES.map(m=>`<div class="mode-card ${QUIZ_SETUP.mode===m.key?'sel':''}" data-mode="${m.key}"><span class="em">${m.em}</span><b>${m.title}</b><small>${m.desc}</small></div>`).join("")}</div>
     <div class="section-title" style="margin-top:20px;">2. Savollar soni</div>

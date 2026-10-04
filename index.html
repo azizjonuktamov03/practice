@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Ingliz tili lug'ati — English File Units</title>
-<!-- Favicon (EN yozuvli SVG logo) -->
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' stop-color='%235B4CFF'/><stop offset='100%25' stop-color='%23FF6F91'/></linearGradient></defs><rect width='100' height='100' rx='24' fill='url(%23g)'/><text x='50%25' y='55%25' font-family='system-ui,sans-serif' font-size='44' font-weight='800' fill='%23ffffff' text-anchor='middle' dominant-baseline='middle'>EN</text></svg>">
 <style>
 /* ===================== DESIGN TOKENS ===================== */
@@ -51,12 +50,9 @@ input, select { font-family: inherit; }
 .topbar { position: sticky; top: 0; z-index: 60; background: var(--grad-1); box-shadow: var(--shadow-lg); color: #fff; padding: 12px 20px; border-radius: 0 0 20px 20px; transition: background 0.4s ease; }
 .topbar-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
 
-/* HOVER MOTION EFFECT UCHUN KODLAR */
 .brand, .desktop-nav .nav-btn, .icon-btn, #show-auth-btn { transition: all 0.3s ease; }
 @media (min-width: 992px) {
-  .brand:hover, .desktop-nav .nav-btn:hover, .icon-btn:hover, #show-auth-btn:hover {
-    transform: translateY(-3px);
-  }
+  .brand:hover, .desktop-nav .nav-btn:hover, .icon-btn:hover, #show-auth-btn:hover { transform: translateY(-3px); }
   .desktop-nav .nav-btn:hover { background: rgba(255,255,255,0.25); color: #fff; border-radius: 10px; }
   .icon-btn:hover { background: rgba(255,255,255,0.25); }
   #show-auth-btn:hover { box-shadow: 0 6px 15px rgba(0,0,0,0.2); }
@@ -105,7 +101,7 @@ input, select { font-family: inherit; }
   .search-container.active .search-input { width: 200px; }
 }
 
-/* RANGLAR PANELI (Theme Switcher) */
+/* RANGLAR PANELI */
 .color-switcher { position: fixed; right: 0; top: 50%; transform: translateY(-50%); background: var(--surface); padding: 12px 8px; border-radius: 16px 0 0 16px; box-shadow: var(--shadow-lg); display: flex; flex-direction: column; gap: 12px; z-index: 1000; border: 1px solid var(--border); border-right: none; }
 .c-dot { width: 22px; height: 22px; border-radius: 50%; border: 2px solid var(--surface-2); cursor: pointer; transition: 0.3s; padding: 0; }
 .c-dot.active { transform: scale(1.2); border-color: var(--ink); box-shadow: 0 0 8px rgba(0,0,0,0.2); }
@@ -113,6 +109,12 @@ input, select { font-family: inherit; }
 /* MAIN VIEW SLIDE-UP ANIMATSIYASI */
 .view { padding: 20px; animation: slideFadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
 @keyframes slideFadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+/* TOOLTIP & INFO BTN */
+.info-btn-wrap { position: relative; }
+.info-btn { position: absolute; top: -42px; right: 0px; width: 26px; height: 26px; border-radius: 50%; background: var(--surface); border: 2px solid var(--border); color: var(--ink-soft); font-weight: 800; font-size: 13px; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: var(--shadow); z-index: 10; transition: 0.3s; }
+.info-btn:hover { color: var(--primary); border-color: var(--primary); transform: scale(1.1); }
+.info-popup { display: none; position: absolute; top: -5px; right: 0px; width: 280px; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 16px; box-shadow: var(--shadow-lg); z-index: 20; font-size: 13px; color: var(--ink); text-align: left; line-height: 1.5; animation: scaleIn 0.2s ease; }
 
 /* GRID VA RESPONSIV KARTALAR */
 .section-title { font-size: 16px; font-weight: 800; margin: 10px 2px 14px; display: flex; align-items: center; gap: 8px; }
@@ -134,7 +136,6 @@ input, select { font-family: inherit; }
 .progress-bar { height: 8px; border-radius: 10px; background: var(--surface-2); overflow: hidden; margin-top: 10px; }
 .progress-fill { height: 100%; background: var(--grad-2); border-radius: 10px; transition: width 0.6s ease; }
 
-/* TEZKOR MENYULAR QISMI (Hover kesilishini oldini olish uchun padding-top qo'shildi) */
 .quick-row { display: flex; gap: 12px; overflow-x: auto; padding: 10px 5px 15px 5px; margin: 0 -5px 20px -5px; }
 .quick-btn { flex: 0 0 auto; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 14px 18px; display: flex; flex-direction: column; align-items: center; gap: 8px; min-width: 100px; box-shadow: var(--shadow); font-size: 12px; font-weight: 700; color: var(--ink); }
 .quick-btn .em { font-size: 22px; }
@@ -191,25 +192,34 @@ input, select { font-family: inherit; }
 
 /* BOSHQA (Quiz, Flashcard qismlari) */
 .flash-wrap, .quiz-setup, .q-card { width: 100%; max-width: 600px; margin: 0 auto; }
-.flashcard { width: 100%; min-height: 280px; border-radius: 22px; background: var(--surface); box-shadow: var(--shadow-lg); border: 1px solid var(--border); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 30px 22px; position: relative; }
+
+/* FLIP 3D ANIMATION */
+@keyframes flipCardAnim {
+  0% { transform: perspective(1000px) rotateY(-90deg); opacity: 0; }
+  100% { transform: perspective(1000px) rotateY(0); opacity: 1; }
+}
+.flashcard { 
+  width: 100%; min-height: 280px; border-radius: 22px; background: var(--surface); box-shadow: var(--shadow-lg); border: 1px solid var(--border); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 30px 22px; position: relative; 
+  animation: flipCardAnim 0.35s ease-out forwards;
+  transform-style: preserve-3d;
+}
 .flash-main { font-size: 26px; font-weight: 800; line-height: 1.4; }
 .flash-bottom { display: flex; gap: 15px; margin-top: 20px; width: 100%; }
 
-.mode-grid { display: grid; grid-template-columns: 1fr; gap: 12px; margin-bottom: 20px; }
-@media (min-width: 500px) { .mode-grid { grid-template-columns: 1fr 1fr; } }
-.mode-card { background: var(--surface); border: 2px solid var(--border); border-radius: 16px; padding: 16px; text-align: left; display: flex; flex-direction: column; gap: 6px; transition: 0.3s; cursor: pointer; color: var(--ink); box-shadow: var(--shadow); }
+/* QUIZ REJIMLARI TELEFONDA HAM 2 USTUN */
+.mode-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 20px; }
+.mode-card { background: var(--surface); border: 2px solid var(--border); border-radius: 16px; padding: 12px; text-align: left; display: flex; flex-direction: column; gap: 4px; transition: 0.3s; cursor: pointer; color: var(--ink); box-shadow: var(--shadow); }
 .mode-card.sel { border-color: var(--primary); background: rgba(91, 76, 255, 0.05); box-shadow: 0 0 0 1px var(--primary); }
-.mode-card .em { font-size: 22px; display: inline-block; }
-.mode-card b { font-size: 15px; font-weight: 800; }
-.mode-card small { font-size: 13px; color: var(--ink-soft); }
+.mode-card .em { font-size: 18px; display: inline-block; margin-bottom: 4px; }
+.mode-card b { font-size: 12.5px; font-weight: 800; line-height: 1.2; }
+.mode-card small { font-size: 10.5px; color: var(--ink-soft); line-height: 1.2; }
 
 .len-row { display: flex; gap: 8px; flex-wrap: wrap; }
-.len-chip { padding: 10px 16px; border-radius: 100px; border: 2px solid var(--border); background: var(--surface); font-size: 13px; font-weight: 700; color: var(--ink); transition: 0.3s; cursor: pointer; }
+.len-chip { padding: 10px 14px; border-radius: 100px; border: 2px solid var(--border); background: var(--surface); font-size: 12.5px; font-weight: 700; color: var(--ink); transition: 0.3s; cursor: pointer; }
 .len-chip.sel { border-color: var(--primary); background: var(--primary); color: #fff; }
 .q-card { background: var(--surface); border-radius: 20px; box-shadow: var(--shadow-lg); border: 1px solid var(--border); padding: 40px 30px; text-align: center; }
 
 .q-options { display: flex; flex-direction: column; gap: 12px; margin-top: 24px; }
-/* Sichqoncha test javoblari ichidagi textni belgilamasligi uchun xavfsizlik */
 .opt-btn { width: 100%; padding: 16px 20px; border-radius: 14px; border: 2px solid var(--border); background: var(--surface); text-align: left; font-size: 16px; font-weight: 700; color: var(--ink); display: flex; align-items: center; gap: 16px; transition: 0.3s; cursor: pointer; }
 .opt-btn * { pointer-events: none; }
 .opt-btn .letter { width: 30px; height: 30px; border-radius: 8px; background: var(--surface-2); display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 800; flex: 0 0 auto; color: var(--ink-soft); }
@@ -226,7 +236,7 @@ input, select { font-family: inherit; }
 </head>
 <body>
 
-<!-- RANGLAR PANELI (THEME SWITCHER) -->
+<!-- RANGLAR PANELI -->
 <div class="color-switcher">
   <button class="c-dot" data-c="0" style="background: linear-gradient(135deg,#5B4CFF,#FF6F91);" title="Binafsharang (Asosiy)"></button>
   <button class="c-dot" data-c="1" style="background: linear-gradient(135deg,#007AFF,#00C6AE);" title="Moviy"></button>
@@ -234,7 +244,7 @@ input, select { font-family: inherit; }
   <button class="c-dot" data-c="3" style="background: linear-gradient(135deg,#FF9500,#FF2D55);" title="Olovrang"></button>
 </div>
 
-<!-- MODAL OYNA (Login/Ro'yxatdan o'tish) -->
+<!-- MODAL OYNA (Login) -->
 <div class="modal" id="auth-modal">
     <div class="modal-content">
         <span class="close-btn" id="close-modal-btn">&times;</span>
@@ -263,7 +273,6 @@ input, select { font-family: inherit; }
   <!-- YUQORI NAVBAR -->
   <div class="topbar">
     <div class="topbar-row">
-      <!-- Logo: SVG qilingan logotip -->
       <div class="brand" onclick="go('home')">
         <div class="brand-mark" style="background: transparent; padding: 0;">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="34" height="34" style="filter: drop-shadow(0 4px 6px rgba(0,0,0,0.15));">
@@ -280,7 +289,6 @@ input, select { font-family: inherit; }
         <div class="brand-text"><h1>Ingliz tili</h1></div>
       </div>
       
-      <!-- Desktop Menyular -->
       <div class="desktop-nav">
         <button class="nav-btn active" data-view="home"><span class="em">🏠</span>Bosh sahifa</button>
         <button class="nav-btn" data-view="categories"><span class="em">📘</span>Lug'atlar</button>
@@ -291,18 +299,12 @@ input, select { font-family: inherit; }
         <button class="nav-btn" data-view="stats"><span class="em">📊</span>Statistika</button>
       </div>
 
-      <!-- O'ng tomon amallari -->
       <div class="topbar-actions">
-        <!-- Qidiruv (Lupa) -->
         <div class="search-container" id="searchContainer">
           <button class="icon-btn" id="searchToggleBtn">🔍</button>
           <input type="text" class="search-input" id="globalSearch" placeholder="So'z qidiring...">
         </div>
-        
-        <!-- Mavzu o'zgartirish -->
         <button class="icon-btn" id="themeBtn" title="Rejim">🌙</button>
-        
-        <!-- Mobile/Auth menyusi -->
         <div class="mobile-menu" id="mobileMenu">
            <div class="auth-controls">
              <button id="show-auth-btn" class="btn secondary" style="padding: 8px 16px; font-size: 13px;">Tizimga kirish</button>
@@ -310,8 +312,6 @@ input, select { font-family: inherit; }
              <button id="logout-btn" class="btn danger" style="padding: 8px 16px; font-size: 13px; display: none;">Chiqish</button>
            </div>
         </div>
-
-        <!-- Gamburger (Faqat telefonda) -->
         <button class="hamburger" id="hamburgerBtn">
           <span></span><span></span><span></span>
         </button>
@@ -319,10 +319,8 @@ input, select { font-family: inherit; }
     </div>
   </div>
 
-  <!-- ASOSIY OYNA -->
   <div id="mainView"></div>
 
-  <!-- PASTKI NAVBAR (Faqat mobil ekranlar uchun) -->
   <div class="bottom-nav">
     <button class="nav-btn active" data-view="home"><span class="em">🏠</span>Bosh</button>
     <button class="nav-btn" data-view="categories"><span class="em">📘</span>Lug'atlar</button>
@@ -334,26 +332,19 @@ input, select { font-family: inherit; }
   </div>
 </div>
 
-<!-- LUG'ATLAR BAZASI -->
 <script src="words.js?v=2.0.0"></script>
 
 <script>
 PHRASES.forEach((p,i)=>{ p.id = i; });
 const CAT_MAP = Object.fromEntries(CATEGORIES.map(c=>[c.key,c]));
 
-// ================= RANG PALITRALARI =================
 const COLOR_PALETTES = [
-  // 0: Asosiy (Binafsharang)
   { p: '#5B4CFF', p2: '#8B5CF6', a: '#FF6F91', a2: '#00C6AE', g1: 'linear-gradient(135deg,#5B4CFF 0%,#8B5CF6 50%,#FF6F91 100%)', g2: 'linear-gradient(135deg,#00C6AE 0%,#5B4CFF 100%)' },
-  // 1: Moviy (Blue)
   { p: '#007AFF', p2: '#3399FF', a: '#00C6AE', a2: '#34C759', g1: 'linear-gradient(135deg,#007AFF 0%,#5856D6 100%)', g2: 'linear-gradient(135deg,#34C759 0%,#007AFF 100%)' },
-  // 2: Yashil (Green)
   { p: '#34C759', p2: '#32ADE6', a: '#FFCC00', a2: '#007AFF', g1: 'linear-gradient(135deg,#34C759 0%,#32ADE6 100%)', g2: 'linear-gradient(135deg,#FFCC00 0%,#34C759 100%)' },
-  // 3: Olovrang (Orange)
   { p: '#FF9500', p2: '#FF2D55', a: '#FFCC00', a2: '#FF3B30', g1: 'linear-gradient(135deg,#FF9500 0%,#FF2D55 100%)', g2: 'linear-gradient(135deg,#FFCC00 0%,#FF9500 100%)' }
 ];
 
-// Asl V1 kalitiga qaytarildi (Yo'qolgan progress va sevimllarni qaytarish uchun)
 const LS_KEY = "eng_vocab_state_v1"; 
 
 function loadState(){
@@ -387,7 +378,6 @@ document.querySelectorAll('.c-dot').forEach(btn => {
   btn.addEventListener('click', () => applyColorPalette(parseInt(btn.dataset.c)));
 });
 
-// Mahalliy va Bulut bazasiga saqlash
 function saveState(){ 
   localStorage.setItem(LS_KEY, JSON.stringify(STATE)); 
   if (window.syncToFirestore) { window.syncToFirestore(); }
@@ -502,7 +492,36 @@ function searchPhrases(q){
   return PHRASES.filter(p=> norm(p.en).includes(nq) || norm(p.uz).includes(nq) || norm(p.ru).includes(nq) ).slice(0,200);
 }
 
-// BAYROQCHALAR QO'SHILDI
+// INFO POPUP LOGIC
+function attachInfoPopupLogic() {
+    const infoBtn = document.getElementById("infoBtn");
+    const infoPopup = document.getElementById("infoPopup");
+    if (infoBtn && infoPopup) {
+        infoBtn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            infoPopup.style.display = infoPopup.style.display === "none" ? "block" : "none";
+        });
+        document.addEventListener("click", (e) => {
+            if (!infoPopup.contains(e.target) && e.target !== infoBtn) {
+                infoPopup.style.display = "none";
+            }
+        });
+    }
+}
+
+const DASH_INFO_HTML = `
+  <div class="info-btn-wrap">
+    <button class="info-btn" id="infoBtn" title="Ma'lumot">?</button>
+    <div class="info-popup" id="infoPopup">
+      <div style="font-size:14px; font-weight:800; margin-bottom:10px; color:var(--ink); border-bottom:1px solid var(--border); padding-bottom:6px;">Tushuntirish:</div>
+      <b style="color:var(--primary);">O'rganilgan:</b> Kamida 3 marta to'g'ri javob berilgan so'zlar.<br><br>
+      <b style="color:var(--primary);">Mustahkam yodda:</b> 5 marta va undan ko'p to'g'ri topilib, uzoq muddatli xotiraga o'tgan so'zlar.<br><br>
+      <b style="color:var(--primary);">Qayta o'rganish:</b> Intervalli takrorlash (Spaced Repetition) tizimi orqali esdan chiqishi mumkin bo'lgan so'zlarni vaqti kelganda qayta so'raydi.<br><br>
+      <b style="color:var(--primary);">Kunlik streak:</b> Saytga har kuni ketma-ket kirib mashq qilish ko'rsatkichi.
+    </div>
+  </div>
+`;
+
 function phraseCardHtml(p){
   const fav = !!STATE.favorites[p.id];
   return `
@@ -560,6 +579,7 @@ function renderHome(){
 
   mainView.innerHTML = `
   <div class="view">
+    ${DASH_INFO_HTML}
     <div class="dash-cards">
       <div class="stat-card"><b>${total}</b><span>Jami so'z/iboralar</span></div>
       <div class="stat-card"><b>${learned}</b><span>O'rganilgan</span><div class="progress-bar"><div class="progress-fill" style="width:${pct}%"></div></div></div>
@@ -582,6 +602,7 @@ function renderHome(){
     <div class="phrases-list" style="grid-template-columns: 1fr;">${phraseCardHtml(dailyPhrase())}</div>
   </div>`;
 
+  attachInfoPopupLogic();
   attachPhraseCardEvents(mainView);
   document.getElementById("qbRandom").addEventListener("click", ()=> go("flashRun", {ids:[PHRASES[Math.floor(Math.random()*PHRASES.length)].id], single:true}));
   document.getElementById("qbDaily").addEventListener("click", ()=> go("flashRun", {ids: dailyNew.map(p=>p.id)}));
@@ -590,9 +611,9 @@ function renderHome(){
     if(due.length===0){ alert("Hozircha takrorlash uchun so'z yo'q. Avval kartochkalar bilan mashq qiling!"); return; }
     go("flashRun", {ids: due.map(p=>p.id)});
   });
-  document.getElementById("qbDaily20").addEventListener("click", ()=> startQuiz({mode:"mixed", count:20, catKeys:[]}));
-  document.getElementById("qbExam50").addEventListener("click", ()=> startQuiz({mode:"mixed", count:50, catKeys:[]}));
-  document.getElementById("qbExamAll").addEventListener("click", ()=> startQuiz({mode:"mixed", count:PHRASES.length, catKeys:[]}));
+  document.getElementById("qbDaily20").addEventListener("click", ()=> startQuiz({mode:"mixed", count:20, catKeys:[], forceAll: false}));
+  document.getElementById("qbExam50").addEventListener("click", ()=> startQuiz({mode:"mixed", count:50, catKeys:[], forceAll: false}));
+  document.getElementById("qbExamAll").addEventListener("click", ()=> startQuiz({mode:"mixed", count:PHRASES.length, catKeys:[], forceAll: true}));
   mainView.querySelectorAll(".cat-card").forEach(c=>{ c.addEventListener("click", ()=> go("catDetail",{key:c.dataset.key})); });
 }
 
@@ -680,6 +701,7 @@ function renderStats(){
   mainView.innerHTML = `
   <div class="view">
     <div class="section-title">📊 Statistika</div>
+    ${DASH_INFO_HTML}
     <div class="dash-cards">
       <div class="stat-card"><b>🔥 ${STATE.streak}</b><span>Kunlik streak</span></div>
       <div class="stat-card"><b>${STATE.quizzesTaken}</b><span>Ishlangan testlar</span></div>
@@ -704,6 +726,8 @@ function renderStats(){
     </div>
     <button class="btn danger block" id="resetBtn" style="margin-top: 30px;">🗑️ Statistikani tozalash</button>
   </div>`;
+  
+  attachInfoPopupLogic();
   document.getElementById("resetBtn").addEventListener("click", ()=>{
     if(confirm("Barcha progress, favoritlar va statistikalarni tozalashni xohlaysizmi? (Eslatma: bu faqatgina joriy qurilmadagi va tizimdagi progressni o'chiradi)")){
       STATE.favorites = {}; STATE.srs = {}; STATE.quizzesTaken = 0; STATE.quizScoresSum = 0; STATE.quizScoresCount = 0; STATE.streak = 0; STATE.lastActiveDate = null;
@@ -808,31 +832,61 @@ const QUIZ_MODES = [
   {key:"mixed", em:"🔀", title:"Aralash test", desc:"Barcha turlar aralash"},
   {key:"practice", em:"⚡", title:"Klassik mashq", desc:"Qulay yozish rejimi"}
 ];
-let QUIZ_SETUP = {mode:"mixed", count:20, catKeys:[], activeTab:"ef"};
+let QUIZ_SETUP = {mode:"mixed", count:20, catKeys:[], activeTab:"ef", forceAll:false};
 
 function renderQuizSetup(){
+  let dynamicPoolLen = 0;
+  if (QUIZ_SETUP.catKeys.length > 0) {
+      dynamicPoolLen = PHRASES.filter(p => QUIZ_SETUP.catKeys.includes(p.unit)).length;
+  }
+  
   mainView.innerHTML = `
   <div class="view">
     <div class="section-title">📝 Test rejimi</div>
     <div class="section-title" style="margin-top:10px;">1. Test turi</div>
     <div class="mode-grid">${QUIZ_MODES.map(m=>`<div class="mode-card ${QUIZ_SETUP.mode===m.key?'sel':''}" data-mode="${m.key}"><span class="em">${m.em}</span><b>${m.title}</b><small>${m.desc}</small></div>`).join("")}</div>
     <div class="section-title" style="margin-top:20px;">2. Savollar soni</div>
-    <div class="len-row">${[10,20,50,PHRASES.length].map(n=>`<button class="len-chip ${QUIZ_SETUP.count===n?'sel':''}" data-len="${n}">${n===PHRASES.length?'Barchasi ('+n+')':n+' ta'}</button>`).join("")}</div>
+    <div class="len-row">
+       ${[10,20,50].map(n=>`<button class="len-chip ${QUIZ_SETUP.count===n && !QUIZ_SETUP.forceAll ? 'sel':''}" data-len="${n}">${n} ta</button>`).join("")}
+       <button class="len-chip ${QUIZ_SETUP.count===dynamicPoolLen && !QUIZ_SETUP.forceAll && dynamicPoolLen > 0 ? 'sel':''}" data-len="catAll" style="${dynamicPoolLen===0 ? 'display:none;':''}">Tanlanganlar barchasi (${dynamicPoolLen} ta)</button>
+       <button class="len-chip ${QUIZ_SETUP.forceAll ? 'sel':''}" data-len="all">Umumiy barchasi (${PHRASES.length} ta)</button>
+    </div>
     <div class="section-title" style="margin-top:20px;">3. Qaysi bo'limdan?</div>
     <div class="len-row" style="margin-bottom: 16px;"><button class="len-chip ${QUIZ_SETUP.activeTab==='ef'?'sel':''}" data-tab="ef">📘 Lug'atlar</button><button class="len-chip ${QUIZ_SETUP.activeTab==='rc'?'sel':''}" data-tab="rc">📖 Reading Challenge</button></div>
     <div class="section-title" style="margin-top:10px;">${QUIZ_SETUP.activeTab==='ef' ? "Lug'atlarni tanlang" : "Reading Challenge tanlang"}</div>
     <div class="tag-row"><button class="tag-chip ${QUIZ_SETUP.catKeys.length===0?'sel':''}" data-cat="all">🌐 Barchasi aralash</button>${CATEGORIES.filter(c=>c.type===QUIZ_SETUP.activeTab).map(c=>`<button class="tag-chip ${QUIZ_SETUP.catKeys.includes(c.key)?'sel':''}" data-cat="${c.key}">${c.em}${esc(c.name)}</button>`).join("")}</div>
     <button class="btn block" id="startQuizBtn" style="margin-top:24px; padding: 16px; font-size: 16px;">▶️ Testni boshlash</button>
   </div>`;
+  
   mainView.querySelectorAll(".mode-card").forEach(b=> b.addEventListener("click", ()=>{ QUIZ_SETUP.mode=b.dataset.mode; renderQuizSetup(); }));
-  mainView.querySelectorAll(".len-chip[data-len]").forEach(b=> b.addEventListener("click", ()=>{ QUIZ_SETUP.count=+b.dataset.len; renderQuizSetup(); }));
+  
+  mainView.querySelectorAll(".len-chip[data-len]").forEach(b=> {
+    b.addEventListener("click", ()=>{ 
+      const val = b.dataset.len;
+      if (val === "all") {
+          QUIZ_SETUP.forceAll = true;
+          QUIZ_SETUP.count = PHRASES.length;
+      } else if (val === "catAll") {
+          QUIZ_SETUP.forceAll = false;
+          let pLen = QUIZ_SETUP.catKeys.length > 0 ? PHRASES.filter(p => QUIZ_SETUP.catKeys.includes(p.unit)).length : PHRASES.length;
+          QUIZ_SETUP.count = pLen;
+      } else {
+          QUIZ_SETUP.forceAll = false;
+          QUIZ_SETUP.count = +val;
+      }
+      renderQuizSetup(); 
+    });
+  });
+  
   mainView.querySelectorAll(".len-chip[data-tab]").forEach(b=> b.addEventListener("click", ()=>{ QUIZ_SETUP.activeTab=b.dataset.tab; QUIZ_SETUP.catKeys=[]; renderQuizSetup(); }));
+  
   mainView.querySelectorAll(".tag-chip").forEach(b=> b.addEventListener("click", ()=>{ 
     const cat = b.dataset.cat;
     if(cat === "all" || !cat) QUIZ_SETUP.catKeys = [];
     else { if(QUIZ_SETUP.catKeys.includes(cat)) QUIZ_SETUP.catKeys = QUIZ_SETUP.catKeys.filter(k=>k!==cat); else QUIZ_SETUP.catKeys.push(cat); }
     renderQuizSetup(); 
   }));
+  
   document.getElementById("startQuizBtn").addEventListener("click", ()=> startQuiz(QUIZ_SETUP));
 }
 
@@ -841,7 +895,7 @@ function startQuiz(cfg){
   let chosen = [];
   if(cfg.customItems && cfg.customItems.length > 0) { chosen = shuffleSeeded(cfg.customItems, Date.now()).slice(0, cfg.count || cfg.customItems.length); } 
   else {
-      let pool = cfg.catKeys && cfg.catKeys.length > 0 ? PHRASES.filter(p=>cfg.catKeys.includes(p.unit)) : PHRASES;
+      let pool = (cfg.catKeys && cfg.catKeys.length > 0 && !cfg.forceAll) ? PHRASES.filter(p=>cfg.catKeys.includes(p.unit)) : PHRASES;
       if(pool.length < 4) pool = PHRASES; const count = Math.min(cfg.count, pool.length);
       chosen = shuffleSeeded(pool, Date.now()+Math.random()*1000).slice(0,count);
   }
@@ -1004,7 +1058,6 @@ function answerFeedback(p, isCorrect, mode){
   if(isCorrect){ QUIZ.correct++; markKnown(p.id); } else { markUnknown(p.id); }
   QUIZ.log.push({id:p.id, ok:isCorrect});
   
-  // Real-vaqt render uzilishining oldini olamiz (test ishlanayotganda STATE faqat orqa fonda saqlanadi)
   saveState();
   
   document.getElementById("fbSlot").innerHTML = `
@@ -1052,11 +1105,10 @@ function renderQuizResult(pctArg){
   if(retryBtn) { retryBtn.addEventListener("click", () => { startQuiz({ mode: QUIZ.mode, customItems: wrongItems, count: wrongItems.length }); }); }
 }
 
-// Boshlang'ich yuklanish
 go("home");
 </script>
 
-<!-- FIREBASE CLOUD SYNC & REALTIME DATABASE -->
+<!-- FIREBASE CLOUD SYNC -->
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
     import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, sendPasswordResetEmail, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
@@ -1079,7 +1131,6 @@ go("home");
     window.isCloudLoaded = false;
     let unsubSnapshot = null;
 
-    // Yozish tizimi faqat user ro'yxatdan o'tgan bo'lsagina ishlaydi
     window.syncToFirestore = () => {
         if (window.currentUser && db && window.isCloudLoaded) {
             const userData = {
@@ -1152,18 +1203,8 @@ go("home");
         logoutBtn.addEventListener('click', () => {
             window.isCloudLoaded = false;
             if (unsubSnapshot) { unsubSnapshot(); unsubSnapshot = null; }
-            
-            // Faqat progressni tozalaymiz. Rang, V1 va Mavzu (theme) o'zgarmasdan qoladi.
-            STATE.favorites = {};
-            STATE.srs = {};
-            STATE.quizzesTaken = 0;
-            STATE.quizScoresSum = 0;
-            STATE.quizScoresCount = 0;
-            STATE.lastActiveDate = null;
-            STATE.streak = 0;
-            
+            STATE.favorites = {}; STATE.srs = {}; STATE.quizzesTaken = 0; STATE.quizScoresSum = 0; STATE.quizScoresCount = 0; STATE.lastActiveDate = null; STATE.streak = 0;
             localStorage.setItem(LS_KEY, JSON.stringify(STATE));
-            
             if(window.goView) window.goView("home");
             signOut(auth); 
         });
@@ -1177,15 +1218,11 @@ go("home");
             
             window.currentUser = user; 
             window.isCloudLoaded = false; 
-            
             const docRef = doc(db, "users", user.uid);
             
-            // REAL-TIME LISTENER: Har gal biror joyda ma'lumot yangilansa...
             unsubSnapshot = onSnapshot(docRef, (docSnap) => {
                 if(docSnap.exists()) {
                     const data = docSnap.data();
-                    
-                    // Faqat foydalanuvchi progressini yangilaymiz. (theme va colorIdx ni TEGMAYMIZ)
                     STATE.favorites = data.favorites || {};
                     STATE.srs = data.srs || {};
                     STATE.quizzesTaken = data.quizzesTaken || 0;
@@ -1196,15 +1233,10 @@ go("home");
 
                     localStorage.setItem(LS_KEY, JSON.stringify(STATE));
                     window.isCloudLoaded = true; 
-                    
-                    // XATOLIK SABABI VA YECHIMI:
-                    // Agar test ishlanayotgan bo'lsa, UI yangilanishiga (render) RUXSAT BERMAYMIZ. 
-                    // Aks holda test o'zidan o'zi boshlang'ich holatiga (javobsiz holatga) reset bo'lib qoladi.
                     if (VIEW !== "quizRun" && VIEW !== "flashRun" && VIEW !== "practiceRun") {
                         if(typeof render === 'function') render();
                     }
                 } else {
-                    // Yangi foydalanuvchi
                     window.isCloudLoaded = true;
                     window.syncToFirestore();
                 }

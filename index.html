@@ -238,10 +238,8 @@ input, select { font-family: inherit; }
             <hr style="flex: 1; border: none; border-top: 1px solid var(--border);">
         </div>
         
-        <button id="google-btn" style="background: #fff; color: var(--ink); border: 1px solid var(--border);">
-            <span style="display:flex; align-items:center; justify-content:center; gap:8px;">
-                <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" style="width: 20px;"> Google orqali kirish
-            </span>
+        <button id="google-btn" style="background: #ffffff; color: #20203A; border: 1px solid #ddd; padding: 14px; margin: 8px 0; width: 100%; border-radius: 12px; font-weight: 800; font-size: 15px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: 0.3s;">
+            <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" style="width: 20px;"> Google orqali kirish
         </button>
     </div>
 </div>
@@ -347,7 +345,6 @@ function loadState(){
   return { favorites:{}, srs:{}, quizzesTaken:0, quizScoresSum:0, quizScoresCount:0, theme:"light", colorIdx: 0, lastActiveDate:null, streak:0 };
 }
 let STATE = loadState();
-// Agar eski bazada colorIdx bo'lmasa 0 o'rnatamiz
 if(typeof STATE.colorIdx === 'undefined') STATE.colorIdx = 0;
 
 function applyColorPalette(idx) {
@@ -377,11 +374,20 @@ document.querySelectorAll('.c-dot').forEach(btn => {
 
 window.getState = () => STATE;
 window.setState = (newState) => {
+    if (!newState.favorites) newState.favorites = {};
+    if (!newState.srs) newState.srs = {};
+    if (typeof newState.quizzesTaken === 'undefined') newState.quizzesTaken = 0;
+    if (typeof newState.quizScoresSum === 'undefined') newState.quizScoresSum = 0;
+    if (typeof newState.quizScoresCount === 'undefined') newState.quizScoresCount = 0;
+    
     STATE = newState;
     if(typeof STATE.colorIdx === 'undefined') STATE.colorIdx = 0;
+    
     localStorage.setItem(LS_KEY, JSON.stringify(STATE));
+    
     if (STATE.theme === "dark") document.documentElement.classList.add("dark");
     else document.documentElement.classList.remove("dark");
+    
     applyThemeIcon();
     applyColorPalette(STATE.colorIdx);
     if(typeof render === 'function') render();
@@ -1052,7 +1058,7 @@ function renderQuizResult(pctArg){
 go("home");
 </script>
 
-<!-- FIREBASE ULANISHI VA MANTIQ -->
+<!-- FIREBASE CLOUD SYNC -->
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
     import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, sendPasswordResetEmail, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
@@ -1072,9 +1078,14 @@ go("home");
     const db = getFirestore(app);
     const googleProvider = new GoogleAuthProvider();
 
+    // Maxsus himoya bayrog'i (Dastlab false)
+    window.isCloudLoaded = false;
+
     window.syncToFirestore = (stateData) => {
-        if (window.currentUser && db) {
-            setDoc(doc(db, "users", window.currentUser.uid), stateData).catch(e => console.error("Firestore Error:", e));
+        // Faqat ma'lumotlar avval bulutdan o'qib olingan bo'lsa yoza oladi. 
+        // Bu tasodifan 0 qiymatli xotira bulutni o'chirib tashlashini oldini oladi.
+        if (window.currentUser && db && window.isCloudLoaded) {
+            setDoc(doc(db, "users", window.currentUser.uid), stateData, { merge: true }).catch(e => console.error("Firestore Error:", e));
         }
     };
 
@@ -1133,6 +1144,7 @@ go("home");
 
     if(logoutBtn) {
         logoutBtn.addEventListener('click', () => {
+            window.isCloudLoaded = false; // Chiqib ketayotganda yozishni taqiqlash
             localStorage.removeItem("eng_vocab_state_v1");
             if(window.setState) {
                 window.setState({ favorites:{}, srs:{}, quizzesTaken:0, quizScoresSum:0, quizScoresCount:0, theme:"light", colorIdx:0, lastActiveDate:null, streak:0 });
@@ -1147,18 +1159,30 @@ go("home");
             if(showAuthBtn) showAuthBtn.style.display = 'none';
             if(userInfo) { userInfo.style.display = 'inline'; userInfo.textContent = user.email || 'Foydalanuvchi'; }
             if(logoutBtn) logoutBtn.style.display = 'inline';
+            
             window.currentUser = user; 
+            window.isCloudLoaded = false; // O'qib bulgunicha False holatida saqlaymiz
             
             const docRef = doc(db, "users", user.uid);
             getDoc(docRef).then(docSnap => {
                 if(docSnap.exists()) {
-                    if (window.setState) window.setState(docSnap.data());
+                    let cloudData = docSnap.data();
+                    if (window.setState) window.setState(cloudData);
                 } else {
-                    if (window.getState && window.syncToFirestore) window.syncToFirestore(window.getState());
+                    // Yangi foydalanuvchi: faqat birinchi marta mahalliy ma'lumotni bulutga saqlashga ruhsat
+                    setDoc(doc(db, "users", user.uid), window.getState(), { merge: true });
                 }
-            }).catch(e => console.error("Cloud Fetch Error:", e));
+                
+                // Ma'lumot to'liq yuklab olingachgina kelajakda yo'qolishni oldini olish uchun ruxsat beramiz.
+                window.isCloudLoaded = true;
+                
+            }).catch(e => {
+                console.error("Cloud Fetch Error:", e);
+                window.isCloudLoaded = true; // Xatolik bo'lsa ham butunlay bloklanib qolmasligi uchun ruxsat qaytariladi
+            });
             
         } else {
+            window.isCloudLoaded = false;
             if(showAuthBtn) showAuthBtn.style.display = 'inline';
             if(userInfo) { userInfo.style.display = 'none'; userInfo.textContent = ''; }
             if(logoutBtn) logoutBtn.style.display = 'none';

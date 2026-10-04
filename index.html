@@ -12,7 +12,6 @@
   --bg: #F6F5FB; --surface: #FFFFFF; --surface-2: #EFEDFB;
   --ink: #20203A; --ink-soft: #5B5B78; --border: rgba(32,32,58,0.10);
   
-  /* Birlamchi ranglar (JS orqali o'zgaradi) */
   --primary: #5B4CFF; 
   --primary-2: #8B5CF6; 
   --accent: #FF6F91;
@@ -52,13 +51,24 @@ input, select { font-family: inherit; }
 .topbar { position: sticky; top: 0; z-index: 60; background: var(--grad-1); box-shadow: var(--shadow-lg); color: #fff; padding: 12px 20px; border-radius: 0 0 20px 20px; transition: background 0.4s ease; }
 .topbar-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
 
-.brand { display: flex; align-items: center; gap: 8px; cursor: pointer; transition: transform 0.3s ease; }
+/* HOVER MOTION EFFECT UCHUN KODLAR */
+.brand, .desktop-nav .nav-btn, .icon-btn, #show-auth-btn { transition: all 0.3s ease; }
+@media (min-width: 992px) {
+  .brand:hover, .desktop-nav .nav-btn:hover, .icon-btn:hover, #show-auth-btn:hover {
+    transform: translateY(-3px);
+  }
+  .desktop-nav .nav-btn:hover { background: rgba(255,255,255,0.25); color: #fff; border-radius: 10px; }
+  .icon-btn:hover { background: rgba(255,255,255,0.25); }
+  #show-auth-btn:hover { box-shadow: 0 6px 15px rgba(0,0,0,0.2); }
+}
+
+.brand { display: flex; align-items: center; gap: 8px; cursor: pointer; }
 .brand-text h1 { font-size: 16px; font-weight: 800; letter-spacing: .2px; }
 .brand-text p { display: none; }
 
 /* DESKTOP NAVBAR */
 .desktop-nav { display: none; align-items: center; gap: 5px; flex: 1; justify-content: center; }
-.desktop-nav .nav-btn { flex-direction: row; color: rgba(255,255,255,0.8); font-size: 14px; padding: 8px 14px; transition: transform 0.3s ease, background 0.3s, color 0.3s; }
+.desktop-nav .nav-btn { flex-direction: row; color: rgba(255,255,255,0.8); font-size: 14px; padding: 8px 14px; }
 .desktop-nav .nav-btn.active { color: #fff; background: rgba(255,255,255,0.2); border-radius: 10px; }
 .desktop-nav .nav-btn .em { margin-right: 6px; font-size: 16px; }
 
@@ -68,9 +78,8 @@ input, select { font-family: inherit; }
 .search-container.active { background: rgba(255,255,255,0.95); }
 .search-input { width: 0; padding: 0; border: none; background: transparent; font-size: 14px; transition: 0.3s; opacity: 0; color: #20203A; }
 .search-container.active .search-input { width: 140px; padding: 5px 10px; opacity: 1; outline: none; }
-.icon-btn { width: 34px; height: 34px; border-radius: 10px; background: transparent; color: #fff; border: none; font-size: 16px; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; }
+.icon-btn { width: 34px; height: 34px; border-radius: 10px; background: transparent; color: #fff; border: none; font-size: 16px; display: flex; align-items: center; justify-content: center; }
 .search-container.active .icon-btn { color: var(--primary); }
-.icon-btn:active { transform: scale(0.9) !important; }
 
 /* GAMBURGER MENYU VA MOBILE AUTH */
 .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 5px; z-index: 100; width: 34px; height: 34px; align-items: center; justify-content: center; }
@@ -84,15 +93,6 @@ input, select { font-family: inherit; }
 @keyframes scaleIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
 .auth-controls { display: flex; align-items: center; gap: 10px; }
 #user-info { font-weight: bold; color: var(--success); display: none; font-size: 14px; }
-
-/* NAVBAR HOVER EFFEKTLARI (MOTION) */
-@media (min-width: 992px) {
-  .brand:hover { transform: translateY(-2px); }
-  .desktop-nav .nav-btn:hover { transform: translateY(-3px); background: rgba(255,255,255,0.25); color: #fff; border-radius: 10px; }
-  .icon-btn:hover { transform: translateY(-3px); background: rgba(255,255,255,0.2); }
-  #show-auth-btn { transition: transform 0.3s ease, background 0.3s; }
-  #show-auth-btn:hover { transform: translateY(-3px); box-shadow: 0 6px 15px rgba(0,0,0,0.2); }
-}
 
 @media (max-width: 991px) {
   .hamburger { display: flex; }
@@ -207,7 +207,9 @@ input, select { font-family: inherit; }
 .q-card { background: var(--surface); border-radius: 20px; box-shadow: var(--shadow-lg); border: 1px solid var(--border); padding: 40px 30px; text-align: center; }
 
 .q-options { display: flex; flex-direction: column; gap: 12px; margin-top: 24px; }
+/* Sichqoncha test javoblari ichidagi textni belgilamasligi uchun xavfsizlik */
 .opt-btn { width: 100%; padding: 16px 20px; border-radius: 14px; border: 2px solid var(--border); background: var(--surface); text-align: left; font-size: 16px; font-weight: 700; color: var(--ink); display: flex; align-items: center; gap: 16px; transition: 0.3s; cursor: pointer; }
+.opt-btn * { pointer-events: none; }
 .opt-btn .letter { width: 30px; height: 30px; border-radius: 8px; background: var(--surface-2); display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 800; flex: 0 0 auto; color: var(--ink-soft); }
 .opt-btn.correct { border-color: var(--success); background: rgba(31,191,117,0.12); }
 .opt-btn.wrong { border-color: var(--danger); background: rgba(255,77,94,0.12); }
@@ -349,7 +351,9 @@ const COLOR_PALETTES = [
   { p: '#FF9500', p2: '#FF2D55', a: '#FFCC00', a2: '#FF3B30', g1: 'linear-gradient(135deg,#FF9500 0%,#FF2D55 100%)', g2: 'linear-gradient(135deg,#FFCC00 0%,#FF9500 100%)' }
 ];
 
-const LS_KEY = "eng_vocab_state_v2"; // LocalStorage nomini yangiladik, toza boshlash uchun
+// QAYTADAN V1 GA QAYTARILDI: Eski qurilmalardagi saqlanmagan statsitika yo'qolmasligi uchun
+const LS_KEY = "eng_vocab_state_v1"; 
+
 function loadState(){
   try{ const raw = localStorage.getItem(LS_KEY); if(raw) return JSON.parse(raw); }catch(e){}
   return { favorites:{}, srs:{}, quizzesTaken:0, quizScoresSum:0, quizScoresCount:0, theme:"light", colorIdx: 0, lastActiveDate:null, streak:0 };
@@ -377,12 +381,11 @@ function applyColorPalette(idx) {
   localStorage.setItem(LS_KEY, JSON.stringify(STATE));
 }
 
-// Rang tugmalari ishlashi uchun
 document.querySelectorAll('.c-dot').forEach(btn => {
   btn.addEventListener('click', () => applyColorPalette(parseInt(btn.dataset.c)));
 });
 
-// Ma'lumotlarni saqlash va bulutga yozish
+// Mahalliy va Bulut bazasiga saqlash
 function saveState(){ 
   localStorage.setItem(LS_KEY, JSON.stringify(STATE)); 
   if (window.syncToFirestore) { window.syncToFirestore(); }
@@ -403,7 +406,6 @@ function bumpStreak(){
 }
 bumpStreak();
 
-// Ishga tushishida saqlangan rang va mavzuni qo'llash (Bulut ma'lumotlari buni buzmasligi kerak)
 if(STATE.theme === "dark"){ document.documentElement.classList.add("dark"); }
 applyColorPalette(STATE.colorIdx);
 
@@ -438,7 +440,7 @@ function speak(text){
   speechSynthesis.speak(u);
 }
 
-// UI LOGIC FOR NEW NAVBAR
+// UI LOGIC
 const hamburgerBtn = document.getElementById('hamburgerBtn');
 const mobileMenu = document.getElementById('mobileMenu');
 hamburgerBtn.addEventListener('click', () => {
@@ -473,9 +475,7 @@ function go(view, params={}, fromSearch=false){
   }
   
   render();
-  if(!fromSearch) {
-      window.scrollTo({top:0, behavior:"smooth"});
-  }
+  if(!fromSearch) { window.scrollTo({top:0, behavior:"smooth"}); }
 }
 
 window.goView = go;
@@ -1069,10 +1069,10 @@ go("home");
     const db = getFirestore(app);
     const googleProvider = new GoogleAuthProvider();
 
-    // Firebase'ga uzatiluvchi funksiya - bu faqat shaxsiy ma'lumotlarni yozadi
     window.isCloudLoaded = false;
     let unsubSnapshot = null;
 
+    // Yozish tizimi faqat user ro'yxatdan o'tgan bo'lsagina ishlaydi
     window.syncToFirestore = () => {
         if (window.currentUser && db && window.isCloudLoaded) {
             const userData = {
@@ -1084,7 +1084,7 @@ go("home");
                 lastActiveDate: STATE.lastActiveDate,
                 streak: STATE.streak
             };
-            setDoc(doc(db, "users", window.currentUser.uid), userData, { merge: true }).catch(e => console.error("Firestore Yozishdagi Xatolik:", e));
+            setDoc(doc(db, "users", window.currentUser.uid), userData, { merge: true }).catch(e => console.error("Firestore Error:", e));
         }
     };
 
@@ -1146,7 +1146,7 @@ go("home");
             window.isCloudLoaded = false;
             if (unsubSnapshot) { unsubSnapshot(); unsubSnapshot = null; }
             
-            // Faqat progressni tozalaymiz. Rang (colorIdx) va Mavzu (theme) saqlanib qoladi.
+            // Faqat progressni tozalaymiz. Rang, V1 va Mavzu (theme) o'zgarmasdan qoladi.
             STATE.favorites = {};
             STATE.srs = {};
             STATE.quizzesTaken = 0;
@@ -1173,7 +1173,7 @@ go("home");
             
             const docRef = doc(db, "users", user.uid);
             
-            // onSnapshot orqali ma'lumotlarni real vaqtda kuzatish (telefon <-> kompyuter sinxronizatsiyasi)
+            // REAL-TIME LISTENER: Har gal biror joyda ma'lumot yangilansa...
             unsubSnapshot = onSnapshot(docRef, (docSnap) => {
                 if(docSnap.exists()) {
                     const data = docSnap.data();
@@ -1189,15 +1189,21 @@ go("home");
 
                     localStorage.setItem(LS_KEY, JSON.stringify(STATE));
                     window.isCloudLoaded = true; 
-                    if(typeof render === 'function') render();
+                    
+                    // XATOLIK SABABI VA YECHIMI:
+                    // Agar test ishlanayotgan bo'lsa, UI yangilanishiga (render) RUXSAT BERMAYMIZ. 
+                    // Aks holda test o'zidan o'zi boshlang'ich holatiga (javobsiz holatga) reset bo'lib qoladi.
+                    if (VIEW !== "quizRun" && VIEW !== "flashRun" && VIEW !== "practiceRun") {
+                        if(typeof render === 'function') render();
+                    }
                 } else {
-                    // Agar akkaunt yangi bo'lsa
+                    // Yangi foydalanuvchi
                     window.isCloudLoaded = true;
                     window.syncToFirestore();
                 }
             }, (error) => {
                 console.error("Real-time Sync Xatosi:", error);
-                window.isCloudLoaded = true;
+                window.isCloudLoaded = false;
             });
             
         } else {

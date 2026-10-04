@@ -4,17 +4,25 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Ingliz tili lug'ati — English File Units</title>
+<!-- Favicon (EN yozuvli SVG logo) -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' stop-color='%235B4CFF'/><stop offset='100%25' stop-color='%23FF6F91'/></linearGradient></defs><rect width='100' height='100' rx='24' fill='url(%23g)'/><text x='50%25' y='55%25' font-family='system-ui,sans-serif' font-size='44' font-weight='800' fill='%23ffffff' text-anchor='middle' dominant-baseline='middle'>EN</text></svg>">
 <style>
 /* ===================== DESIGN TOKENS ===================== */
 :root {
   --bg: #F6F5FB; --surface: #FFFFFF; --surface-2: #EFEDFB;
   --ink: #20203A; --ink-soft: #5B5B78; --border: rgba(32,32,58,0.10);
-  --primary: #5B4CFF; --primary-2: #8B5CF6; --accent: #FF6F91;
-  --accent-2: #00C6AE; --gold: #FFB020; --danger: #FF4D5E; --success: #1FBF75;
-  --shadow: 0 8px 24px rgba(60,50,140,0.10); --shadow-lg: 0 16px 40px rgba(60,50,140,0.18);
-  --radius: 18px; --radius-sm: 12px;
+  
+  /* Birlamchi ranglar (JS orqali o'zgaradi) */
+  --primary: #5B4CFF; 
+  --primary-2: #8B5CF6; 
+  --accent: #FF6F91;
+  --accent-2: #00C6AE; 
   --grad-1: linear-gradient(135deg,#5B4CFF 0%,#8B5CF6 50%,#FF6F91 100%);
   --grad-2: linear-gradient(135deg,#00C6AE 0%,#5B4CFF 100%);
+  
+  --gold: #FFB020; --danger: #FF4D5E; --success: #1FBF75;
+  --shadow: 0 8px 24px rgba(60,50,140,0.10); --shadow-lg: 0 16px 40px rgba(60,50,140,0.18);
+  --radius: 18px; --radius-sm: 12px;
   --font-display: 'Golos Text','Segoe UI',system-ui,sans-serif;
   --font-body: 'Golos Text','Segoe UI',system-ui,sans-serif;
 }
@@ -36,35 +44,34 @@ input, select { font-family: inherit; }
 ::-webkit-scrollbar { width: 6px; height: 6px; }
 ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
 
-/* LAYOUT (Kompyuterda 1200px gacha kengayadi) */
+/* LAYOUT */
 .app { max-width: 1200px; margin: 0 auto; min-height: 100vh; display: flex; flex-direction: column; position: relative; padding-bottom: 76px; }
 @media (min-width: 992px) { .app { padding-bottom: 20px; } }
 
-/* YUQORI QISM (Qisqa va ixcham Header) */
-.topbar { position: sticky; top: 0; z-index: 60; background: var(--grad-1); box-shadow: var(--shadow-lg); color: #fff; padding: 12px 20px; border-radius: 0 0 20px 20px; }
+/* YUQORI QISM (Header) */
+.topbar { position: sticky; top: 0; z-index: 60; background: var(--grad-1); box-shadow: var(--shadow-lg); color: #fff; padding: 12px 20px; border-radius: 0 0 20px 20px; transition: background 0.4s ease; }
 .topbar-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
 .brand { display: flex; align-items: center; gap: 8px; cursor: pointer; }
-.brand-mark { font-family: var(--font-display); font-weight: 800; font-size: 14px; width: 34px; height: 34px; border-radius: 50%; background: rgba(255,255,255,0.25); display: flex; align-items: center; justify-content: center; backdrop-filter: blur(6px); color: #fff; letter-spacing: 0.5px; }
 .brand-text h1 { font-size: 16px; font-weight: 800; letter-spacing: .2px; }
 .brand-text p { display: none; }
 
-/* DESKTOP NAVBAR (Kompyuterda ko'rinadi, telefonda yashirinadi) */
+/* DESKTOP NAVBAR */
 .desktop-nav { display: none; align-items: center; gap: 5px; flex: 1; justify-content: center; }
 .desktop-nav .nav-btn { flex-direction: row; color: rgba(255,255,255,0.7); font-size: 14px; padding: 8px 14px; }
 .desktop-nav .nav-btn.active { color: #fff; background: rgba(255,255,255,0.2); border-radius: 10px; }
 .desktop-nav .nav-btn .em { margin-right: 6px; font-size: 16px; }
 
-/* O'NG TOMON TUFMAYALAR VA QIDIRUV (Lupa animatsiyasi) */
+/* O'NG TOMON TUFMAYALAR VA QIDIRUV */
 .topbar-actions { display: flex; align-items: center; gap: 8px; }
 .search-container { display: flex; align-items: center; background: rgba(255,255,255,0.15); border-radius: 20px; padding: 2px; transition: 0.3s; }
 .search-container.active { background: rgba(255,255,255,0.95); }
 .search-input { width: 0; padding: 0; border: none; background: transparent; font-size: 14px; transition: 0.3s; opacity: 0; color: #20203A; }
 .search-container.active .search-input { width: 140px; padding: 5px 10px; opacity: 1; outline: none; }
 .icon-btn { width: 34px; height: 34px; border-radius: 10px; background: transparent; color: #fff; border: none; font-size: 16px; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
-.search-container.active .icon-btn { color: #5B4CFF; }
+.search-container.active .icon-btn { color: var(--primary); }
 .icon-btn:active { transform: scale(0.9); }
 
-/* GAMBURGER MENYU VA MOBILE AUTH (Telefonda ochiladi) */
+/* GAMBURGER MENYU VA MOBILE AUTH */
 .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 5px; z-index: 100; width: 34px; height: 34px; align-items: center; justify-content: center; }
 .hamburger span { display: block; width: 22px; height: 3px; background: #fff; transition: 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55); border-radius: 3px; }
 .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 6px); }
@@ -77,7 +84,6 @@ input, select { font-family: inherit; }
 .auth-controls { display: flex; align-items: center; gap: 10px; }
 #user-info { font-weight: bold; color: var(--success); display: none; font-size: 14px; }
 
-/* Asosiy ko'rinish responsivligi */
 @media (max-width: 991px) {
   .hamburger { display: flex; }
   .desktop-auth-wrapper { display: none; }
@@ -89,11 +95,16 @@ input, select { font-family: inherit; }
   .search-container.active .search-input { width: 200px; }
 }
 
+/* RANGLAR PANELI (Theme Switcher) */
+.color-switcher { position: fixed; right: 0; top: 50%; transform: translateY(-50%); background: var(--surface); padding: 12px 8px; border-radius: 16px 0 0 16px; box-shadow: var(--shadow-lg); display: flex; flex-direction: column; gap: 12px; z-index: 1000; border: 1px solid var(--border); border-right: none; }
+.c-dot { width: 22px; height: 22px; border-radius: 50%; border: 2px solid var(--surface-2); cursor: pointer; transition: 0.3s; padding: 0; }
+.c-dot.active { transform: scale(1.2); border-color: var(--ink); box-shadow: 0 0 8px rgba(0,0,0,0.2); }
+
 /* MAIN VIEW SLIDE-UP ANIMATSIYASI */
 .view { padding: 20px; animation: slideFadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
 @keyframes slideFadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 
-/* GRID VA RESPONSIV KARTALAR (Kompyuterda qatorlashadi) */
+/* GRID VA RESPONSIV KARTALAR */
 .section-title { font-size: 16px; font-weight: 800; margin: 10px 2px 14px; display: flex; align-items: center; gap: 8px; }
 .section-title .cnt { font-weight: 600; font-size: 11.5px; color: var(--ink-soft); background: var(--surface-2); padding: 3px 9px; border-radius: 100px; }
 
@@ -117,13 +128,13 @@ input, select { font-family: inherit; }
 .quick-btn { flex: 0 0 auto; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 14px 18px; display: flex; flex-direction: column; align-items: center; gap: 8px; min-width: 100px; box-shadow: var(--shadow); font-size: 12px; font-weight: 700; color: var(--ink); }
 .quick-btn .em { font-size: 22px; }
 
-/* LUG'AT KARTOCHKALARI (Kompyuterda Yonma-yon Grid) */
+/* LUG'AT KARTOCHKALARI */
 .phrases-list { display: grid; grid-template-columns: 1fr; gap: 12px; }
 @media (min-width: 768px) { .phrases-list { grid-template-columns: repeat(2, 1fr); } }
 @media (min-width: 992px) { .phrases-list { grid-template-columns: repeat(3, 1fr); gap: 16px; } }
 
 .phrase-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 16px; box-shadow: var(--shadow); position: relative; display: flex; flex-direction: column; justify-content: center; }
-.phrase-uz { font-size: 11.5px; color: var(--primary); font-weight: 800; text-transform: uppercase; letter-spacing: .3px; margin-bottom: 6px; }
+.phrase-uz { font-size: 11.5px; color: var(--primary); font-weight: 800; text-transform: uppercase; letter-spacing: .3px; margin-bottom: 6px; transition: color 0.4s ease; }
 .phrase-ru { font-size: 17px; font-weight: 800; line-height: 1.35; margin-bottom: 4px; }
 .phrase-tr { font-size: 13.5px; color: var(--ink-soft); font-weight: 600; margin-bottom: 4px; }
 .phrase-note { font-size: 12px; color: var(--accent-2); font-weight: 600; margin-top: 6px; }
@@ -131,7 +142,7 @@ input, select { font-family: inherit; }
 .mini-btn { width: 34px; height: 34px; border-radius: 10px; border: none; background: var(--surface-2); display: flex; align-items: center; justify-content: center; font-size: 16px; color: var(--ink-soft); }
 .mini-btn.fav-on { color: var(--gold); background: rgba(255,176,32,0.15); }
 
-/* HOVER EFFEKTLARI (Sichqoncha oborilganda kattalashish) */
+/* HOVER EFFEKTLARI */
 @media (min-width: 992px) {
   .cat-card:hover, .stat-card:hover, .quick-btn:hover { transform: translateY(-5px) scale(1.02); box-shadow: var(--shadow-lg); border-color: var(--primary-2); }
   .phrase-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
@@ -140,7 +151,7 @@ input, select { font-family: inherit; }
   .mode-card:hover { border-color: var(--primary-2); transform: translateY(-2px); box-shadow: var(--shadow-lg); }
 }
 
-/* PASTKI MENYU (Faqat mobil uchun) */
+/* PASTKI MENYU (Mobil) */
 .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; z-index: 50; background: var(--surface); border-top: 1px solid var(--border); display: flex; justify-content: space-around; padding: 8px 4px calc(8px + env(safe-area-inset-bottom)); box-shadow: 0 -6px 20px rgba(0,0,0,0.06); }
 .nav-btn { background: none; border: none; display: flex; flex-direction: column; align-items: center; gap: 4px; color: var(--ink-soft); font-size: 10px; font-weight: 700; padding: 6px; border-radius: 12px; flex: 1; transition: 0.3s; }
 .nav-btn .em { font-size: 20px; }
@@ -172,7 +183,6 @@ input, select { font-family: inherit; }
 .flash-main { font-size: 26px; font-weight: 800; line-height: 1.4; }
 .flash-bottom { display: flex; gap: 15px; margin-top: 20px; width: 100%; }
 
-/* Test rejimlari uchun UI yangilanishi */
 .mode-grid { display: grid; grid-template-columns: 1fr; gap: 12px; margin-bottom: 20px; }
 @media (min-width: 500px) { .mode-grid { grid-template-columns: 1fr 1fr; } }
 .mode-card { background: var(--surface); border: 2px solid var(--border); border-radius: 16px; padding: 16px; text-align: left; display: flex; flex-direction: column; gap: 6px; transition: 0.3s; cursor: pointer; color: var(--ink); box-shadow: var(--shadow); }
@@ -186,7 +196,6 @@ input, select { font-family: inherit; }
 .len-chip.sel { border-color: var(--primary); background: var(--primary); color: #fff; }
 .q-card { background: var(--surface); border-radius: 20px; box-shadow: var(--shadow-lg); border: 1px solid var(--border); padding: 40px 30px; text-align: center; }
 
-/* Test javoblari tugmalari */
 .q-options { display: flex; flex-direction: column; gap: 12px; margin-top: 24px; }
 .opt-btn { width: 100%; padding: 16px 20px; border-radius: 14px; border: 2px solid var(--border); background: var(--surface); text-align: left; font-size: 16px; font-weight: 700; color: var(--ink); display: flex; align-items: center; gap: 16px; transition: 0.3s; cursor: pointer; }
 .opt-btn .letter { width: 30px; height: 30px; border-radius: 8px; background: var(--surface-2); display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 800; flex: 0 0 auto; color: var(--ink-soft); }
@@ -202,6 +211,14 @@ input, select { font-family: inherit; }
 </style>
 </head>
 <body>
+
+<!-- RANGLAR PANELI (THEME SWITCHER) -->
+<div class="color-switcher">
+  <button class="c-dot" data-c="0" style="background: linear-gradient(135deg,#5B4CFF,#FF6F91);" title="Binafsharang (Asosiy)"></button>
+  <button class="c-dot" data-c="1" style="background: linear-gradient(135deg,#007AFF,#00C6AE);" title="Moviy"></button>
+  <button class="c-dot" data-c="2" style="background: linear-gradient(135deg,#34C759,#32ADE6);" title="Yashil"></button>
+  <button class="c-dot" data-c="3" style="background: linear-gradient(135deg,#FF9500,#FF2D55);" title="Olovrang"></button>
+</div>
 
 <!-- MODAL OYNA (Login/Ro'yxatdan o'tish) -->
 <div class="modal" id="auth-modal">
@@ -234,9 +251,20 @@ input, select { font-family: inherit; }
   <!-- YUQORI NAVBAR -->
   <div class="topbar">
     <div class="topbar-row">
-      <!-- Logo -->
+      <!-- Logo: SVG qilingan logotip (Ranglari mavzuga moslashadi) -->
       <div class="brand" onclick="go('home')">
-        <div class="brand-mark">GB</div>
+        <div class="brand-mark" style="background: transparent; padding: 0;">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="34" height="34" style="filter: drop-shadow(0 4px 6px rgba(0,0,0,0.15));">
+            <defs>
+              <linearGradient id="logo-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="var(--primary)"/>
+                <stop offset="100%" stop-color="var(--accent)"/>
+              </linearGradient>
+            </defs>
+            <rect width="100" height="100" rx="24" fill="url(#logo-grad)"/>
+            <text x="50%" y="55%" font-family="system-ui, sans-serif" font-size="44" font-weight="800" fill="#ffffff" text-anchor="middle" dominant-baseline="middle">EN</text>
+          </svg>
+        </div>
         <div class="brand-text"><h1>Ingliz tili</h1></div>
       </div>
       
@@ -301,20 +329,61 @@ input, select { font-family: inherit; }
 PHRASES.forEach((p,i)=>{ p.id = i; });
 const CAT_MAP = Object.fromEntries(CATEGORIES.map(c=>[c.key,c]));
 
+// ================= RANG PALITRALARI =================
+const COLOR_PALETTES = [
+  // 0: Asosiy (Binafsharang)
+  { p: '#5B4CFF', p2: '#8B5CF6', a: '#FF6F91', a2: '#00C6AE', g1: 'linear-gradient(135deg,#5B4CFF 0%,#8B5CF6 50%,#FF6F91 100%)', g2: 'linear-gradient(135deg,#00C6AE 0%,#5B4CFF 100%)' },
+  // 1: Moviy (Blue)
+  { p: '#007AFF', p2: '#3399FF', a: '#00C6AE', a2: '#34C759', g1: 'linear-gradient(135deg,#007AFF 0%,#5856D6 100%)', g2: 'linear-gradient(135deg,#34C759 0%,#007AFF 100%)' },
+  // 2: Yashil (Green)
+  { p: '#34C759', p2: '#32ADE6', a: '#FFCC00', a2: '#007AFF', g1: 'linear-gradient(135deg,#34C759 0%,#32ADE6 100%)', g2: 'linear-gradient(135deg,#FFCC00 0%,#34C759 100%)' },
+  // 3: Olovrang (Orange)
+  { p: '#FF9500', p2: '#FF2D55', a: '#FFCC00', a2: '#FF3B30', g1: 'linear-gradient(135deg,#FF9500 0%,#FF2D55 100%)', g2: 'linear-gradient(135deg,#FFCC00 0%,#FF9500 100%)' }
+];
+
 const LS_KEY = "eng_vocab_state_v1";
 function loadState(){
   try{ const raw = localStorage.getItem(LS_KEY); if(raw) return JSON.parse(raw); }catch(e){}
-  return { favorites:{}, srs:{}, quizzesTaken:0, quizScoresSum:0, quizScoresCount:0, theme:"light", lastActiveDate:null, streak:0 };
+  return { favorites:{}, srs:{}, quizzesTaken:0, quizScoresSum:0, quizScoresCount:0, theme:"light", colorIdx: 0, lastActiveDate:null, streak:0 };
 }
 let STATE = loadState();
+// Agar eski bazada colorIdx bo'lmasa 0 o'rnatamiz
+if(typeof STATE.colorIdx === 'undefined') STATE.colorIdx = 0;
+
+function applyColorPalette(idx) {
+  if (idx < 0 || idx >= COLOR_PALETTES.length) idx = 0;
+  const pal = COLOR_PALETTES[idx];
+  const root = document.documentElement;
+  
+  root.style.setProperty('--primary', pal.p);
+  root.style.setProperty('--primary-2', pal.p2);
+  root.style.setProperty('--accent', pal.a);
+  root.style.setProperty('--accent-2', pal.a2);
+  root.style.setProperty('--grad-1', pal.g1);
+  root.style.setProperty('--grad-2', pal.g2);
+  
+  document.querySelectorAll('.c-dot').forEach(btn => {
+    btn.classList.toggle('active', parseInt(btn.dataset.c) === idx);
+  });
+  
+  STATE.colorIdx = idx;
+  saveState();
+}
+
+// Tugmalarga bosilganda ranglarni o'zgartirish
+document.querySelectorAll('.c-dot').forEach(btn => {
+  btn.addEventListener('click', () => applyColorPalette(parseInt(btn.dataset.c)));
+});
 
 window.getState = () => STATE;
 window.setState = (newState) => {
     STATE = newState;
+    if(typeof STATE.colorIdx === 'undefined') STATE.colorIdx = 0;
     localStorage.setItem(LS_KEY, JSON.stringify(STATE));
     if (STATE.theme === "dark") document.documentElement.classList.add("dark");
     else document.documentElement.classList.remove("dark");
     applyThemeIcon();
+    applyColorPalette(STATE.colorIdx);
     if(typeof render === 'function') render();
 };
 
@@ -338,7 +407,10 @@ function bumpStreak(){
 }
 bumpStreak();
 
+// Ishga tushishida saqlangan rang va mavzuni qo'llash
 if(STATE.theme === "dark"){ document.documentElement.classList.add("dark"); }
+applyColorPalette(STATE.colorIdx);
+
 function applyThemeIcon(){ document.getElementById("themeBtn").textContent = STATE.theme==="dark" ? "☀️" : "🌙"; }
 
 const SRS_INTERVALS_MIN = [10, 60, 60*8, 60*24, 60*24*3, 60*24*7, 60*24*16, 60*24*30];
@@ -390,7 +462,6 @@ let VIEW = "home";
 let VIEW_PARAMS = {};
 const mainView = document.getElementById("mainView");
 
-// fromSearch parametri qidirish maydonini tozalanib ketishini oldini oladi
 function go(view, params={}, fromSearch=false){
   VIEW = view; VIEW_PARAMS = params;
   document.querySelectorAll(".nav-btn").forEach(b=>{
@@ -421,7 +492,6 @@ document.getElementById("themeBtn").addEventListener("click", ()=>{
 });
 applyThemeIcon();
 
-// Input vaqtida fromSearch = true qilib yuboriladi
 searchInput.addEventListener("input", ()=>{
   if(searchInput.value.trim().length>0) go("search", {q:searchInput.value.trim()}, true);
   else if(VIEW==="search") go("home", {}, true);
@@ -677,8 +747,8 @@ function drawFlash(){
   if(FLASH.idx >= FLASH.ids.length){
     mainView.innerHTML = `
     <div class="view">
-      <div class="result-hero">
-        <div class="result-ring"><div><b>🎉</b><span>Tayyor!</span></div></div>
+      <div class="result-hero" style="text-align:center;">
+        <div class="result-ring" style="width:120px; height:120px; margin: 0 auto 20px; border-radius:50%; background:var(--surface-2); display:flex; align-items:center; justify-content:center; flex-direction:column; border: 8px solid var(--primary); box-shadow:var(--shadow-lg);"><div><b>🎉</b><span>Tayyor!</span></div></div>
         <h2 style="font-size:22px; margin-bottom:10px;">Barcha kartochkalar ko'rib chiqildi</h2>
         <p style="color:var(--ink-soft); font-size:15px;">${FLASH.ids.length} ta so'z bilan mashq qildingiz.</p>
         <div style="display:flex; gap:15px; margin-top:25px; justify-content:center;">
@@ -693,15 +763,15 @@ function drawFlash(){
   }
   const p = PHRASES[FLASH.ids[FLASH.idx]]; const cat = CAT_MAP[p.unit]; const fav = !!STATE.favorites[p.id]; const pct = Math.round((FLASH.idx/FLASH.ids.length)*100);
 
-  let bodyHtml = FLASH.flipped===0 ? `<div class="flash-main">${esc(p.en)}</div><div class="flash-hint">Tarjimani ko'rish uchun bosing 👆</div>` 
-    : `<div class="flash-main">${esc(p.uz)}</div>${p.ru?`<div class="flash-sub">🇷🇺 ${esc(p.ru)}</div>`:``}${p.note?`<div class="flash-note">💡 ${esc(p.note)}</div>`:``}<button class="mini-btn flash-audio" id="flashSpeak" style="width:54px;height:54px;border-radius:50%;font-size:24px;margin-top:15px;">🔊</button>`;
+  let bodyHtml = FLASH.flipped===0 ? `<div class="flash-main">${esc(p.en)}</div><div class="flash-hint" style="color:var(--ink-soft); font-weight:600; font-size:14px; margin-top:15px;">Tarjimani ko'rish uchun bosing 👆</div>` 
+    : `<div class="flash-main" style="color:var(--primary);">${esc(p.uz)}</div>${p.ru?`<div class="flash-sub" style="font-weight:700; color:var(--ink-soft); margin-top:8px;">🇷🇺 ${esc(p.ru)}</div>`:``}${p.note?`<div class="flash-note" style="color:var(--accent-2); font-size:14px; margin-top:8px; font-weight:700;">💡 ${esc(p.note)}</div>`:``}<button class="mini-btn flash-audio" id="flashSpeak" style="width:54px;height:54px;border-radius:50%;font-size:24px;margin-top:15px; cursor:pointer;">🔊</button>`;
 
   mainView.innerHTML = `
   <div class="view">
     ${backRow("Kartochkalar bilan mashq")}
-    <div class="flash-progress" style="max-width: 600px; margin: 0 auto 16px;"><span>${FLASH.idx+1}/${FLASH.ids.length}</span><div class="bar"><i style="width:${pct}%"></i></div></div>
+    <div class="flash-progress" style="max-width: 600px; margin: 0 auto 16px; font-weight:700; color:var(--ink-soft); display:flex; gap:15px; align-items:center;"><span>${FLASH.idx+1}/${FLASH.ids.length}</span><div class="bar" style="flex:1; height:8px; border-radius:10px; background:var(--surface-2); overflow:hidden;"><i style="display:block; height:100%; width:${pct}%; background:var(--grad-2); transition:0.3s;"></i></div></div>
     <div class="flash-wrap">
-      <div class="flashcard" id="flashCard" style="cursor:pointer;">
+      <div class="flashcard" id="flashCard" style="cursor:pointer; border:2px solid var(--border);">
         ${cat ? `<div style="position:absolute; top:20px; left:20px; font-size:12.5px; font-weight:700; color:var(--ink-soft); background:var(--surface-2); padding:6px 12px; border-radius:100px; display:flex; align-items:center; gap:6px; box-shadow:0 2px 4px rgba(0,0,0,0.05);">${cat.em}${cat.name}</div>` : ''}
         <button id="flashStar" style="position:absolute; top:18px; right:18px; width:44px; height:44px; border-radius:50%; border:none; background:transparent; font-size:24px; cursor:pointer; display:flex; align-items:center; justify-content:center; color: ${fav?'var(--gold)':'var(--ink-soft)'}; transition:0.3s;">${fav?'★':'☆'}</button>
         ${bodyHtml}
@@ -1002,7 +1072,6 @@ go("home");
     const db = getFirestore(app);
     const googleProvider = new GoogleAuthProvider();
 
-    // Global UI interfeyslarini Cloud Sync uchun ulash
     window.syncToFirestore = (stateData) => {
         if (window.currentUser && db) {
             setDoc(doc(db, "users", window.currentUser.uid), stateData).catch(e => console.error("Firestore Error:", e));
@@ -1045,7 +1114,6 @@ go("home");
             signInWithPopup(auth, googleProvider)
                 .then(() => { authModal.style.display = 'none'; })
                 .catch((error) => {
-                    // Foydalanuvchi oynani o'zi yopib yuborsa xatolik ko'rsatilmaydi
                     if(error.code !== 'auth/popup-closed-by-user') {
                         authError.style.color = "red"; 
                         authError.textContent = "Xatolik: " + error.message; 
@@ -1065,13 +1133,11 @@ go("home");
 
     if(logoutBtn) {
         logoutBtn.addEventListener('click', () => {
-            // LocalStorage tozalanishi va toza holatga qaytarish
             localStorage.removeItem("eng_vocab_state_v1");
             if(window.setState) {
-                window.setState({ favorites:{}, srs:{}, quizzesTaken:0, quizScoresSum:0, quizScoresCount:0, theme:"light", lastActiveDate:null, streak:0 });
+                window.setState({ favorites:{}, srs:{}, quizzesTaken:0, quizScoresSum:0, quizScoresCount:0, theme:"light", colorIdx:0, lastActiveDate:null, streak:0 });
             }
             if(window.goView) window.goView("home");
-            
             signOut(auth); 
         });
     }
@@ -1083,14 +1149,11 @@ go("home");
             if(logoutBtn) logoutBtn.style.display = 'inline';
             window.currentUser = user; 
             
-            // Tizimga kirilganda Firestore'dan mavjud bazani tortib olish
             const docRef = doc(db, "users", user.uid);
             getDoc(docRef).then(docSnap => {
                 if(docSnap.exists()) {
-                    // Bulutdagi bazani mahalliyga o'rnatish
                     if (window.setState) window.setState(docSnap.data());
                 } else {
-                    // Foydalanuvchi bazada yangi bo'lsa mahalliy bazani yozib qo'yamiz
                     if (window.getState && window.syncToFirestore) window.syncToFirestore(window.getState());
                 }
             }).catch(e => console.error("Cloud Fetch Error:", e));

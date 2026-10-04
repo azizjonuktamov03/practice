@@ -134,7 +134,8 @@ input, select { font-family: inherit; }
 .progress-bar { height: 8px; border-radius: 10px; background: var(--surface-2); overflow: hidden; margin-top: 10px; }
 .progress-fill { height: 100%; background: var(--grad-2); border-radius: 10px; transition: width 0.6s ease; }
 
-.quick-row { display: flex; gap: 12px; overflow-x: auto; padding-bottom: 8px; margin-bottom: 20px; }
+/* TEZKOR MENYULAR QISMI (Hover kesilishini oldini olish uchun padding-top qo'shildi) */
+.quick-row { display: flex; gap: 12px; overflow-x: auto; padding: 10px 5px 15px 5px; margin: 0 -5px 20px -5px; }
 .quick-btn { flex: 0 0 auto; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 14px 18px; display: flex; flex-direction: column; align-items: center; gap: 8px; min-width: 100px; box-shadow: var(--shadow); font-size: 12px; font-weight: 700; color: var(--ink); }
 .quick-btn .em { font-size: 22px; }
 
@@ -146,7 +147,8 @@ input, select { font-family: inherit; }
 .phrase-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 16px; box-shadow: var(--shadow); position: relative; display: flex; flex-direction: column; justify-content: center; }
 .phrase-uz { font-size: 11.5px; color: var(--primary); font-weight: 800; text-transform: uppercase; letter-spacing: .3px; margin-bottom: 6px; transition: color 0.4s ease; }
 .phrase-ru { font-size: 17px; font-weight: 800; line-height: 1.35; margin-bottom: 4px; }
-.phrase-tr { font-size: 13.5px; color: var(--ink-soft); font-weight: 600; margin-bottom: 4px; }
+.phrase-tr { font-size: 13.5px; color: var(--ink-soft); font-weight: 600; margin-bottom: 4px; display: flex; align-items: flex-start; gap: 6px; }
+.phrase-tr .flag-em { font-size: 16px; line-height: 1; }
 .phrase-note { font-size: 12px; color: var(--accent-2); font-weight: 600; margin-top: 6px; }
 .phrase-actions { position: absolute; top: 12px; right: 12px; display: flex; gap: 6px; }
 .mini-btn { width: 34px; height: 34px; border-radius: 10px; border: none; background: var(--surface-2); display: flex; align-items: center; justify-content: center; font-size: 16px; color: var(--ink-soft); }
@@ -351,7 +353,7 @@ const COLOR_PALETTES = [
   { p: '#FF9500', p2: '#FF2D55', a: '#FFCC00', a2: '#FF3B30', g1: 'linear-gradient(135deg,#FF9500 0%,#FF2D55 100%)', g2: 'linear-gradient(135deg,#FFCC00 0%,#FF9500 100%)' }
 ];
 
-// QAYTADAN V1 GA QAYTARILDI: Eski qurilmalardagi saqlanmagan statsitika yo'qolmasligi uchun
+// Asl V1 kalitiga qaytarildi (Yo'qolgan progress va sevimllarni qaytarish uchun)
 const LS_KEY = "eng_vocab_state_v1"; 
 
 function loadState(){
@@ -500,6 +502,7 @@ function searchPhrases(q){
   return PHRASES.filter(p=> norm(p.en).includes(nq) || norm(p.uz).includes(nq) || norm(p.ru).includes(nq) ).slice(0,200);
 }
 
+// BAYROQCHALAR QO'SHILDI
 function phraseCardHtml(p){
   const fav = !!STATE.favorites[p.id];
   return `
@@ -510,8 +513,8 @@ function phraseCardHtml(p){
     </div>
     <div class="phrase-uz">ENGLISH</div>
     <div class="phrase-ru">${esc(p.en)}</div>
-    <div class="phrase-tr">🇺🇿 ${esc(p.uz)}</div>
-    ${p.ru ? `<div class="phrase-tr">🇷🇺 ${esc(p.ru)}</div>` : ``}
+    <div class="phrase-tr"><span class="flag-em">🇺🇿</span> <span>${esc(p.uz)}</span></div>
+    ${p.ru ? `<div class="phrase-tr"><span class="flag-em">🇷🇺</span> <span>${esc(p.ru)}</span></div>` : ``}
     ${p.note ? `<div class="phrase-note">💡 ${esc(p.note)}</div>` : ``}
   </div>`;
 }
@@ -1000,6 +1003,10 @@ function renderQuizRun(){
 function answerFeedback(p, isCorrect, mode){
   if(isCorrect){ QUIZ.correct++; markKnown(p.id); } else { markUnknown(p.id); }
   QUIZ.log.push({id:p.id, ok:isCorrect});
+  
+  // Real-vaqt render uzilishining oldini olamiz (test ishlanayotganda STATE faqat orqa fonda saqlanadi)
+  saveState();
+  
   document.getElementById("fbSlot").innerHTML = `
     <div class="q-feedback ${isCorrect?'ok':'no'}" style="padding:16px; border-radius: 14px; background: ${isCorrect?'rgba(31,191,117,0.12)':'rgba(255,77,94,0.12)'}; font-size:15px; margin-top:20px; font-weight:700; color: ${isCorrect?'var(--success)':'var(--danger)'};">
        ${isCorrect? '✅ To\'g\'ri!' : '❌ Noto\'g\'ri.'}<div class="fb-note" style="margin-top:6px; font-size:14px; color:var(--ink);">${esc(p.en)} — ${esc(p.uz)}${p.ru?' · 🇷🇺 '+esc(p.ru):''}${p.note?' · '+esc(p.note):''}</div>

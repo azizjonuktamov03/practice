@@ -215,6 +215,7 @@ input, select { font-family: inherit; }
 .q-card { background: var(--surface); border-radius: 20px; box-shadow: var(--shadow-lg); border: 1px solid var(--border); padding: 40px 30px; text-align: center; }
 
 .q-options { display: flex; flex-direction: column; gap: 12px; margin-top: 24px; }
+/* Sichqoncha test javoblari ichidagi textni belgilamasligi uchun xavfsizlik */
 .opt-btn { width: 100%; padding: 16px 20px; border-radius: 14px; border: 2px solid var(--border); background: var(--surface); text-align: left; font-size: 16px; font-weight: 700; color: var(--ink); display: flex; align-items: center; gap: 16px; transition: 0.3s; cursor: pointer; }
 .opt-btn * { pointer-events: none; }
 .opt-btn .letter { width: 30px; height: 30px; border-radius: 8px; background: var(--surface-2); display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 800; flex: 0 0 auto; color: var(--ink-soft); }
@@ -345,7 +346,7 @@ input, select { font-family: inherit; }
   </div>
 </div>
 
-<script src="words.js?v=2.0.0"></script>
+<script src="words.js?v=2.0.1"></script>
 
 <script>
 PHRASES.forEach((p,i)=>{ p.id = i; });
@@ -975,7 +976,11 @@ function renderPracticeRun(){
   if(PRAC.autoFocus){ setTimeout(()=>inp.focus(), 50); } else { inp.blur(); }
   
   const checkAns = (showOnly) => {
-     const targetNorm = norm(targetText).replace(/[.,!?()]/g,""); const userNorm = norm(inp.value).replace(/[.,!?()]/g,"");
+     // Qavslarni tekshirishdan oldin olib tashlaymiz
+     const cleanTarget = targetText.replace(/\s*\(.*?\)/g, "").trim();
+     const targetNorm = norm(cleanTarget).replace(/[.,!?()]/g,""); 
+     const userNorm = norm(inp.value).replace(/[.,!?()]/g,"");
+     
      if(showOnly){ fb.style.color = "var(--gold)"; fb.innerHTML = `To'g'ri javob: <b>${esc(targetText)}</b>`; return; }
      if(userNorm.length > 0 && (userNorm === targetNorm || (targetNorm.includes(userNorm) && userNorm.length >= targetNorm.length*0.7))){
         if(!QUIZ.log.find(l=>l.id===p.id)) { QUIZ.correct++; QUIZ.log.push({id:p.id, ok:true}); markKnown(p.id); }
@@ -1053,8 +1058,13 @@ function renderQuizRun(){
     if(PRAC.autoFocus){ setTimeout(()=>inp.focus(), 50); } else { inp.blur(); }
     const submit = ()=>{
       if(QUIZ.answered) return; QUIZ.answered = true;
-      const val = norm(inp.value).replace(/[.,!?]/g,""); const correctNorm = norm(p.en).replace(/[.,!?]/g,"");
-      const isCorrect = val.length>0 && (val===correctNorm || (correctNorm.includes(val) && val.length>=correctNorm.length*0.7));
+      const userNorm = norm(inp.value).replace(/[.,!?]/g,""); 
+      
+      // Qavslarni tekshirishdan oldin olib tashlaymiz
+      const cleanTarget = p.en.replace(/\s*\(.*?\)/g, "").trim();
+      const correctNorm = norm(cleanTarget).replace(/[.,!?]/g,"");
+      
+      const isCorrect = userNorm.length>0 && (userNorm===correctNorm || (correctNorm.includes(userNorm) && userNorm.length>=correctNorm.length*0.7));
       answerFeedback(p, isCorrect, mode); inp.disabled = true; submitBtn.disabled = true;
     };
     submitBtn.addEventListener("click", submit); inp.addEventListener("keydown",(e)=>{ if(e.key==="Enter") submit(); });
